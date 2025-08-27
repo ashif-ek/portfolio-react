@@ -527,11 +527,13 @@ const Hero = () => {
         <div className="h-10 w-px bg-gradient-to-t from-cyan-400 to-transparent mt-2"></div>
       </div>
       
-      <div className="container mx-auto max-w-5xl relative z-10" style={{ zIndex: 3 }}>
+      <div className="container mx-auto max-w-4xl relative z-10 px-4" style={{ zIndex: 3 }}>
         <div className="text-center">
           {/* Main headline with animation and typing effect */}
-          <h1 className={`text-5xl md:text-7xl font-bold mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Hi, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 drop-shadow-glow">ashif e.k</span>
+          <h1 className={`text-5xl md:text-6xl font-bold mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 font-semibold">Hi, I'm </span>
+
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 font-semibold">Ashif E.K</span>
           </h1>
           
           {/* Animated role text with typewriter effect */}
@@ -546,20 +548,20 @@ const Hero = () => {
           
           {/* Description with animation delay and interactive highlights */}
           <p
-            className={`text-gray-300 mb-12 max-w-3xl mx-auto text-lg leading-relaxed transition-all duration-1000 delay-300 ${
+            className={`text-gray-300 mb-12 max-w-2xl mx-auto text-lg leading-relaxed transition-all duration-1000 delay-300 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
             Specializing in 
             <span 
-              className="text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer"
+              className="text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer font-medium"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             > Django (Full-Stack)</span>,{" "}
-            <span className="text-cyan-400 hover:text-cyan-300 transition-colors duration-300 cursor-pointer">JavaScript</span>,{" "}
-            <span className="text-purple-400 hover:text-purple-300 transition-colors duration-300 cursor-pointer">React</span>,{" "}
-            <span className="text-pink-400 hover:text-pink-300 transition-colors duration-300 cursor-pointer">Flutter</span> and{" "}
-            <span className="text-green-400 hover:text-green-300 transition-colors duration-300 cursor-pointer">CyberSecurity</span>.
+            <span className="text-cyan-400 hover:text-cyan-300 transition-colors duration-300 cursor-pointer font-medium">JavaScript</span>,{" "}
+            <span className="text-purple-400 hover:text-purple-300 transition-colors duration-300 cursor-pointer font-medium">React</span>,{" "}
+            <span className="text-pink-400 hover:text-pink-300 transition-colors duration-300 cursor-pointer font-medium">Flutter</span> and{" "}
+            <span className="text-green-400 hover:text-green-300 transition-colors duration-300 cursor-pointer font-medium">CyberSecurity</span>.
           </p>
           
           {/* CTA buttons with advanced hover effects */}
