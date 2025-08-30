@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import project1 from '../assets/project1.jpg';
 import project2 from '../assets/project2.jpg';
 import project3 from '../assets/project3.jpg';
+import project4 from '../assets/project4.png';
+
 const projects = [
   {
     id: 1,
@@ -35,7 +37,7 @@ const projects = [
     title: 'Ecommerse',
     description: 'A full-stack e-commerce solution with payment integration and inventory management system.',
     tags: ['react', 'json'],
-    image: '/project-4.jpg',
+    image: project4,
     link: '#',
     github: '#'
   },
