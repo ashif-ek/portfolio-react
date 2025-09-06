@@ -1,4 +1,12 @@
+import bca from '../assets/certificates/bca.jpg';
+import ccsa from '../assets/certificates/ccsa.jpg';
+import django from '../assets/certificates/django.png';
+import prosevo from '../assets/certificates/prosevo.jpg';
+
+
+
 import { useState, useRef, useEffect } from 'react';
+
 
 const Certificates = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -13,7 +21,7 @@ const Certificates = () => {
       issuer: "Univercity of calicut",
       date: "2022, 2025",
       category: "Degree",
-      image: "",
+      image: bca,
       credentialLink: "#",
       description: "Gaied knowledge in C, Datastructure, Java, python, networks, DBMS, Microprocesser, computer Architecture, linux shell script, ."
     },
@@ -23,7 +31,7 @@ const Certificates = () => {
       issuer: "Regional technologies calicut ",
       date: "2024, 2025",
       category: "web",
-      image: "",
+      image: ccsa,
       credentialLink: "#",
       description: "Built complete web and app solutions using python Django as backend html, css, JavaScript, for web frontend dart flutter for application frontend.."
     },
@@ -33,7 +41,7 @@ const Certificates = () => {
       issuer: "Red team Hacker Accademy ",
       date: "2022",
       category: "cybersecurity",
-      image: "",
+      image: django,
       credentialLink: "#",
       description: "IT infrastrucure technologies, OSINT, Web application pentest, vunarability Assesment, network security, SOC, SIEM."
     },
@@ -53,7 +61,7 @@ const Certificates = () => {
       issuer: "Prosevo technologies ",
       date: "14-oct-2024",
       category: "web",
-      image: "",
+      image: prosevo,
       credentialLink: "#",
       description: "oodo language, OSINT, Web application mern&django, AI/ML, Flutter."
     },

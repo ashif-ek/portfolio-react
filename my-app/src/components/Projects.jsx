@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import project1 from '../assets/project1.jpg';
-import project2 from '../assets/project2.jpg';
-import project3 from '../assets/project3.jpg';
-import project4 from '../assets/project4.png';
+import project1 from '../assets/projects/project1.jpg';
+import project2 from '../assets/projects/project2.jpg';
+import project3 from '../assets/projects/project3.jpg';
+import project4 from '../assets/projects/project4.png';
 
 const projects = [
   {
@@ -35,7 +35,7 @@ const projects = [
   {
     id: 4,
     title: 'Ecommerse',
-    description: 'A full-stack e-commerce solution with payment integration and inventory management system.',
+    description: 'A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.',
     tags: ['react', 'json'],
     image: project4,
     link: '#',
