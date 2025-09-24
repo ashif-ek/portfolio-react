@@ -1,56 +1,41 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+// Import project images locally
 import project1 from '../assets/projects/project1.jpg';
 import project2 from '../assets/projects/project2.jpg';
 import project3 from '../assets/projects/project3.jpg';
 import project4 from '../assets/projects/project4.png';
 
-const projects = [
-  {
-    id: 1,
-    title: 'CiviTech digital governance platform',
-    description: 'A community governance platform with modules for Admin, Users, Panchayath, and HighAuthority. Handles services, complaints, ratings, voting, image feeds, and analytics.',
-    tags: ['Django Backend','Flutter','SQL ', 'HTML/CSS/JS'],
-    image: project1 ,
-    link: '#',
-    github: '#'
-  },
-  {
-    id: 2,
-    title: 'Blog',
-    description: 'A clean, responsive personal blog inspired by Medium, built using Django for the backend and HTML/CSS for the frontend. It supports user-friendly content display, SEO-friendly structure, dynamic post rendering, and a minimalistic, distraction-free reading experience..',
-    tags: ['Django', 'JavaScript', 'CSS', 'HTML', 'Chart.js'],
-    image: project2,
-    link: '#',
-    github: '#'
-  },
-  {
-    id: 3,
-    title: 'News Feed App',
-    description: 'A modern Flutter-based mobile application that fetches real-time news from an online API. It features a clean UI with scrollable news feeds, article descriptions, and category-based filtering for a personalized reading experience. Optimized for performance.',
-    tags: ['Flutter', 'REST api', 'SQL'],
-    image: project3,
-    link: '#',
-    github: '#'
-  },
-  {
-    id: 4,
-    title: 'Ecommerse',
-    description: 'A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.',
-    tags: ['react', 'json'],
-    image: project4,
-    link: '#',
-    github: '#'
-  },
-];
+// Create a mapping from a project ID (or any unique identifier) to the imported image
+const projectImages = {
+  1: project1,
+  2: project2,
+  3: project3,
+  4: project4,
+};
+
+const API_URL = "http://localhost:5000/projects";
 
 const Projects = () => {
+  const [projects, setProjects] = useState([]);
   const [animated, setAnimated] = useState(false);
 
+  // Fetch projects from db.json (JSON server)
   useEffect(() => {
+    axios
+      .get(API_URL)
+      .then((res) => setProjects(res.data))
+      .catch((err) => console.error("Error fetching projects:", err));
+  }, []);
+
+  // Animation trigger
+  useEffect(() => {
+    // Ensure animation runs only once when component is ready
     const timer = setTimeout(() => {
       setAnimated(true);
     }, 100);
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); // Cleanup timer on component unmount
   }, []);
 
   return (
@@ -87,21 +72,20 @@ const Projects = () => {
               
               {/* Project image */}
               <div className="relative overflow-hidden h-48">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-cyan-500/20 flex items-center justify-center">
-            <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
+                <img
+                  // FIX: Use the image map to get the correct, locally imported image
+                  src={projectImages[project.id]}
+                  alt={project.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
                 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
-                  <a href={project.link} className="px-4 py-2 bg-cyan-500 text-white rounded-lg text-sm font-medium hover:bg-cyan-600 transition-colors">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-cyan-500 text-white rounded-lg text-sm font-medium hover:bg-cyan-600 transition-colors">
                     Live Demo
                   </a>
-                  <a href={project.github} className="p-2 bg-gray-800/80 text-gray-300 rounded-lg hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-800/80 text-gray-300 rounded-lg hover:text-white transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
                     </svg>
                   </a>
@@ -131,7 +115,7 @@ const Projects = () => {
         <div className="text-center mt-16">
           <p className="text-gray-400 mb-6">Interested in seeing more of my work?</p>
           <a 
-            href="#" 
+            href="#portfolio" // Changed to a more specific anchor link
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-1"
           >
             View Full Portfolio
@@ -142,6 +126,7 @@ const Projects = () => {
         </div>
       </div>
       
+      {/* Kept the same styles */}
       <style jsx>{`
         @keyframes pulse-slow {
           0%, 100% { opacity: 0.1; }

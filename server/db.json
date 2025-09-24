@@ -1,0 +1,108 @@
+{
+  "admin": { "username": "admin", "password": "1234" },
+
+  
+   "profile": {
+    "name": "Ashif E.K",
+    "title": "Digital Architect & Software Engineer",
+    "description": "I specialize in building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
+    "email": "ashifek11@gmail.com",
+    "socialLinks": [
+      { "name": "Github", "url": "https://github.com/ashif-ek" },
+      { "name": "LinkedIn", "url": "https://linkedin.com/in/ashifek" },
+      { "name": "Twitter", "url": "https://twitter.com/your-username" },
+      { "name": "Instagram", "url": "https://instagram.com/ashif.io" }
+    ]
+  },
+
+  "projects": [
+    {
+      "id": 1,
+      "title": "CiviTech digital governance platform",
+      "description": "A community governance platform with modules for Admin, Users, Panchayath, and HighAuthority. Handles services, complaints, ratings, voting, image feeds, and analytics.",
+      "tags": ["Django Backend", "Flutter", "SQL", "HTML/CSS/JS"],
+      "image": "project1.jpg",
+      "link": "#",
+      "github": "#"
+    },
+    {
+      "id": 2,
+      "title": "Blog",
+      "description": "A clean, responsive personal blog inspired by Medium, built using Django for the backend and HTML/CSS for the frontend. It supports user-friendly content display, SEO-friendly structure, dynamic post rendering, and a minimalistic, distraction-free reading experience.",
+      "tags": ["Django", "JavaScript", "CSS", "HTML", "Chart.js"],
+      "image": "project2.jpg",
+      "link": "#",
+      "github": "#"
+    },
+    {
+      "id": 3,
+      "title": "News Feed App",
+      "description": "A modern Flutter-based mobile application that fetches real-time news from an online API. It features a clean UI with scrollable news feeds, article descriptions, and category-based filtering for a personalized reading experience. Optimized for performance.",
+      "tags": ["Flutter", "REST API", "SQL"],
+      "image": "project3.jpg",
+      "link": "#",
+      "github": "#"
+    },
+    {
+      "id": 4,
+      "title": "Ecommerce",
+      "description": "A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.",
+      "tags": ["React", "JSON"],
+      "image": "project4.jpg",
+      "link": "#",
+      "github": "#"
+    }
+  ],
+  "certificates": [
+    {
+      "id": 1,
+      "title": "Bachelors of Computer Applications",
+      "issuer": "University of Calicut",
+      "date": "2022-2025",
+      "category": "Degree",
+      "image": "bca.jpg",
+      "credentialLink": "#",
+      "description": "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script."
+    },
+    {
+      "id": 2,
+      "title": "Django and Flutter",
+      "issuer": "Regional Technologies Calicut",
+      "date": "2024-2025",
+      "category": "Web",
+      "image": "ccsa.jpg",
+      "credentialLink": "#",
+      "description": "Built complete web and app solutions using Python Django as backend and HTML, CSS, JavaScript for web frontend; Dart Flutter for application frontend."
+    },
+    {
+      "id": 3,
+      "title": "Certified CyberSecurity Analyst (CCSA)",
+      "issuer": "Red Team Hacker Academy",
+      "date": "2022",
+      "category": "Cybersecurity",
+      "image": "django.jpg",
+      "credentialLink": "#",
+      "description": "IT infrastructure technologies, OSINT, Web application pentest, vulnerability assessment, network security, SOC, SIEM."
+    },
+    {
+      "id": 4,
+      "title": "JavaScript and React",
+      "issuer": "Bridgeon",
+      "date": "2023-01-18",
+      "category": "Web",
+      "image": "react.jpg",
+      "credentialLink": "#",
+      "description": "Building and deploying AI solutions with Azure Machine Learning."
+    },
+    {
+      "id": 5,
+      "title": "Technology Workshop",
+      "issuer": "Prosevo Technologies",
+      "date": "2024-10-14",
+      "category": "Web",
+      "image": "prosevo.jpg",
+      "credentialLink": "#",
+      "description": "Odoo language, OSINT, Web applications (MERN & Django), AI/ML, Flutter."
+    }
+  ]
+}
