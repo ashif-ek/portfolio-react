@@ -48,10 +48,15 @@ const Hero = () => {
   // 3. Add state to hold profile data, with initial values
   const [profile, setProfile] = useState({
     name: "Ashif E.K",
-    title: "Loading...",
-    description: "",
-    email: "",
-    socialLinks: [],
+    title: "Digital Architect & Software Engineer",
+    description: "I specialize in building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
+    email: "ashifek11@gmail.com",
+    socialLinks: [
+      { "name": "Github", "url": "https://github.com/ashif-ek" },
+      { "name": "LinkedIn", "url": "https://linkedin.com/in/ashifek" },
+      { "name": "Twitter", "url": "https://twitter.com/your-username" },
+      { "name": "Instagram", "url": "https://instagram.com/ashif.io" },
+    ],
   });
   const [isVisible, setIsVisible] = useState(false);
   

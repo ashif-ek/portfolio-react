@@ -2,7 +2,8 @@
   "admin": { "username": "admin", "password": "1234" },
 
   
-   "profile": {
+   "profile":
+     {
     "name": "Ashif E.K",
     "title": "Digital Architect & Software Engineer",
     "description": "I specialize in building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
@@ -14,6 +15,40 @@
       { "name": "Instagram", "url": "https://instagram.com/ashif.io" }
     ]
   },
+
+  "about": [
+  {
+    "id": 1,
+    "introduction": "I’m a Computer Science graduate and passionate programmer, currently mastering JavaScript and React as a strong foundation for my ultimate goal of becoming highly proficient in Django.",
+    "experience": "Through academic and personal projects, I’ve worked across diverse technologies. I have built cross-platform web and mobile applications using Django and Flutter, while also gaining experience with HTML, CSS, JavaScript, and React. My projects have strengthened not only my technical skills but also my understanding of core software principles like planning, problem-solving, and delivering a better user experience.",
+    "philosophy": "Earlier, I was interested in cybersecurity, but after my final-year project, I realized that as developers, we have the power to change, contribute, and create a tangible impact on the world through technology. This drives my passion for building meaningful applications.",
+    "stats": {
+      "projects": 10,
+      "certificates": 4,
+      "technologies": 5
+    }
+  }
+],
+
+
+  "skills": [
+    { "id": 1, "name": "Django", "level": 95, "category": "Technology", "color": "#44B78B", "icon": "PythonIcon" },
+    { "id": 2, "name": "JavaScript", "level": 90, "category": "Technology", "color": "#F7DF1E", "icon": "JSIcon" },
+    { "id": 3, "name": "React", "level": 90, "category": "Technology", "color": "#61DAFB", "icon": "ReactIcon" },
+    { "id": 4, "name": "Flutter", "level": 80, "category": "Technology", "color": "#027DFD", "icon": "MobileIcon" },
+    { "id": 5, "name": "Agile Dev", "level": 95, "category": "Methodology", "color": "#F05032", "icon": "AgileIcon" },
+    { "id": 6, "name": "Cybersecurity", "level": 85, "category": "Methodology", "color": "#00A86B", "icon": "ShieldIcon" },
+    { "id": 7, "name": "Team Leadership", "level": 98, "category": "Leadership", "color": "#A855F7", "icon": "BriefcaseIcon" },
+    { "id": 8, "name": "Strategic Planning", "level": 92, "category": "Leadership", "color": "#EC4899", "icon": "PencilRulerIcon" }
+  ],
+  "tools": [
+    { "id": 1, "name": "VS Code", "icon": "CodeIcon" },
+    { "id": 2, "name": "Docker", "icon": "DockerIcon" },
+    { "id": 3, "name": "Tailwind CSS", "icon": "TailwindIcon" },
+    { "id": 4, "name": "MySQL", "icon": "DatabaseIcon" },
+    { "id": 5, "name": "Jira", "icon": "JiraIcon" },
+    { "id": 6, "name": "Git", "icon": "GitIcon" }
+  ],
 
   "projects": [
     {
@@ -106,3 +141,4 @@
     }
   ]
 }
+ 
