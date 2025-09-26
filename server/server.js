@@ -1,33 +1,22 @@
-// // server.js
-// const jsonServer = require("json-server");
-// const server = jsonServer.create();
-// const router = jsonServer.router("db.json"); // <- your db.json file
-// const middlewares = jsonServer.defaults();
-
-// const PORT = process.env.PORT || 5000;
-
-// server.use(middlewares);
-// server.use(router);
-
-// server.listen(PORT, () => {
-//   console.log(`JSON Server is running on port ${PORT}`);
-// });
-
-
 const jsonServer = require("json-server");
-const server = jsonServer.create();
-const router = jsonServer.router("db.json");
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+
+const server = express();
+const router = jsonServer.router(path.join(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
 
-const PORT = process.env.PORT || 5000;
+// Use CORS to allow cross-origin requests
+server.use(cors());
 
+// Use default json-server middlewares
 server.use(middlewares);
+
+// Use the json-server router
 server.use(router);
 
-server.listen(PORT, (err) => {
-  if (err) {
-    console.error("Server failed to start:", err);
-    process.exit(1);
-  }
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
   console.log(`JSON Server is running on port ${PORT}`);
 });

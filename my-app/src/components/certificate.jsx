@@ -21,42 +21,56 @@ const certificateImages = {
 // --- Fallback Data ---
 // This local data is used for the initial render and if the API call fails.
 const fallbackCertificates = [
-  {
-    "id": 1,
-    "title": "Bachelor of Computer Applications",
-    "issuer": "University of Calicut",
-    "date": "2024-05-20",
-    "category": "Degree",
-    "description": "A comprehensive three-year program focused on computer science fundamentals, programming, and application development.",
-    "credentialLink": "#"
-  },
-  {
-    "id": 2,
-    "title": "Python Django Full Stack Web Developer",
-    "issuer": "Udemy",
-    "date": "2023-11-15",
-    "category": "Web",
-    "description": "In-depth training on building scalable web applications using Django, DRF, and modern frontend technologies.",
-    "credentialLink": "#"
-  },
-  {
-    "id": 3,
-    "title": "Certified Cyber Security Analyst",
-    "issuer": "NdimensionZ",
-    "date": "2024-01-10",
-    "category": "Cybersecurity",
-    "description": "Validated expertise in identifying, managing, and mitigating cybersecurity threats and vulnerabilities.",
-    "credentialLink": "#"
-  },
-  {
-    "id": 4,
-    "title": "Software Development Internship",
-    "issuer": "Prosevo",
-    "date": "2023-09-30",
-    "category": "Web",
-    "description": "Hands-on experience in a professional development environment, contributing to live web application projects.",
-    "credentialLink": "#"
-  }
+ {
+      "id": 1,
+      "title": "Bachelors of Computer Applications",
+      "issuer": "University of Calicut",
+      "date": "2022-2025",
+      "category": "Degree",
+      "image": "bca.jpg",
+      "credentialLink": "#",
+      "description": "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script."
+    },
+    {
+      "id": 2,
+      "title": "Django and Flutter",
+      "issuer": "Regional Technologies Calicut",
+      "date": "2024-2025",
+      "category": "Web",
+      "image": "ccsa.jpg",
+      "credentialLink": "#",
+      "description": "Built complete web and app solutions using Python Django as backend and HTML, CSS, JavaScript for web frontend; Dart Flutter for application frontend."
+    },
+    {
+      "id": 3,
+      "title": "Certified CyberSecurity Analyst (CCSA)",
+      "issuer": "Red Team Hacker Academy",
+      "date": "2022",
+      "category": "Cybersecurity",
+      "image": "django.jpg",
+      "credentialLink": "#",
+      "description": "IT infrastructure technologies, OSINT, Web application pentest, vulnerability assessment, network security, SOC, SIEM."
+    },
+    {
+      "id": 4,
+      "title": "JavaScript and React",
+      "issuer": "Bridgeon",
+      "date": "2023-01-18",
+      "category": "Web",
+      "image": "react.jpg",
+      "credentialLink": "#",
+      "description": "Building and deploying AI solutions with Azure Machine Learning."
+    },
+    {
+      "id": 5,
+      "title": "Technology Workshop",
+      "issuer": "Prosevo Technologies",
+      "date": "2024-10-14",
+      "category": "Web",
+      "image": "prosevo.jpg",
+      "credentialLink": "#",
+      "description": "Odoo language, OSINT, Web applications (MERN & Django), AI/ML, Flutter."
+    }
 ];
 
 const Certificates = () => {
