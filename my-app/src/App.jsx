@@ -1,26 +1,69 @@
-// import Header from "./components/Header";
-// import Hero from "./components/Hero";
-// import About from "./components/About";
-// import Skills from "./components/Skills";
-// import Projects from "./components/Projects";
-// import Contact from "./components/Contacts";
-// import Footer from "./components/Footer";
-// import Certificates from "./components/certificate";
 
+
+
+
+// // App.js (Fully Updated)
+// import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+// import { AuthProvider, useAuth } from "./context/AuthContext";
+
+// // Layouts
+// import UserLayout from "./components/UserLayout";
+// import AdminLayout from "./pages/AdminLayout"; // Assuming it's in pages
+
+// // Pages
+// import Home from "./pages/Home";
+// import AdminDashboard from "./pages/AdminDashboard";
+// import AdminLogin from "./pages/AdminLogin";
+// import NotFound from "./pages/NotFound";
+
+// /**
+//  * A protected route component that checks for admin status.
+//  * It's cleaner to handle this logic in a dedicated component.
+//  */
+// function ProtectedRoute({ children }) {
+//   const { isAdmin } = useAuth();
+//   if (!isAdmin) {
+//     // Redirect them to the /admin/login page, but save the current location they were
+//     // trying to go to. This allows us to send them along to that page after they login.
+//     return <Navigate to="/admin/login" replace />;
+//   }
+//   return children;
+// }
+
+// /**
+//  * The main App component with a clean, layout-based routing structure.
+//  */
 // function App() {
 //   return (
-//     <div className="bg-white text-gray-800 min-h-screen">
-//       <Header />
-//       <main>
-//         <Hero />
-//         <About />
-//         <Skills />
-//         <Projects />
-//         <Certificates />
-//         <Contact />
-//       </main>
-//       <Footer />
-//     </div>
+//     <AuthProvider>
+//       <Router>
+//         <Routes>
+//           {/* 1. User Routes - All wrapped in UserLayout */}
+//           <Route element={<UserLayout />}>
+//             <Route path="/" element={<Home />} />
+//             {/* Add other user pages here, e.g., <Route path="/about" element={<About />} /> */}
+//           </Route>
+
+//           {/* 2. Authentication Route - No layout */}
+//           <Route path="/admin/login" element={<AdminLogin />} />
+
+//           {/* 3. Admin Routes - Protected and wrapped in AdminLayout */}
+//           <Route
+//             path="/admin"
+//             element={
+//               <ProtectedRoute>
+//                 <AdminLayout>
+//                   <AdminDashboard />
+//                 </AdminLayout>
+//               </ProtectedRoute>
+//             }
+//           />
+
+//           {/* 4. Not Found Route */}
+//           <Route path="*" element={<NotFound />} />
+//         </Routes>
+//       </Router>
+//     </AuthProvider>
 //   );
 // }
 
@@ -29,90 +72,63 @@
 
 
 
-// App.jsx
+// App.jsx (Fully Updated with correct import paths)
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 
-// Import your pages and components
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import AdminDashboard from "./pages/AdminDashboard";
-import AdminLogin from "./pages/AdminLogin";
-import NotFound from "./pages/NotFound";
-import Api from "./components/Api";
+// Layouts
+import UserLayout from "./components/UserLayout.jsx"; // <-- FIXED
+import AdminLayout from "./pages/AdminLayout.jsx"; // <-- FIXED
 
+// Pages
+import Home from "./pages/Home.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import AdminLogin from "./pages/AdminLogin.jsx";
+import NotFound from "./pages/NotFound.jsx";
+
+/**
+ * A protected route component that checks for admin status.
+ */
+function ProtectedRoute({ children }) {
+  const { isAdmin } = useAuth();
+  if (!isAdmin) {
+    return <Navigate to="/admin/login" replace />;
+  }
+  return children;
+}
+
+/**
+ * The main App component with a clean, layout-based routing structure.
+ */
 function App() {
-  // 1. Check session storage for existing login state
-  const [isAdmin, setIsAdmin] = useState(() => {
-    return sessionStorage.getItem("isAdmin") === "true";
-  });
-
-  // 2. Persist login state changes to session storage
-  useEffect(() => {
-    sessionStorage.setItem("isAdmin", isAdmin);
-  }, [isAdmin]);
-
-  // 3. Centralized login handler that fetches from the JSON server
-  const handleLogin = async (username, password) => {
-    try {
-      const res = await Api.get("/admin");
-      if (res.data.username === username && res.data.password === password) {
-        setIsAdmin(true);
-        return true; // Indicate success
-      }
-    } catch (error) {
-      console.error("Login request failed:", error);
-    }
-    return false; // Indicate failure
-  };
-
-  const handleLogout = () => {
-    setIsAdmin(false);
-    sessionStorage.removeItem("isAdmin");
-  };
-
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
-        {/* Conditionally render Header and Footer to hide them on the login page */}
+    <AuthProvider>
+      <Router>
         <Routes>
-          <Route path="/admin/login" element={null} />
-          <Route path="*" element={<Header />} />
-        </Routes>
-
-        <main className="flex-grow">
-          <Routes>
-            {/* Public route */}
+          {/* 1. User Routes - All wrapped in UserLayout */}
+          <Route element={<UserLayout />}>
             <Route path="/" element={<Home />} />
+            {/* Add other user pages here, e.g., <Route path="/about" element={<About />} /> */}
+          </Route>
 
-            {/* Admin login route */}
-            <Route
-              path="/admin/login"
-              element={
-                isAdmin ? <Navigate to="/admin" /> : <AdminLogin handleLogin={handleLogin} />
-              }
-            />
+          {/* 2. Authentication Route - No layout */}
+          <Route path="/admin/login" element={<AdminLogin />} />
 
-            {/* Protected Admin Dashboard */}
-            <Route
-              path="/admin"
-              element={
-                isAdmin ? <AdminDashboard handleLogout={handleLogout} /> : <Navigate to="/admin/login" />
-              }
-            />
-            
-            {/* 404 Page */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        
-        <Routes>
-          <Route path="/admin/login" element={null} />
-          <Route path="*" element={<Footer />} />
+         <Route
+            element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/admin" element={<AdminDashboard />} />
+          </Route>
+
+          {/* 4. Not Found Route */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 

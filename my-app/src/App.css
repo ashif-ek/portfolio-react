@@ -1,0 +1,24 @@
+body {
+  background-color: #0f172a; /* bg-slate-900 */
+}
+
+.auth-container {
+  background-image: radial-gradient(
+    circle at top right,
+    rgba(14, 165, 233, 0.15), /* sky-500 with 15% opacity */
+    transparent 40%
+  );
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-fast {
+  animation: spin 0.7s linear infinite;
+}

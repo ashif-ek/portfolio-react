@@ -1,20 +1,24 @@
-// AdminLogin.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { User, Lock, House, LoaderCircle } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import Api from "../components/Api"; // Ensure this path is correct for your project
 
-export default function AdminLogin({ handleLogin }) {
+export default function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
+  // The 'e' parameter is implicitly typed in a JS environment.
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload on form submission
+    e.preventDefault();
     setError("");
     setIsLoading(true);
 
-    const success = await handleLogin(username, password);
+    const success = await login(username, password, Api);
 
     if (success) {
       navigate("/admin");
@@ -25,41 +29,72 @@ export default function AdminLogin({ handleLogin }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-      <div className="w-full max-w-sm p-8 space-y-6 bg-gray-800 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center">Admin Login</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="text-sm font-medium">Username</label>
+    // DESIGN: A neutral, off-white background creates a calm and focused environment.
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-50 p-4 font-sans">
+      <Link
+        to="/"
+        className="absolute top-6 left-6 text-gray-400 hover:text-blue-600 transition-colors"
+        aria-label="Go to Home"
+      >
+        <House size={24} />
+      </Link>
+
+      <div className="w-full max-w-sm text-center">
+        {/* DESIGN: Strong, clear typography is the primary visual element. */}
+        <h1 className="text-4xl font-bold text-gray-800 tracking-tight">
+          Admin Portal
+        </h1>
+        <p className="text-gray-500 mt-3">
+          Please enter your credentials to proceed.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-6 mt-10">
+          {/* DESIGN: Understated inputs with a bottom border focus on the content. */}
+          <div className="relative">
+            <User className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-3 py-2 mt-1 text-white bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="admin"
+              className="w-full pl-8 pr-3 py-2 bg-transparent border-b-2 border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+              placeholder="Username"
               required
+              autoComplete="username"
             />
           </div>
-          <div>
-            <label className="text-sm font-medium">Password</label>
+
+          <div className="relative">
+            <Lock className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 mt-1 text-white bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
+              className="w-full pl-8 pr-3 py-2 bg-transparent border-b-2 border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+              placeholder="Password"
               required
+              autoComplete="current-password"
             />
           </div>
+
+          {/* DESIGN: The error message is direct and unobtrusive, integrated into the form's flow. */}
           {error && (
-            <p className="text-red-400 text-sm text-center">{error}</p>
+            <p className="text-red-600 text-sm font-medium pt-2">{error}</p>
           )}
+
+          {/* DESIGN: The button uses a solid, confident color with minimal styling. */}
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center px-4 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 disabled:bg-blue-400"
           >
-            {isLoading ? "Logging in..." : "Login"}
+            {isLoading ? (
+              <>
+                <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />
+                Signing In...
+              </>
+            ) : (
+              "Sign In"
+            )}
           </button>
         </form>
       </div>

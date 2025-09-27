@@ -1,88 +1,194 @@
 {
-  "admin": { "username": "admin", "password": "1234" },
-
-  
-   "profile":
-     {
-    "name": "Ashif E.K",
+  "admin": {
+    "username": "admin",
+    "password": "1234"
+  },
+  "profile": {
+    "name": "Ashif E.K ",
     "title": "Digital Architect & Software Engineer",
-    "description": "I specialize in building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
+    "description": "I specialize in React, Django, Redux, javascript, html css tailwind to building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences. ",
     "email": "ashifek11@gmail.com",
     "socialLinks": [
-      { "name": "Github", "url": "https://github.com/ashif-ek" },
-      { "name": "LinkedIn", "url": "https://linkedin.com/in/ashifek" },
-      { "name": "Twitter", "url": "https://twitter.com/your-username" },
-      { "name": "Instagram", "url": "https://instagram.com/ashif.io" }
+      {
+        "name": "Github",
+        "url": "https://github.com/ashif-ek"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/in/ashifek"
+      },
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com/your-username"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://instagram.com/ashif.io"
+      }
     ]
   },
-
   "about": [
-  {
-    "id": 1,
-    "introduction": "I’m a Computer Science graduate and passionate programmer, currently mastering JavaScript and React as a strong foundation for my ultimate goal of becoming highly proficient in Django.",
-    "experience": "Through academic and personal projects, I’ve worked across diverse technologies. I have built cross-platform web and mobile applications using Django and Flutter, while also gaining experience with HTML, CSS, JavaScript, and React. My projects have strengthened not only my technical skills but also my understanding of core software principles like planning, problem-solving, and delivering a better user experience.",
-    "philosophy": "Earlier, I was interested in cybersecurity, but after my final-year project, I realized that as developers, we have the power to change, contribute, and create a tangible impact on the world through technology. This drives my passion for building meaningful applications.",
-    "stats": {
-      "projects": 10,
-      "certificates": 4,
-      "technologies": 5
+    {
+      "id": "1",
+      "introduction": "I’m a Computer Science graduate and passionate programmer, currently mastering JavaScript and React as a strong foundation for my ultimate goal of becoming highly proficient in Django.",
+      "experience": "Through academic and personal projects, I’ve worked across diverse technologies. I have built cross-platform web and mobile applications using Django and Flutter, while also gaining experience with HTML, CSS, JavaScript, and React. My projects have strengthened not only my technical skills but also my understanding of core software principles like planning, problem-solving, and delivering a better user experience.",
+      "philosophy": "Earlier, I was interested in cybersecurity, but after my final-year project, I realized that as developers, we have the power to change, contribute, and create a tangible impact on the world through technology. This drives my passion for building meaningful applications.",
+      "stats": {
+        "projects": 10,
+        "certificates": 4,
+        "technologies": 5
+      }
     }
-  }
-],
-
-
+  ],
   "skills": [
-    { "id": 1, "name": "Django", "level": 95, "category": "Technology", "color": "#44B78B", "icon": "PythonIcon" },
-    { "id": 2, "name": "JavaScript", "level": 90, "category": "Technology", "color": "#F7DF1E", "icon": "JSIcon" },
-    { "id": 3, "name": "React", "level": 90, "category": "Technology", "color": "#61DAFB", "icon": "ReactIcon" },
-    { "id": 4, "name": "Flutter", "level": 80, "category": "Technology", "color": "#027DFD", "icon": "MobileIcon" },
-    { "id": 5, "name": "Agile Dev", "level": 95, "category": "Methodology", "color": "#F05032", "icon": "AgileIcon" },
-    { "id": 6, "name": "Cybersecurity", "level": 85, "category": "Methodology", "color": "#00A86B", "icon": "ShieldIcon" },
-    { "id": 7, "name": "Team Leadership", "level": 98, "category": "Leadership", "color": "#A855F7", "icon": "BriefcaseIcon" },
-    { "id": 8, "name": "Strategic Planning", "level": 92, "category": "Leadership", "color": "#EC4899", "icon": "PencilRulerIcon" }
+    {
+      "id": "1",
+      "name": "Python Django",
+      "level": 95,
+      "category": "Technology",
+      "color": "#44B78B",
+      "icon": "PythonIcon"
+    },
+    {
+      "id": "2",
+      "name": "JavaScript",
+      "level": 90,
+      "category": "Technology",
+      "color": "#F7DF1E",
+      "icon": "JSIcon"
+    },
+    {
+      "id": "3",
+      "name": "React",
+      "level": 90,
+      "category": "Technology",
+      "color": "#61DAFB",
+      "icon": "ReactIcon"
+    },
+    {
+      "id": "4",
+      "name": "Flutter",
+      "level": 80,
+      "category": "Technology",
+      "color": "#027DFD",
+      "icon": "MobileIcon"
+    },
+    {
+      "id": "5",
+      "name": "Agile Dev",
+      "level": 95,
+      "category": "Methodology",
+      "color": "#F05032",
+      "icon": "AgileIcon"
+    },
+    {
+      "id": "6",
+      "name": "Cybersecurity",
+      "level": 85,
+      "category": "Methodology",
+      "color": "#00A86B",
+      "icon": "ShieldIcon"
+    },
+    {
+      "id": "7",
+      "name": "Team Leadership",
+      "level": 98,
+      "category": "Leadership",
+      "color": "#A855F7",
+      "icon": "BriefcaseIcon"
+    },
+    {
+      "id": "8",
+      "name": "Strategic Planning",
+      "level": 92,
+      "category": "Leadership",
+      "color": "#EC4899",
+      "icon": "PencilRulerIcon"
+    }
   ],
   "tools": [
-    { "id": 1, "name": "VS Code", "icon": "CodeIcon" },
-    { "id": 2, "name": "Docker", "icon": "DockerIcon" },
-    { "id": 3, "name": "Tailwind CSS", "icon": "TailwindIcon" },
-    { "id": 4, "name": "MySQL", "icon": "DatabaseIcon" },
-    { "id": 5, "name": "Jira", "icon": "JiraIcon" },
-    { "id": 6, "name": "Git", "icon": "GitIcon" }
+    {
+      "id": "1",
+      "name": "VS Code",
+      "icon": "CodeIcon"
+    },
+    {
+      "id": "2",
+      "name": "Docker",
+      "icon": "DockerIcon"
+    },
+    {
+      "id": "3",
+      "name": "Tailwind CSS",
+      "icon": "TailwindIcon"
+    },
+    {
+      "id": "4",
+      "name": "MySQL",
+      "icon": "DatabaseIcon"
+    },
+    {
+      "id": "5",
+      "name": "Jira",
+      "icon": "JiraIcon"
+    },
+    {
+      "id": "6",
+      "name": "Git",
+      "icon": "GitIcon"
+    }
   ],
-
   "projects": [
     {
-      "id": 1,
-      "title": "CiviTech digital governance platform",
+      "id": "1",
+      "title": "CiviTech digital governance platform(cross-platform)",
       "description": "A community governance platform with modules for Admin, Users, Panchayath, and HighAuthority. Handles services, complaints, ratings, voting, image feeds, and analytics.",
-      "tags": ["Django Backend", "Flutter", "SQL", "HTML/CSS/JS"],
+      "tags": [
+        "Django Backend",
+        "Flutter",
+        "SQL",
+        "HTML/CSS/JS"
+      ],
       "image": "project1.jpg",
       "link": "#",
       "github": "#"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Blog",
       "description": "A clean, responsive personal blog inspired by Medium, built using Django for the backend and HTML/CSS for the frontend. It supports user-friendly content display, SEO-friendly structure, dynamic post rendering, and a minimalistic, distraction-free reading experience.",
-      "tags": ["Django", "JavaScript", "CSS", "HTML", "Chart.js"],
+      "tags": [
+        "Django",
+        "JavaScript",
+        "CSS",
+        "HTML",
+        "Chart.js"
+      ],
       "image": "project2.jpg",
       "link": "#",
       "github": "#"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "News Feed App",
       "description": "A modern Flutter-based mobile application that fetches real-time news from an online API. It features a clean UI with scrollable news feeds, article descriptions, and category-based filtering for a personalized reading experience. Optimized for performance.",
-      "tags": ["Flutter", "REST API", "SQL"],
+      "tags": [
+        "Flutter",
+        "REST API",
+        "SQL"
+      ],
       "image": "project3.jpg",
       "link": "#",
       "github": "#"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Ecommerce",
       "description": "A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.",
-      "tags": ["React", "JSON"],
+      "tags": [
+        "React",
+        "JSON"
+      ],
       "image": "project4.jpg",
       "link": "#",
       "github": "#"
@@ -90,7 +196,7 @@
   ],
   "certificates": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Bachelors of Computer Applications",
       "issuer": "University of Calicut",
       "date": "2022-2025",
@@ -100,7 +206,7 @@
       "description": "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script."
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Django and Flutter",
       "issuer": "Regional Technologies Calicut",
       "date": "2024-2025",
@@ -110,7 +216,7 @@
       "description": "Built complete web and app solutions using Python Django as backend and HTML, CSS, JavaScript for web frontend; Dart Flutter for application frontend."
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Certified CyberSecurity Analyst (CCSA)",
       "issuer": "Red Team Hacker Academy",
       "date": "2022",
@@ -120,7 +226,7 @@
       "description": "IT infrastructure technologies, OSINT, Web application pentest, vulnerability assessment, network security, SOC, SIEM."
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "JavaScript and React",
       "issuer": "Bridgeon",
       "date": "2023-01-18",
@@ -130,7 +236,7 @@
       "description": "Building and deploying AI solutions with Azure Machine Learning."
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Technology Workshop",
       "issuer": "Prosevo Technologies",
       "date": "2024-10-14",
@@ -141,4 +247,3 @@
     }
   ]
 }
- 
