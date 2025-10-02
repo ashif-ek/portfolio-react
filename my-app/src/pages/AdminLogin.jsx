@@ -45,8 +45,7 @@ export default function AdminLogin() {
           Admin Portal
         </h1>
         <p className="text-gray-500 mt-3">
-          Please enter your credentials to proceed.
-        </p>
+          Secure access for authorized personnel.        </p>
 
         <form onSubmit={handleSubmit} className="space-y-6 mt-10">
           {/* DESIGN: Understated inputs with a bottom border focus on the content. */}
