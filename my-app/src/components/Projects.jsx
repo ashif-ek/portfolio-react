@@ -19,39 +19,57 @@ const projectImages = {
 // --- Fallback Data ---
 // This local data is used for the initial render and if the API call fails.
 const fallbackProjects =  [
+        {
+      "id": "1",
+      "title": "Ecommerce LUXURY PERFUME ",
+      "description": "A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.",
+      "tags": [
+        "React",
+        "JSON"
+      ],
+      "image": "project4.jpg",
+      "link": "https://noirel-hj1j.vercel.app/",
+      "github": "https://github.com/ashif-ek/noirel-"
+    },
     {
-      "id": 1,
-      "title": "CiviTech digital governance platform",
+      "id": "2",
+      "title": "CiviTech digital governance platform(cross-platform)",
       "description": "A community governance platform with modules for Admin, Users, Panchayath, and HighAuthority. Handles services, complaints, ratings, voting, image feeds, and analytics.",
-      "tags": ["Django Backend", "Flutter", "SQL", "HTML/CSS/JS"],
+      "tags": [
+        "Django Backend",
+        "Flutter",
+        "SQL",
+        "HTML/CSS/JS"
+      ],
       "image": "project1.jpg",
       "link": "#",
       "github": "#"
     },
     {
-      "id": 2,
+      "id": "3",
       "title": "Blog",
       "description": "A clean, responsive personal blog inspired by Medium, built using Django for the backend and HTML/CSS for the frontend. It supports user-friendly content display, SEO-friendly structure, dynamic post rendering, and a minimalistic, distraction-free reading experience.",
-      "tags": ["Django", "JavaScript", "CSS", "HTML", "Chart.js"],
+      "tags": [
+        "Django",
+        "JavaScript",
+        "CSS",
+        "HTML",
+        "Chart.js"
+      ],
       "image": "project2.jpg",
       "link": "#",
       "github": "#"
     },
     {
-      "id": 3,
+      "id": "4",
       "title": "News Feed App",
       "description": "A modern Flutter-based mobile application that fetches real-time news from an online API. It features a clean UI with scrollable news feeds, article descriptions, and category-based filtering for a personalized reading experience. Optimized for performance.",
-      "tags": ["Flutter", "REST API", "SQL"],
+      "tags": [
+        "Flutter",
+        "REST API",
+        "SQL"
+      ],
       "image": "project3.jpg",
-      "link": "#",
-      "github": "#"
-    },
-    {
-      "id": 4,
-      "title": "Ecommerce",
-      "description": "A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.",
-      "tags": ["React", "JSON"],
-      "image": "project4.jpg",
       "link": "#",
       "github": "#"
     }
