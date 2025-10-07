@@ -28,7 +28,7 @@ const fallbackProjects =  [
         "JSON"
       ],
       "image": "project4.jpg",
-      "link": "https://noirel-hj1j.vercel.app/",
+      "link": "https://noirel-5a1m-5kcrxhy9q-adorvixxs-projects.vercel.app/",
       "github": "https://github.com/ashif-ek/noirel-"
     },
     {
