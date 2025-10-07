@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo, useCallback } from 'react';
-import axios from 'axios';
+import Api from './Api';
 
 // --- Memoized SVG Icons (Executive Theme) ---
 // Icons are memoized to prevent re-renders. The selection is curated for a professional portfolio.
@@ -110,14 +110,13 @@ const Skills = () => {
     const [activeCategory, setActiveCategory] = useState('All');
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const sectionRef = useRef(null);
-    const API_URL = 'http://localhost:5000';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const [skillsRes, toolsRes] = await Promise.all([
-                    axios.get(`${API_URL}/skills`),
-                    axios.get(`${API_URL}/tools`)
+                    Api.get(`/skills`),
+                    Api.get(`/tools`)
                 ]);
                 setSkills(skillsRes.data);
                 setTools(toolsRes.data);

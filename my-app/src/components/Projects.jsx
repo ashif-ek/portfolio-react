@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 // --- Local Assets ---
 // Import project images locally to ensure they are always available.
@@ -7,6 +6,7 @@ import project1 from '../assets/projects/project1.png';
 import project2 from '../assets/projects/project2.jpg';
 import project3 from '../assets/projects/project3.jpg';
 import project4 from '../assets/projects/project4.jpg';
+import Api from './Api';
 
 // Map project IDs to their imported image assets.
 const projectImages = {
@@ -75,7 +75,6 @@ const fallbackProjects =  [
     }
   ];
 
-const API_URL = "http://localhost:5000/projects";
 
 const Projects = () => {
   // --- State Management ---
@@ -88,7 +87,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await axios.get(API_URL);
+        const res = await Api.get('/projects'); 
         setProjects(res.data); // If successful, update state with DB data
         setError(null); // Clear any previous errors
       } catch (err) {

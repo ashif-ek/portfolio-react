@@ -1,7 +1,7 @@
 import { Link } from 'react-scroll';
 import { useEffect, useState } from 'react';
-import axios from 'axios'; // 1. Import axios
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import Api from './Api';
 
 // Map icon names from JSON to the imported icon components
 const iconMap = {
@@ -62,8 +62,7 @@ const Hero = () => {
   
   // 4. Fetch data using useEffect
   useEffect(() => {
-    const API_URL = "http://localhost:5000/profile";
-    axios.get(API_URL)
+    Api.get("/profile")
       .then(res => {
         setProfile(res.data);
       })
