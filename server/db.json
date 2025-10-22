@@ -148,7 +148,7 @@
         "React",
         "JSON"
       ],
-      "image": "project4.jpg",
+      "image": "project1.jpg",
       "link": "https://noirel-hj1j.vercel.app/",
       "github": "https://github.com/ashif-ek/noirel-"
     },
@@ -162,7 +162,7 @@
         "SQL",
         "HTML/CSS/JS"
       ],
-      "image": "project1.jpg",
+      "image": "project2.jpg",
       "link": "#",
       "github": "#"
     },
@@ -177,7 +177,7 @@
         "HTML",
         "Chart.js"
       ],
-      "image": "project2.jpg",
+      "image": "project3.jpg",
       "link": "#",
       "github": "#"
     },
@@ -190,7 +190,7 @@
         "REST API",
         "SQL"
       ],
-      "image": "project3.jpg",
+      "image": "project4.jpg",
       "link": "#",
       "github": "#"
     }
