@@ -253,7 +253,7 @@ function Contact() {
       </section>
 
       {/* Adding custom keyframe animations */}
-      <style jsx global>{`
+      <style>{`
         @keyframes fade-in-down {
           from { opacity: 0; transform: translateY(-15px); }
           to { opacity: 1; transform: translateY(0); }

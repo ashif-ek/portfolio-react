@@ -1,5 +1,9 @@
 import React, { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import Api from './Api';
+import LoadingSpinner from './LoadingSpinner';
+import { BsBootstrap, BsGithub } from "react-icons/bs";
+import { SiPython, SiJavascript, SiReact, SiTailwindcss, SiDocker, SiJira } from "react-icons/si";
+
 
 // --- Memoized SVG Icons (Executive Theme) ---
 // Icons are memoized to prevent re-renders. The selection is curated for a professional portfolio.
@@ -22,11 +26,16 @@ const JiraIcon = React.memo(() => <svg xmlns="http://www.w3.org/2000/svg" width=
 // --- Dynamic Icon Mapping ---
 // Maps icon names from the database to the actual React components.
 const iconMap = {
-    PythonIcon: <PythonIcon />, JSIcon: <JSIcon />, ReactIcon: <ReactIcon />,
-    ShieldIcon: <ShieldIcon />, MobileIcon: <MobileIcon />, CodeIcon: <CodeIcon />,
-    PencilRulerIcon: <PencilRulerIcon />, GitIcon: <GitIcon />, DatabaseIcon: <DatabaseIcon />,
-    TailwindIcon: <TailwindIcon />, BriefcaseIcon: <BriefcaseIcon />, AgileIcon: <AgileIcon />,
-    DockerIcon: <DockerIcon />, JiraIcon: <JiraIcon />,
+  PythonIcon: <SiPython className="w-6 h-6 text-yellow-500" />,
+  JSIcon: <SiJavascript className="w-6 h-6 text-yellow-400" />,
+  ReactIcon: <SiReact className="w-6 h-6 text-cyan-400" />,
+  TailwindIcon: <SiTailwindcss className="w-6 h-6 text-blue-400" />,
+  GitIcon: <BsGithub className="w-6 h-6 text-gray-800" />,
+  BootstrapIcon: <BsBootstrap className="w-6 h-6 text-purple-600" />,
+  DockerIcon: <SiDocker className="w-6 h-6 text-blue-600" />,
+  JiraIcon: <SiJira className="w-6 h-6 text-blue-700" />,
+  CodeIcon: <CodeIcon className="w-6 h-6 text-indigo-500" />,
+  PencilRulerIcon: <PencilRulerIcon className="w-6 h-6 text-green-500" />,
 };
 
 // --- Fallback Data (Initial State) ---
@@ -174,7 +183,7 @@ const Skills = () => {
                 </div>
 
                 {isLoading ? (
-                    <div className="text-center text-gray-400">Loading live data...</div>
+                    <LoadingSpinner/>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {filteredSkills.map((skill, index) => (

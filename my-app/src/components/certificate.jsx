@@ -8,6 +8,7 @@ import cert2 from '../assets/certificates/django.png';
 import cert3 from '../assets/certificates/ccsa.jpg';
 import cert4 from '../assets/certificates/prosevo.jpg';
 import cert5 from '../assets/certificates/prosevo.jpg';
+import LoadingSpinner from "./LoadingSpinner";
 
 // Map certificate IDs to their imported image assets.
 const certificateImages = {
@@ -143,7 +144,7 @@ const Certificates = () => {
   // --- Render Logic ---
   const renderContent = () => {
     if (isLoading) {
-      return <div className="text-center text-gray-400 text-lg py-10">Loading Credentials...</div>;
+      return <LoadingSpinner/>
     }
 
     if (filteredCertificates.length === 0 && !isLoading) {
@@ -255,7 +256,7 @@ const Certificates = () => {
         {renderContent()}
       </div>
 
-      <style jsx>{`
+      <style>{`
         .perspective-1000 { perspective: 1000px; }
         .transform-style-preserve-3d { transform-style: preserve-3d; }
         .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }

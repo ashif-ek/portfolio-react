@@ -7,6 +7,7 @@ import project2 from '../assets/projects/project2.jpg';
 import project3 from '../assets/projects/project3.jpg';
 import project4 from '../assets/projects/project4.jpg';
 import Api from './Api';
+import LoadingSpinner from './LoadingSpinner';
 
 // Map project IDs to their imported image assets.
 const projectImages = {
@@ -113,7 +114,7 @@ const Projects = () => {
   // --- Render Logic ---
   const renderContent = () => {
     if (isLoading) {
-      return <div className="text-center text-gray-400 text-lg">Loading Projects...</div>;
+      return <LoadingSpinner/>;
     }
 
     return (
@@ -216,7 +217,7 @@ const Projects = () => {
       </div>
       
       {/* Kept the same styles */}
-      <style jsx>{`
+      <style>{`
         @keyframes pulse-slow {
           0%, 100% { opacity: 0.1; }
           50% { opacity: 0.15; }

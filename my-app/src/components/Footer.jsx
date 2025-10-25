@@ -156,7 +156,7 @@ const Footer = () => {
         </svg>
       </button>
 
-      <style jsx>{`
+      <style >{`
         @keyframes pulse-slow {
           0%, 100% { opacity: 0.1; }
           50% { opacity: 0.15; }
