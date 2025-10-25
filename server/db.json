@@ -1,7 +1,7 @@
 {
   "admin": {
     "username": "admin",
-    "password": "1234"
+    "password": "291345"
   },
   "profile": {
     "name": "Ashif E.K ",
@@ -247,5 +247,53 @@
       "credentialLink": "#",
       "description": "Odoo language, OSINT, Web applications (MERN & Django), AI/ML, Flutter."
     }
-  ]
+  ],
+  
+  "blogs": [
+  {
+    "id": 1,
+    "slug": "why-we-forget-what-really-matters",
+    "title": "Why We Forget What Really Matters",
+    "date": "2025-10-25",
+    "summary": "In a world obsessed with speed, we forget the beauty of stillness — and how silence often carries the loudest lessons.",
+    "imageUrl": "/path/to/blog/images/why-we-forget.png",
+    "content": "# Why We Forget What Really Matters\n\nWe chase notifications but ignore the whispers of our own thoughts.\n\nThe truth? Life doesn’t speed up — **we just stop noticing**. The same sunrise that once made us pause now plays behind glass as we scroll.\n\nEvery ‘like’ is a small applause from strangers — but when was the last time you *liked* your own silence?\n\nTry this today: Close your eyes. Breathe. Remember what you wanted before the world told you what to want.\n\n> The most extraordinary things often hide behind ordinary moments."
+  },
+  {
+    "id": 2,
+    "slug": "the-invisible-art-of-consistency",
+    "title": "The Invisible Art of Consistency",
+    "date": "2025-10-25",
+    "summary": "We celebrate breakthroughs but forget the silent discipline that builds them — consistency, the art no one claps for.",
+    "imageUrl": "/path/to/blog/images/consistency.png",
+    "content": "# The Invisible Art of Consistency\n\nGreatness rarely feels great while it’s happening. It feels boring, repetitive, quiet.\n\nThe gym at 6 AM, the line of code rewritten ten times, the artist sketching shadows no one will notice — that’s *where magic hides*.\n\nEveryone wants the moment of success; few want the invisible grind before it.\n\n> You don’t rise to your goals. You sink to your habits.\n\nReal growth isn’t loud — it’s the sound of you showing up when no one’s watching."
+  },
+  {
+    "id": 3,
+    "slug": "the-human-side-of-technology",
+    "title": "The Human Side of Technology",
+    "date": "2025-10-25",
+    "summary": "Behind every line of code is a heartbeat — technology isn’t replacing humanity, it’s reflecting it.",
+    "imageUrl": "/path/to/blog/images/human-tech.png",
+    "content": "# The Human Side of Technology\n\nWe talk about AI, automation, and algorithms — but forget the simplest truth: **tech mirrors the people who make it**.\n\nEvery interface was designed by someone who cared about experience. Every bug tells a story of human imperfection.\n\nInstead of fearing that machines will replace us, we should ask: *Are we building tools that remember our empathy?*\n\n> The next great innovation isn’t artificial intelligence — it’s authentic intention."
+  },
+  {
+    "id": 4,
+    "slug": "we-are-all-beta-versions",
+    "title": "We Are All Beta Versions",
+    "date": "2025-10-25",
+    "summary": "Like software, we evolve through bugs, crashes, and updates — perfection is not the goal; iteration is.",
+    "imageUrl": "/path/to/blog/images/beta-version.png",
+    "content": "# We Are All Beta Versions\n\nYou’re not broken — you’re just *under development*.\n\nEvery mistake, every failure, every ‘update’ is part of your release cycle.\n\nYet we judge ourselves for not being the ‘final version’ — forgetting that even the best apps release patches every week.\n\nThe key is not perfection, but **progress**.\n\n> Be kind to your code. Life’s changelog is still updating."
+  },
+  {
+    "id": 5,
+    "slug": "the-most-underrated-skill-in-life",
+    "title": "The Most Underrated Skill in Life",
+    "date": "2025-10-25",
+    "summary": "It’s not intelligence, looks, or luck — it’s awareness. Because awareness changes everything without changing anything.",
+    "imageUrl": "/path/to/blog/images/awareness.png",
+    "content": "# The Most Underrated Skill in Life\n\nAwareness is the quiet superpower.\n\nThe ability to step back — before reacting, judging, or rushing — and simply *see* what’s happening.\n\nAwareness turns arguments into understanding. It transforms pressure into perspective.\n\nIt’s the difference between living **in** your mind and living **with** it.\n\n> Awareness doesn’t solve life — it reveals it."
+  }
+]
 }

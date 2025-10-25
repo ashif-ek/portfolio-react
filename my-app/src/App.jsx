@@ -10,6 +10,8 @@ import Home from "./pages/Home.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import AdminLogin from "./pages/AdminLogin.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import BlogPost from "./components/BlogPost.jsx";
+import BlogSection from "./components/BlogSection.jsx";
 
 /**
  * A protected route component that checks for admin status.
@@ -42,6 +44,11 @@ function App() {
           <Route element={<UserLayout />}>
             <Route path="/" element={<Home />} />
             {/* Add other user pages here */}
+            {/* The full list of all blog posts */}
+        <Route path="/blog" element={<BlogSection />} /> 
+        
+        {/* The single, full blog post page */}
+        <Route path="/blog/:slug" element={<BlogPost />} />
           </Route>
 
           {/* 2. Authentication Route - No layout */}

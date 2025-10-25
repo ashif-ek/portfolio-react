@@ -1,93 +1,99 @@
+
+
 import { useState, useEffect, useRef } from "react";
-import Api from "./Api"; // Assuming Api.js is your configured axios instance
+import Api from "./Api";
 
 // --- Local Assets ---
 // Import your certificate images locally.
-import cert1 from '../assets/certificates/bca.jpg';
-import cert2 from '../assets/certificates/django.png';
-import cert3 from '../assets/certificates/ccsa.jpg';
-import cert4 from '../assets/certificates/prosevo.jpg';
-import cert5 from '../assets/certificates/prosevo.jpg';
+// import cert1 from "../assets/certificates/bca.jpg";
+import cert2 from "../assets/certificates/django.png";
+import cert3 from "../assets/certificates/ccsa.jpg";
+// import cert4 from '../assets/certificates/bridgeon.jpg';
+import cert5 from "../assets/certificates/prosevo.jpg";
 import LoadingSpinner from "./LoadingSpinner";
 
 // Map certificate IDs to their imported image assets.
 const certificateImages = {
-  1: cert1,
+  // 1: cert1,
   2: cert2,
   3: cert3,
-  4: cert4,
+  // 4: cert4,
   5: cert5,
 };
 
 // --- Fallback Data ---
-// This local data is used for the initial render and if the API call fails.
 const fallbackCertificates = [
- {
-      "id": 1,
-      "title": "Bachelors of Computer Applications",
-      "issuer": "University of Calicut",
-      "date": "2022-2025",
-      "category": "Degree",
-      "image": "bca.jpg",
-      "credentialLink": "#",
-      "description": "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script."
-    },
-    {
-      "id": 2,
-      "title": "Django and Flutter",
-      "issuer": "Regional Technologies Calicut",
-      "date": "2024-2025",
-      "category": "Web",
-      "image": "ccsa.jpg",
-      "credentialLink": "#",
-      "description": "Built complete web and app solutions using Python Django as backend and HTML, CSS, JavaScript for web frontend; Dart Flutter for application frontend."
-    },
-    {
-      "id": 3,
-      "title": "Certified CyberSecurity Analyst (CCSA)",
-      "issuer": "Red Team Hacker Academy",
-      "date": "2022",
-      "category": "Cybersecurity",
-      "image": "django.jpg",
-      "credentialLink": "#",
-      "description": "IT infrastructure technologies, OSINT, Web application pentest, vulnerability assessment, network security, SOC, SIEM."
-    },
-    {
-      "id": 4,
-      "title": "JavaScript and React",
-      "issuer": "Bridgeon",
-      "date": "2023-01-18",
-      "category": "Web",
-      "image": "react.jpg",
-      "credentialLink": "#",
-      "description": "Building and deploying AI solutions with Azure Machine Learning."
-    },
-    {
-      "id": 5,
-      "title": "Technology Workshop",
-      "issuer": "Prosevo Technologies",
-      "date": "2024-10-14",
-      "category": "Web",
-      "image": "prosevo.jpg",
-      "credentialLink": "#",
-      "description": "Odoo language, OSINT, Web applications (MERN & Django), AI/ML, Flutter."
-    }
+  {
+    id: 1,
+    title: "Bachelors of Computer Applications",
+    issuer: "University of Calicut",
+    date: "2022-2025",
+    category: "Degree",
+    image: "bca.jpg",
+    credentialLink: "#",
+    description:
+      "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script.",
+  },
+  {
+    id: 2,
+    title: "Django and Flutter",
+    issuer: "Regional Technologies Calicut",
+    date: "2024-2025",
+    category: "Web",
+    image: "ccsa.jpg",
+    credentialLink: "#",
+    description:
+      "Built complete web and app solutions using Python Django as backend and HTML, CSS, JavaScript for web frontend; Dart Flutter for application frontend.",
+  },
+  {
+    id: 3,
+    title: "Certified CyberSecurity Analyst (CCSA)",
+    issuer: "Red Team Hacker Academy",
+    date: "2022",
+    category: "Cybersecurity",
+    image: "django.jpg",
+    credentialLink: "#",
+    description:
+      "IT infrastructure technologies, OSINT, Web application pentest, vulnerability assessment, network security, SOC, SIEM.",
+  },
+  {
+    id: 4,
+    title: "React+Django",
+    issuer: "Bridgeon",
+    date: "2023-01-18",
+    category: "Web",
+    image: "react.jpg",
+    credentialLink: "#",
+    description: "Building and deploying AI solutions with Azure Machine Learning.",
+  },
+  {
+    id: 5,
+    title: "Technology Workshop",
+    issuer: "Prosevo Technologies",
+    date: "2024-10-14",
+    category: "Web",
+    image: "prosevo.jpg",
+    credentialLink: "#",
+    description:
+      "Odoo language, OSINT, Web applications (MERN & Django), AI/ML, Flutter.",
+  },
 ];
 
 const Certificates = () => {
   // --- State Management ---
-  const [certificates, setCertificates] = useState(fallbackCertificates); // Initialize with fallback
+  const [certificates, setCertificates] = useState(fallbackCertificates);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [activeCard, setActiveCard] = useState(null);
+  const [showAll, setShowAll] = useState(false); // <-- New state for Show More
+  const [selectedImage, setSelectedImage] = useState(null); // <-- New state for Image Modal
   const sectionRef = useRef(null);
 
   const categories = [
     { id: "all", name: "All" },
     { id: "Degree", name: "Degree" },
     { id: "Web", name: "Web" },
-    { id: "Cybersecurity", name: "Cybersecurity" }
+    { id: "Cybersecurity", name: "Cybersecurity" },
   ];
 
   // --- Data Fetching Effect ---
@@ -95,34 +101,39 @@ const Certificates = () => {
     const fetchCertificates = async () => {
       try {
         const res = await Api.get("/certificates");
-        setCertificates(res.data); // If successful, update with DB data
-        setError(null); // Clear previous errors
+        setCertificates(res.data);
+        setError(null);
       } catch (err) {
         console.error("Error fetching certificates:", err);
         setError("Failed to load live credentials. Displaying default entries.");
       } finally {
-        setIsLoading(false); // Stop loading regardless of outcome
+        setIsLoading(false);
       }
     };
     fetchCertificates();
   }, []);
 
-  // Filter certificates based on the selected category
+  // --- Filter Logic ---
   const filteredCertificates =
     selectedCategory === "all"
       ? certificates
       : certificates.filter((cert) => cert.category === selectedCategory);
+  
+  // Reset showAll when category changes
+  useEffect(() => {
+    setShowAll(false);
+  }, [selectedCategory]);
 
   // --- Animation Observer Effect ---
   useEffect(() => {
-    if (!sectionRef.current || isLoading) return; // Don't run observer while loading
+    if (!sectionRef.current || isLoading) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("opacity-100", "translate-y-0");
             entry.target.classList.remove("opacity-0", "translate-y-5");
-            observer.unobserve(entry.target); // Animate only once
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -131,87 +142,132 @@ const Certificates = () => {
 
     const cards = sectionRef.current.querySelectorAll(".certificate-card");
     cards.forEach((card) => {
-      card.classList.add("opacity-0", "translate-y-5", "transition-all", "duration-500");
-      observer.observe(card);
+      // Only apply animation to cards that haven't been animated yet
+      if (card.classList.contains('opacity-0')) {
+        card.classList.add(
+          "transition-all",
+          "duration-500"
+        );
+        observer.observe(card);
+      }
     });
 
     return () => {
       cards.forEach((card) => observer.unobserve(card));
     };
-  }, [filteredCertificates, isLoading]); // Re-run when certificates or loading state changes
-
+  // Re-run when filtered certificates change OR when showAll changes
+  }, [filteredCertificates, isLoading, showAll]); 
 
   // --- Render Logic ---
   const renderContent = () => {
     if (isLoading) {
-      return <LoadingSpinner/>
+      return <LoadingSpinner />;
     }
 
+    // Check based on the *full* filtered list
     if (filteredCertificates.length === 0 && !isLoading) {
-        return <div className="text-center text-gray-500 text-lg py-10">No certificates found in this category.</div>
+      return (
+        <div className="text-center text-gray-500 text-lg py-10">
+          No certificates found in this category.
+        </div>
+      );
     }
+    
+    // Decide which certificates to display
+    const certificatesToShow = showAll
+      ? filteredCertificates
+      : filteredCertificates.slice(0, 3);
 
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredCertificates.map((cert) => (
-          <div
-            key={cert.id}
-            className={`certificate-card bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700 transition-all duration-400 cursor-pointer h-72 perspective-1000 ${
-              activeCard === cert.id ? 'expanded' : ''
-            }`}
-            onClick={() => setActiveCard(activeCard === cert.id ? null : cert.id)}
-            style={{ transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
-          >
-            <div className="card-content relative w-full h-full transition-transform duration-600 transform-style-preserve-3d">
-              {/* Card Front */}
-              <div className="card-front absolute w-full h-full backface-hidden">
-                <div className="relative h-40 overflow-hidden">
-                  <img
-                    src={certificateImages[cert.id]}
-                    alt={cert.title}
-                    className="w-full h-full object-cover transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
-                  <span className="absolute top-3 right-3 bg-blue-700 text-white px-2 py-1 rounded text-xs font-semibold">
+      // Fragment to hold grid and button
+      <>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {certificatesToShow.map((cert) => (
+            <div
+              key={cert.id}
+              className="certificate-card opacity-0 translate-y-5 flex flex-col bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700 transition-all duration-300 hover:translate-y-[-5px] hover:shadow-2xl"
+            >
+              {/* Image Section - Now clickable for modal */}
+              <div
+                className="relative h-44 overflow-hidden cursor-pointer"
+                onClick={() => setSelectedImage(certificateImages[cert.id])}
+              >
+                <img
+                  src={certificateImages[cert.id]}
+                  alt={cert.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+                {/* Category Badge */}
+                <span className="absolute top-3 right-3 bg-blue-900/50 text-blue-300 px-2 py-1 rounded-full text-xs font-medium backdrop-blur-sm border border-blue-700/50 capitalize">
+                  {cert.category}
+                </span>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-5 flex flex-col flex-grow">
+                {/* Top Meta: Issuer & Date */}
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-semibold text-blue-400 line-clamp-1">
                     {cert.issuer}
                   </span>
+                  <span className="text-xs text-gray-400 flex-shrink-0 ml-2">
+                    {cert.date}
+                  </span>
                 </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-lg mb-2 line-clamp-2">{cert.title}</h3>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-400">
-                      {new Date(cert.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
-                    </span>
-                    <span className="bg-blue-900/30 text-blue-300 px-2 py-1 rounded-full font-medium capitalize">
-                      {cert.category}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              {/* Card Back */}
-              <div className="card-back absolute w-full h-full backface-hidden transform rotate-y-180 p-5 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{cert.title}</h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {cert.description}
-                  </p>
-                </div>
-                <div className="flex justify-end">
+
+                {/* Title */}
+                <h3 className="font-semibold text-lg text-white mb-3 line-clamp-2">
+                  {cert.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow">
+                  {cert.description}
+                </p>
+
+                {/* Link (at the bottom) */}
+                <div className="mt-auto pt-4 border-t border-gray-700/50">
                   <a
                     href={cert.credentialLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-blue-900/30 text-blue-300 border border-blue-700/40 rounded text-sm font-medium transition-colors hover:bg-blue-900/40 hover:border-blue-600"
-                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center justify-center w-full px-4 py-2 bg-blue-900/30 text-blue-300 border border-blue-700/40 rounded text-sm font-medium transition-colors hover:bg-blue-800/50 hover:border-blue-600"
                   >
                     Verify Credential
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002 2v-4M14 4h6m0 0v6m0-6L10 14"
+                      ></path>
+                    </svg>
                   </a>
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Show More/Less Button */}
+        {filteredCertificates.length > 3 && (
+          <div className="text-center mt-12">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-3 rounded border font-medium transition-all duration-300 bg-white/5 border-gray-700 text-gray-300 hover:bg-white/10 hover:border-gray-500"
+            >
+              {showAll ? "Show Less" : "Show More"}
+            </button>
           </div>
-        ))}
-      </div>
+        )}
+      </>
     );
   };
 
@@ -229,13 +285,13 @@ const Certificates = () => {
             Professional credentials that validate expertise
           </p>
           <div className="flex flex-wrap justify-center gap-3 mt-6">
-            {categories.map(category => (
+            {categories.map((category) => (
               <button
                 key={category.id}
                 className={`px-4 py-2 rounded border transition-all duration-300 font-medium ${
                   selectedCategory === category.id
-                    ? 'bg-blue-900/20 border-blue-600 text-white'
-                    : 'bg-white/5 border-gray-700 text-gray-300 hover:bg-white/10 hover:border-gray-500'
+                    ? "bg-blue-900/20 border-blue-600 text-white"
+                    : "bg-white/5 border-gray-700 text-gray-300 hover:bg-white/10 hover:border-gray-500"
                 }`}
                 onClick={() => setSelectedCategory(category.id)}
               >
@@ -247,23 +303,54 @@ const Certificates = () => {
 
         {/* Error Message Display */}
         {error && (
-            <div className="text-center text-yellow-400 bg-yellow-900/30 border border-yellow-700/50 rounded-lg py-3 px-4 mb-8 max-w-lg mx-auto">
-                {error}
-            </div>
+          <div className="text-center text-yellow-400 bg-yellow-900/30 border border-yellow-700/50 rounded-lg py-3 px-4 mb-8 max-w-lg mx-auto">
+            {error}
+          </div>
         )}
-        
+
         {/* Main Content: Loading or Certificate Grid */}
         {renderContent()}
       </div>
 
+      {/* --- Image Modal --- */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 transition-opacity duration-300"
+          onClick={() => setSelectedImage(null)} // Click backdrop to close
+        >
+          {/* Close button */}
+          <button
+            className="absolute top-4 right-6 text-white text-5xl opacity-70 hover:opacity-100 transition-opacity z-50"
+            onClick={() => setSelectedImage(null)}
+          >
+            &times;
+          </button>
+          
+          {/* Image */}
+          <img
+            src={selectedImage}
+            alt="Certificate Preview"
+            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-95 animate-zoomIn"
+            onClick={(e) => e.stopPropagation()} // Click image to NOT close
+          />
+        </div>
+      )}
+
+      {/* Add CSS for modal animation */}
       <style>{`
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-preserve-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-        .expanded .card-content { transform: rotateY(180deg); }
-        .certificate-card:hover .card-front img { transform: scale(1.05); }
-        .certificate-card:not(.expanded):hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05); }
+        @keyframes zoomIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-zoomIn {
+          animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
       `}</style>
     </section>
   );
