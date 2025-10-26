@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Sitemap: https://ashif-ek.vercel.app/sitemap.xml

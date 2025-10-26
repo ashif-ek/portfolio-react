@@ -1,6 +1,6 @@
-// src/components/ErrorFallback.jsx
 import React from "react";
-import { motion } from "framer-motion"; // This is correctly used below
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion"; 
 
 function ErrorFallback({ resetErrorBoundary }) {
   return (

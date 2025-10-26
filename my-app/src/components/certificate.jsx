@@ -5,19 +5,20 @@ import Api from "./Api";
 
 // --- Local Assets ---
 // Import your certificate images locally.
-// import cert1 from "../assets/certificates/bca.jpg";
+import cert1 from "../assets/certificates/ccsa.jpg";
 import cert2 from "../assets/certificates/django.png";
 import cert3 from "../assets/certificates/ccsa.jpg";
-// import cert4 from '../assets/certificates/bridgeon.jpg';
+import cert4 from '../assets/certificates/ccsa.jpg';
 import cert5 from "../assets/certificates/prosevo.jpg";
 import LoadingSpinner from "./LoadingSpinner";
+import LazyImage from "./LazyImage";
 
 // Map certificate IDs to their imported image assets.
 const certificateImages = {
-  // 1: cert1,
+  1: cert1,
   2: cert2,
   3: cert3,
-  // 4: cert4,
+  4: cert4,
   5: cert5,
 };
 
@@ -192,7 +193,7 @@ const Certificates = () => {
                 className="relative h-44 overflow-hidden cursor-pointer"
                 onClick={() => setSelectedImage(certificateImages[cert.id])}
               >
-                <img
+                <LazyImage
                   src={certificateImages[cert.id]}
                   alt={cert.title}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -327,7 +328,7 @@ const Certificates = () => {
           </button>
           
           {/* Image */}
-          <img
+          <LazyImage
             src={selectedImage}
             alt="Certificate Preview"
             className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-95 animate-zoomIn"

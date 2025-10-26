@@ -1,6 +1,7 @@
 import profile from "../assets/profile.jpg";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import Api from "./Api";
+import LazyImage from "./LazyImage";
 
 // Using requestAnimationFrame for smoother animations
 const AnimatedCounter = ({ value, label }) => {
@@ -206,7 +207,7 @@ const About = () => {
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <img
+                            <LazyImage
                                 src={profile}
                                 alt="Profile"
                                 className="w-full h-full object-cover rounded-lg shadow-2xl shadow-cyan-500/10"

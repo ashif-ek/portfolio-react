@@ -1,32 +1,46 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import Api from './Api';
-import LoadingSpinner from './LoadingSpinner';
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { useParams, Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import Api from "./Api";
+import LoadingSpinner from "./LoadingSpinner";
+import LazyImage from "./LazyImage"; // ✅ Import the reusable component
 
+/* 🛑 Removed the local LazyImage component definition */
+
+/* ✅ Main BlogPost Component */
 const BlogPost = () => {
+  const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { slug } = useParams();
+  const [error, setError] = useState(false);
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const res = await Api.get(`/blogs?slug=${slug}`);
-        if (res.data.length > 0) {
-          setPost(res.data[0]);
-        } else {
-          console.error("Post not found");
-        }
-      } catch (err) {
-        console.error("Error fetching post:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchPost();
+  const fetchPost = useCallback(async () => {
+    try {
+      const res = await Api.get(`/blogs?slug=${slug}`);
+      if (res.data.length > 0) setPost(res.data[0]);
+      else setError(true);
+    } catch (err) {
+      console.error("❌ Error fetching post:", err);
+      setError(true);
+    } finally {
+      setIsLoading(false);
+    }
   }, [slug]);
 
+  useEffect(() => {
+    fetchPost();
+  }, [fetchPost]);
+
+  const formattedDate = useMemo(() => {
+    if (!post?.date) return "";
+    return new Date(post.date).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  }, [post]);
+
+  /* 🌀 Loading State */
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
@@ -35,91 +49,111 @@ const BlogPost = () => {
     );
   }
 
-  if (!post) {
+  /* ❌ Error / Not Found */
+  if (error || !post) {
     return (
-      <div className="min-h-screen bg-gray-900 text-white">
-        <div className="container mx-auto px-6 max-w-3xl py-20">
-          <div className="text-center">
-            <h1 className="text-2xl font-light text-white mb-4">Post not found</h1>
-            <Link 
-              to="/blog" 
-              className="inline-flex items-center text-sm text-gray-400 hover:text-gray-300 font-normal transition-colors duration-200"
-            >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              Back to all posts
-            </Link>
-          </div>
-        </div>
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center text-center px-6">
+        <h1 className="text-2xl font-light mb-4">Post not found</h1>
+        <Link
+          to="/blog"
+          className="relative z-50 inline-flex items-center text-sm text-gray-400 hover:text-cyan-300 transition-all duration-200 group pointer-events-auto"
+        >
+          <svg
+            className="w-4 h-4 mr-2 transform group-hover:-translate-x-0.5 transition-transform duration-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to writings
+        </Link>
       </div>
     );
   }
 
+  /* ✅ Main Render */
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="container mx-auto px-6 max-w-2xl py-12">
-        {/* Back Button */}
-        <Link 
-          to="/blog" 
-          className="inline-flex items-center text-sm text-gray-400 hover:text-gray-300 font-normal mb-8 transition-colors duration-200 group"
-        >
-          <svg className="w-4 h-4 mr-2 transform group-hover:-translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Back to writings
-        </Link>
+        {/* --- Back Button (Always clickable) --- */}
+        <div className="relative z-50 mb-6 mt-8 pointer-events-auto">
+          <Link
+            to="/blog"
+            className="inline-flex items-center text-sm text-gray-400 hover:text-cyan-300 font-normal transition-all duration-200 group"
+          >
+            <svg
+              className="w-4 h-4 mr-2 transform group-hover:-translate-x-0.5 transition-transform duration-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Back to writings
+          </Link>
+        </div>
 
-        {/* Article Header */}
-        <header className="mb-8">
-          <h1 className="text-2xl font-light text-white mb-4 leading-tight">
+        {/* --- Article Header --- */}
+        <header className="mb-10 border-b border-gray-800 pb-5">
+          <h1 className="text-3xl font-semibold text-white mb-3 leading-snug tracking-tight">
             {post.title}
           </h1>
-          <div className="flex items-center text-gray-500">
-            <time className="text-xs font-mono">
-              {new Date(post.date).toLocaleDateString('en-US', { 
-                month: 'long', 
-                day: 'numeric',
-                year: 'numeric'
-              })}
-            </time>
-          </div>
+          <time className="block text-xs text-gray-400 font-mono">
+            {formattedDate}
+          </time>
         </header>
 
-        {/* Featured Image */}
+        {/* --- Featured Image --- */}
         {post.imageUrl && (
-          <div className="mb-8 rounded-lg overflow-hidden">
-            <img 
-              src={post.imageUrl} 
-              alt={post.title} 
-              className="w-full h-auto"
-            />
+          /* ✅ This wrapper provides the border, shape, and shadow */
+          <div className="mb-10 rounded-xl overflow-hidden shadow-xl relative z-10 border border-gray-800">
+            <LazyImage src={post.imageUrl} alt={post.title} />
           </div>
         )}
 
-        {/* Article Content */}
-        <article className="prose prose-invert max-w-none
-                          prose-p:text-gray-300 prose-p:leading-relaxed
-                          prose-h1:text-xl prose-h1:font-light prose-h1:mt-8 prose-h1:mb-4
-                          prose-h2:text-lg prose-h2:font-light prose-h2:mt-6 prose-h2:mb-3
-                          prose-h3:text-base prose-h3:font-normal prose-h3:mt-4 prose-h3:mb-2
-                          prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:text-cyan-300
-                          prose-ul:text-gray-300 prose-ol:text-gray-300
-                          prose-li:text-gray-300
-                          prose-blockquote:border-l-cyan-400 prose-blockquote:text-gray-400
-                          prose-code:text-gray-300 prose-code:bg-gray-800 prose-code:px-1 prose-code:rounded
-                          prose-pre:bg-gray-800 prose-pre:border prose-pre:border-gray-700">
+        {/* --- Markdown Content --- */}
+        <article
+          className="prose prose-invert max-w-none
+                       prose-p:text-gray-300 prose-p:leading-relaxed
+                       prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg
+                       prose-h1:mt-10 prose-h2:mt-8 prose-h3:mt-6
+                       prose-a:text-cyan-400 hover:prose-a:text-cyan-300
+                       prose-code:bg-gray-800 prose-code:text-cyan-300 prose-code:px-1.5 prose-code:rounded
+                       prose-pre:bg-gray-800 prose-pre:border prose-pre:border-gray-700 prose-pre:rounded-lg
+                       prose-hr:border-gray-700 prose-ul:text-gray-300 prose-ol:text-gray-300 prose-li:text-gray-300"
+        >
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </article>
 
-        {/* Footer */}
-        <div className="mt-12 pt-6 border-t border-gray-700">
-          <Link 
-            to="/blog" 
-            className="inline-flex items-center text-sm text-gray-400 hover:text-gray-300 font-normal transition-colors duration-200 group"
+        {/* --- Footer Back Link--- */}
+        <div className="mt-16 pt-8 border-t border-gray-800 relative z-50 pointer-events-auto">
+          <Link
+            to="/blog"
+            className="inline-flex items-center text-sm text-gray-400 hover:text-cyan-300 transition-all duration-200 group"
           >
-            <svg className="w-4 h-4 mr-2 transform group-hover:-translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            <svg
+              className="w-4 h-4 mr-2 transform group-hover:-translate-x-0.5 transition-transform duration-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
             </svg>
             Back to writings
           </Link>

@@ -7,6 +7,7 @@ import project3 from '../assets/projects/project3.jpg';
 import project4 from '../assets/projects/project4.jpg';
 import Api from './Api';
 import LoadingSpinner from './LoadingSpinner';
+import LazyImage from './LazyImage';
 
 // Map project IDs to their imported image assets.
 const projectImages = {
@@ -136,7 +137,7 @@ const Projects = () => {
             >
               {/* Project image */}
               <div className="relative overflow-hidden h-48">
-                <img
+                <LazyImage
                   src={projectImages[project.id]} // Safely map ID to local image
                   alt={project.title}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"

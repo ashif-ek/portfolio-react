@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import Api from "./Api";
+import LazyImage from "./LazyImage"; // ✅ Import the reusable component
 
 const BlogSection = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -13,7 +14,7 @@ const BlogSection = () => {
   useEffect(() => {
     const fetchAllPosts = async () => {
       try {
-        const res = await Api.get("/blogs?_sort=date&_order=desc"); 
+        const res = await Api.get("/blogs?_sort=date&_order=desc");
         setAllPosts(res.data);
         setError(null);
       } catch (err) {
@@ -55,48 +56,46 @@ const BlogSection = () => {
       <div className="space-y-8">
         {postsToShow.map((post) => (
           <article
-  key={post.id}
-  className="group border-b border-gray-700 pb-6 last:border-b-0 last:pb-0 hover:border-gray-600 transition-colors duration-300"
->
-  <div className="flex items-start space-x-4">
-<img
-  src={post.imageUrl || "https://placehold.co/150x150/ffffff/999999?text=No+Image"}
-  onError={(e) => (e.target.src = "https://placehold.co/150x150/ffffff/999999?text=No+Image")}
-  alt={post.title}
-  className="w-24 h-24 object-cover rounded-md flex-shrink-0 border border-gray-300"
-/>
+            key={post.id}
+            className="group border-b border-gray-700 pb-6 last:border-b-0 last:pb-0 hover:border-gray-600 transition-colors duration-300"
+          >
+            <div className="flex items-start space-x-4">
+              {/* ✅ FIX: Replaced <img> with <LazyImage> inside a sized, styled wrapper */}
+              <div className="w-24 h-24 flex-shrink-0 rounded-md border border-gray-700 overflow-hidden">
+                <LazyImage
+                  src={
+                    post.imageUrl ||
+                    "https://placehold.co/150x150/ffffff/999999?text=No+Image"
+                  }
+                  alt={post.title}
+                />
+              </div>
 
-    {/* Content */}
-    <div className="flex-1 min-w-0">
-      <h3 className="text-lg font-normal text-white group-hover:text-gray-200 line-clamp-2 leading-snug transition-colors duration-200 mb-2">
-        {post.title}
-      </h3>
-      <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed mb-3">
-        {post.summary}
-      </p>
+              {/* Content */}
+              <div className="flex-1 min-w-0">
+                {/* ✅ FIX: Title is now the link for SEO & Accessibility */}
+                <Link to={`/blog/${post.slug}`}>
+                  <h3 className="text-lg font-normal text-white group-hover:text-gray-200 line-clamp-2 leading-snug transition-colors duration-200 mb-2">
+                    {post.title}
+                  </h3>
+                </Link>
+                <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed mb-3">
+                  {post.summary}
+                </p>
 
-      <div className="flex items-center justify-between">
-        <time className="text-xs text-gray-500 font-mono whitespace-nowrap">
-          {new Date(post.date).toLocaleDateString('en-US', { 
-            month: 'short', 
-            day: 'numeric',
-            year: 'numeric'
-          })}
-        </time>
-        <Link
-          to={`/blog/${post.slug}`}
-          className="inline-flex items-center text-xs text-cyan-400 hover:text-cyan-300 font-medium transition-colors duration-200 group/link"
-        >
-          Read more
-          <svg className="w-3 h-3 ml-1 transform group-hover/link:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
-      </div>
-    </div>
-  </div>
-</article>
-
+                <div className="flex items-center justify-between">
+                  <time className="text-xs text-gray-500 font-mono whitespace-nowrap">
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </time>
+                  {/* 🛑 REMOVED: The old "Read more" link is gone */}
+                </div>
+              </div>
+            </div>
+          </article>
         ))}
       </div>
     );

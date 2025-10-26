@@ -10,6 +10,7 @@ class ErrorBoundary extends React.Component {
   }
 
   // FIX 1: 'error' is now '_error' to fix the linting error
+  // eslint-disable-next-line no-unused-vars
   static getDerivedStateFromError(_error) {
     return { hasError: true };
   }
