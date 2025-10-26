@@ -5,10 +5,10 @@ import Api from "./Api";
 
 // --- Local Assets ---
 // Import your certificate images locally.
-import cert1 from "../assets/certificates/ccsa.jpg";
+import cert1 from "../assets/certificates/image.png";
 import cert2 from "../assets/certificates/django.png";
 import cert3 from "../assets/certificates/ccsa.jpg";
-import cert4 from '../assets/certificates/ccsa.jpg';
+import cert4 from '../assets/certificates/image.png';
 import cert5 from "../assets/certificates/prosevo.jpg";
 import LoadingSpinner from "./LoadingSpinner";
 import LazyImage from "./LazyImage";
@@ -30,7 +30,7 @@ const fallbackCertificates = [
     issuer: "University of Calicut",
     date: "2022-2025",
     category: "Degree",
-    image: "bca.jpg",
+    image: "image.png",
     credentialLink: "#",
     description:
       "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script.",
@@ -63,7 +63,7 @@ const fallbackCertificates = [
     issuer: "Bridgeon",
     date: "2023-01-18",
     category: "Web",
-    image: "react.jpg",
+    image: "image.png",
     credentialLink: "#",
     description: "Building and deploying AI solutions with Azure Machine Learning.",
   },

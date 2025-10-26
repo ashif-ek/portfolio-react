@@ -1,21 +1,28 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Meta basics -->
+    <!-- Meta essentials -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    
+    <meta name="theme-color" content="#1a1a1a" />
+
     <!-- Primary SEO -->
     <title>Ashif E.K | Digital Architect & Software Engineer | React & Django Portfolio</title>
-    <meta name="description" content="Ashif E.K – Digital Architect & Software Engineer specializing in React, Django, and modern web solutions. Explore projects, skills, and professional achievements." />
-    <meta name="keywords" content="Ashif E.K, Portfolio, React, Django, Web Development, Software Engineer, Digital Architect" />
+    <meta
+      name="description"
+      content="Ashif E.K – Digital Architect & Software Engineer specializing in React, Django, and modern web solutions. Explore projects, skills, and achievements."
+    />
+    <meta
+      name="keywords"
+      content="Ashif E.K, Portfolio, React, Django, Web Development, Software Engineer, Digital Architect"
+    />
     <meta name="author" content="Ashif E.K" />
-    
-    <!-- Open Graph / Social Media -->
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Ashif E.K | Digital Architect & Software Engineer" />
-    <meta property="og:description" content="Explore Ashif E.K's portfolio – React & Django expert, modern web solutions, and software architecture." />
+    <meta property="og:description" content="Explore Ashif E.K's portfolio – React & Django expert creating modern web solutions." />
     <meta property="og:url" content="https://ashif-ek.vercel.app/" />
     <meta property="og:image" content="https://ashif-ek.vercel.app/social-preview.png" />
     <meta property="og:site_name" content="Ashif E.K Portfolio" />
@@ -26,41 +33,65 @@
     <meta name="twitter:description" content="Portfolio of Ashif E.K – React & Django expert creating modern web solutions." />
     <meta name="twitter:image" content="https://ashif-ek.vercel.app/social-preview.png" />
 
-    <!-- Favicon -->
+    <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Fonts / Performance -->
+    <!-- ✅ Preconnect / Preload Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <!-- Use display=swap to prevent render-blocking -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Ashif E.K",
-      "jobTitle": "Digital Architect & Software Engineer",
-      "url": "https://ashif-ek.vercel.app/",
-      "image": "https://ashif-ek.vercel.app/profile.jpg",
-      "sameAs": [
-        "https://github.com/ashif-ek",
-        "https://www.linkedin.com/in/ashifek/"
-      ],
-      "email": "mailto:ashif.email@example.com",
-      "knowsAbout": ["React", "Django", "JavaScript", "Web Development", "UI/UX"]
-    }
-    </script>
+    <!-- ✅ Critical CSS (inline optional) -->
+    <style>
+      /* Example: minimal above-the-fold styles */
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: #0f0f0f;
+        color: #fafafa;
+        overflow-x: hidden;
+      }
+    </style>
 
-    <!-- Preload critical assets for performance -->
+    <!-- ✅ Preload Main Bundle (non-blocking) -->
     <link rel="preload" href="/src/main.jsx" as="script" />
 
-    <!-- Optional: Theme color for mobile browsers -->
-    <meta name="theme-color" content="#1a1a1a" />
+    <!-- ✅ Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ashif E.K",
+        "jobTitle": "Digital Architect & Software Engineer",
+        "url": "https://ashif-ek.vercel.app/",
+        "image": "https://ashif-ek.vercel.app/profile.jpg",
+        "sameAs": [
+          "https://github.com/ashif-ek",
+          "https://www.linkedin.com/in/ashifek/"
+        ],
+        "email": "mailto:ashif.email@example.com",
+        "knowsAbout": ["React", "Django", "JavaScript", "Web Development", "UI/UX"]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <!--  Non-blocking script loading -->
+    <script type="module" src="/src/main.jsx" defer></script>
   </body>
 </html>
