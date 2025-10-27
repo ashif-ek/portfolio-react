@@ -1,5 +1,3 @@
-// src/components/UserLayout.js
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header'; // Your regular user header
 import Footer from './Footer'; // Your regular user footer

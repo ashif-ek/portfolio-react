@@ -60,7 +60,6 @@ const Hero = () => {
   });
   const [isVisible, setIsVisible] = useState(false);
   
-  // 4. Fetch data using useEffect
   useEffect(() => {
     Api.get("/profile")
       .then(res => {

@@ -1,7 +1,16 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Meta essentials -->
+    <!--Manifest & PWA Setup -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="application-name" content="Ashif Portfolio" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- Essential Meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,17 +18,11 @@
 
     <!-- Primary SEO -->
     <title>Ashif E.K | Digital Architect & Software Engineer | React & Django Portfolio</title>
-    <meta
-      name="description"
-      content="Ashif E.K – Digital Architect & Software Engineer specializing in React, Django, and modern web solutions. Explore projects, skills, and achievements."
-    />
-    <meta
-      name="keywords"
-      content="Ashif E.K, Portfolio, React, Django, Web Development, Software Engineer, Digital Architect"
-    />
+    <meta name="description" content="Ashif E.K – Digital Architect & Software Engineer specializing in React, Django, and modern web solutions. Explore projects, skills, and achievements." />
+    <meta name="keywords" content="Ashif E.K, Portfolio, React, Django, Web Development, Software Engineer, Digital Architect" />
     <meta name="author" content="Ashif E.K" />
 
-    <!-- Open Graph -->
+    <!--Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Ashif E.K | Digital Architect & Software Engineer" />
     <meta property="og:description" content="Explore Ashif E.K's portfolio – React & Django expert creating modern web solutions." />
@@ -27,50 +30,33 @@
     <meta property="og:image" content="https://ashif-ek.vercel.app/social-preview.png" />
     <meta property="og:site_name" content="Ashif E.K Portfolio" />
 
-    <!-- Twitter Card -->
+    <!--X (formerly Twitter) Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ashif E.K | Digital Architect & Software Engineer" />
     <meta name="twitter:description" content="Portfolio of Ashif E.K – React & Django expert creating modern web solutions." />
     <meta name="twitter:image" content="https://ashif-ek.vercel.app/social-preview.png" />
 
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-    <!-- ✅ Preconnect / Preload Fonts -->
+    <!--Fonts Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Use display=swap to prevent render-blocking -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
 
-    <!-- ✅ Critical CSS (inline optional) -->
+    <!--Inline Critical CSS -->
     <style>
-      /* Example: minimal above-the-fold styles */
       body {
         margin: 0;
-        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         background: #0f0f0f;
         color: #fafafa;
         overflow-x: hidden;
       }
     </style>
 
-    <!-- ✅ Preload Main Bundle (non-blocking) -->
+    <!-- Preload Main Bundle -->
     <link rel="preload" href="/src/main.jsx" as="script" />
 
-    <!-- ✅ Structured Data -->
+    <!--Structured Data (JSON-LD) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -83,15 +69,13 @@
           "https://github.com/ashif-ek",
           "https://www.linkedin.com/in/ashifek/"
         ],
-        "email": "mailto:ashif.email@example.com",
         "knowsAbout": ["React", "Django", "JavaScript", "Web Development", "UI/UX"]
       }
     </script>
   </head>
+
   <body>
     <div id="root"></div>
-
-    <!--  Non-blocking script loading -->
     <script type="module" src="/src/main.jsx" defer></script>
   </body>
 </html>

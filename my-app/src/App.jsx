@@ -112,6 +112,7 @@ import LoadingSpinner from "./components/LoadingSpinner.jsx";
 const UserLayout = lazy(() => import("./components/UserLayout.jsx"));
 const AdminLayout = lazy(() => import("./pages/AdminLayout.jsx"));
 import Home from "./pages/Home.jsx";
+import InstallPrompt from "./components/InstallPrompt.jsx";
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard.jsx"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
@@ -155,7 +156,11 @@ export default function App() {
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Suspense>
+
+ <ErrorBoundary>
+            <InstallPrompt />
+          </ErrorBoundary>
+                  </Suspense>
       </Router>
     </AuthProvider>
   );
