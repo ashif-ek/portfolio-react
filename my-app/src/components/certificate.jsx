@@ -194,10 +194,10 @@ const Certificates = () => {
                 onClick={() => setSelectedImage(certificateImages[cert.id])}
               >
                 <LazyImage
-                  src={certificateImages[cert.id]}
-                  alt={cert.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
+  src={certificateImages[cert.id]}
+  alt={cert.title}
+  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" // <-- This fits
+/>
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
                 {/* Category Badge */}
                 <span className="absolute top-3 right-3 bg-blue-900/50 text-blue-300 px-2 py-1 rounded-full text-xs font-medium backdrop-blur-sm border border-blue-700/50 capitalize">
