@@ -18,6 +18,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { Analytics } from '@vercel/analytics/react';
 
 // PWA registration
 import { registerSW } from 'virtual:pwa-register'
@@ -35,5 +36,6 @@ registerSW({
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
+    <Analytics />
   </StrictMode>
 )
