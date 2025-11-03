@@ -1,16 +1,12 @@
-
-
 import { useState, useEffect, useRef } from "react";
 import Api from "./Api";
 
-// --- Local Assets ---
-// Import your certificate images locally.
 import cert1 from "../assets/certificates/image.png";
 import cert2 from "../assets/certificates/django.png";
 import cert3 from "../assets/certificates/ccsa.jpg";
 import cert4 from '../assets/certificates/image.png';
 import cert5 from "../assets/certificates/prosevo.jpg";
-import LoadingSpinner from "./LoadingSpinner";
+// import LoadingSpinner from "./LoadingSpinner"; // <-- REMOVED
 import LazyImage from "./LazyImage";
 
 // Map certificate IDs to their imported image assets.
@@ -83,11 +79,11 @@ const fallbackCertificates = [
 const Certificates = () => {
   // --- State Management ---
   const [certificates, setCertificates] = useState(fallbackCertificates);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true); // <-- REMOVED
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [showAll, setShowAll] = useState(false); // <-- New state for Show More
-  const [selectedImage, setSelectedImage] = useState(null); // <-- New state for Image Modal
+  const [showAll, setShowAll] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const sectionRef = useRef(null);
 
   const categories = [
@@ -107,9 +103,8 @@ const Certificates = () => {
       } catch (err) {
         console.error("Error fetching certificates:", err);
         setError("Failed to load live credentials. Displaying default entries.");
-      } finally {
-        setIsLoading(false);
       }
+      // 'finally' block and 'setIsLoading' removed
     };
     fetchCertificates();
   }, []);
@@ -127,7 +122,9 @@ const Certificates = () => {
 
   // --- Animation Observer Effect ---
   useEffect(() => {
-    if (!sectionRef.current || isLoading) return;
+    // if (!sectionRef.current || isLoading) return; // <-- UPDATED
+    if (!sectionRef.current) return; // <-- Now just checks for ref
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -156,17 +153,18 @@ const Certificates = () => {
     return () => {
       cards.forEach((card) => observer.unobserve(card));
     };
-  // Re-run when filtered certificates change OR when showAll changes
-  }, [filteredCertificates, isLoading, showAll]); 
+  // Re-run when filtered certificates change (from API or filter) OR when showAll changes
+  }, [filteredCertificates, showAll]); // <-- 'isLoading' removed from dependency array
 
   // --- Render Logic ---
   const renderContent = () => {
-    if (isLoading) {
-      return <LoadingSpinner />;
-    }
+    // if (isLoading) { // <-- REMOVED
+    //   return <LoadingSpinner />;
+    // }
 
     // Check based on the *full* filtered list
-    if (filteredCertificates.length === 0 && !isLoading) {
+    // if (filteredCertificates.length === 0 && !isLoading) { // <-- UPDATED
+    if (filteredCertificates.length === 0) { // <-- Simplified check
       return (
         <div className="text-center text-gray-500 text-lg py-10">
           No certificates found in this category.
@@ -194,10 +192,10 @@ const Certificates = () => {
                 onClick={() => setSelectedImage(certificateImages[cert.id])}
               >
                 <LazyImage
-  src={certificateImages[cert.id]}
-  alt={cert.title}
-  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" // <-- This fits
-/>
+                  src={certificateImages[cert.id]}
+                  alt={cert.title}
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" // <-- This fits
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
                 {/* Category Badge */}
                 <span className="absolute top-3 right-3 bg-blue-900/50 text-blue-300 px-2 py-1 rounded-full text-xs font-medium backdrop-blur-sm border border-blue-700/50 capitalize">
@@ -309,7 +307,7 @@ const Certificates = () => {
           </div>
         )}
 
-        {/* Main Content: Loading or Certificate Grid */}
+        {/* Main Content: Certificate Grid (no loading spinner) */}
         {renderContent()}
       </div>
 

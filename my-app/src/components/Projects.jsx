@@ -6,7 +6,7 @@ import project2 from '../assets/projects/project2.jpg';
 import project3 from '../assets/projects/project3.jpg';
 import project4 from '../assets/projects/project4.jpg';
 import Api from './Api';
-import LoadingSpinner from './LoadingSpinner';
+// import LoadingSpinner from './LoadingSpinner'; // No longer needed
 import LazyImage from './LazyImage';
 
 // Map project IDs to their imported image assets.
@@ -20,7 +20,7 @@ const projectImages = {
 // --- Fallback Data ---
 // This local data is used for the initial render and if the API call fails.
 const fallbackProjects =  [
-        {
+    {
       "id": "1",
       "title": "Ecommerce LUXURY PERFUME ",
       "description": "A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.",
@@ -80,10 +80,10 @@ const fallbackProjects =  [
 const Projects = () => {
   // --- State Management ---
   const [projects, setProjects] = useState(fallbackProjects); // Initialize with fallback data
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true); // <-- REMOVED
   const [error, setError] = useState(null);
   const [animated, setAnimated] = useState(false);
-  const [showAllProjects, setShowAllProjects] = useState(false); // <-- New state for Show More
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   // --- Data Fetching Effect ---
   useEffect(() => {
@@ -97,7 +97,7 @@ const Projects = () => {
         setError("Failed to load live project data. Showing default entries."); // Set error message
         // No need to setProjects here, as it already holds the fallback data
       } finally {
-        setIsLoading(false); // Stop loading, whether success or failure
+        // setIsLoading(false); // <-- REMOVED
       }
     };
 
@@ -114,9 +114,8 @@ const Projects = () => {
 
   // --- Render Logic ---
   const renderContent = () => {
-    if (isLoading) {
-      return <LoadingSpinner/>;
-    }
+    // <-- The 'if (isLoading)' block was removed from here.
+    // This function now renders the 'projects' state immediately.
 
     // Determine which projects to show
     const projectsToShow = showAllProjects ? projects : projects.slice(0, 2);
@@ -221,14 +220,15 @@ const Projects = () => {
             </div>
         )}
         
-        {/* Main Content: Loading Indicator or Projects Grid */}
+        {/* Main Content: Projects Grid */}
+        {/* This will render fallbackProjects immediately, then update with API data */}
         {renderContent()}
         
-        {/* Call to action (Moved "Show More" button above this) */}
+        {/* Call to action */}
         <div className="text-center mt-16">
           <p className="text-gray-400 mb-6">Interested in seeing more of my work?</p>
           <a 
-            href="https://github.com/ashif-ek" // Recommended: Link to your GitHub profile
+            href="https://github.com/ashif-ek" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-1"

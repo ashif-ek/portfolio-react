@@ -1,8 +1,5 @@
 {
-  "admin": {
-    "username": "admin",
-    "password": "291345"
-  },
+
   "profile": {
     "name": "Ashif E.K ",
     "title": "Digital Architect & Software Engineer",
@@ -41,70 +38,14 @@
     }
   ],
   "skills": [
-    {
-      "id": "1",
-      "name": "Python Django",
-      "level": 95,
-      "category": "Technology",
-      "color": "#44B78B",
-      "icon": "PythonIcon"
-    },
-    {
-      "id": "2",
-      "name": "JavaScript",
-      "level": 90,
-      "category": "Technology",
-      "color": "#F7DF1E",
-      "icon": "JSIcon"
-    },
-    {
-      "id": "3",
-      "name": "React",
-      "level": 90,
-      "category": "Technology",
-      "color": "#61DAFB",
-      "icon": "ReactIcon"
-    },
-    {
-      "id": "4",
-      "name": "Flutter",
-      "level": 80,
-      "category": "Technology",
-      "color": "#027DFD",
-      "icon": "MobileIcon"
-    },
-    {
-      "id": "5",
-      "name": "Agile Dev",
-      "level": 95,
-      "category": "Methodology",
-      "color": "#F05032",
-      "icon": "AgileIcon"
-    },
-    {
-      "id": "6",
-      "name": "Cybersecurity",
-      "level": 85,
-      "category": "Methodology",
-      "color": "#00A86B",
-      "icon": "ShieldIcon"
-    },
-    {
-      "id": "7",
-      "name": "Team Leadership",
-      "level": 98,
-      "category": "Leadership",
-      "color": "#A855F7",
-      "icon": "BriefcaseIcon"
-    },
-    {
-      "id": "8",
-      "name": "Strategic Planning",
-      "level": 92,
-      "category": "Leadership",
-      "color": "#EC4899",
-      "icon": "PencilRulerIcon"
-    }
+    { "id": 1, "name": "Django", "level": 95, "category": "Technology", "color": "#44B78B", "icon": "PythonIcon", "description": "Building scalable REST APIs and full-stack web applications." },
+    { "id": 2, "name": "JavaScript", "level": 90, "category": "Technology", "color": "#F7DF1E", "icon": "JSIcon", "description": "ES6+, async/await, and modern JS patterns for interactivity." },
+    { "id": 3, "name": "React", "level": 90, "category": "Technology", "color": "#61DAFB", "icon": "ReactIcon", "description": "Component-based architecture, Hooks, and state management." },
+    { "id": 4, "name": "Flutter", "level": 80, "category": "Technology", "color": "#027DFD", "icon": "MobileIcon", "description": "Cross-platform mobile development for iOS and Android." },
+    { "id": 5, "name": "Agile Dev", "level": 95, "category": "Methodology", "color": "#F05032", "icon": "AgileIcon", "description": "Working in sprints, stand-ups, and iterative development cycles." },
+    { "id": 6, "name": "Cybersecurity", "level": 85, "category": "Methodology", "color": "#00A86B", "icon": "ShieldIcon","description": "Vulnerability assessment, penetration testing, and secure coding." },
+    { "id": 7, "name": "Team Leadership", "level": 98, "category": "Leadership", "color": "#A855F7", "icon": "BriefcaseIcon", "description": "Mentoring junior developers and leading project teams." },
+    { "id": 8, "name": "Strategic Planning", "level": 92, "category": "Leadership", "color": "#EC4899", "icon": "PencilRulerIcon", "description": "Defining project roadmaps, architecture, and feature prioritization." }
   ],
   "tools": [
     {
@@ -295,5 +236,9 @@
     "imageUrl": "/blog/the-most-underrated-skill-in-life.png",
     "content": "# The Most Underrated Skill in Life\n\nAwareness is the quiet superpower.\n\nThe ability to step back — before reacting, judging, or rushing — and simply *see* what’s happening.\n\nAwareness turns arguments into understanding. It transforms pressure into perspective.\n\nIt’s the difference between living **in** your mind and living **with** it.\n\n> Awareness doesn’t solve life — it reveals it."
   }
-]
+],
+  "admin": {
+    "username": "admin",
+    "password": "291345"
+  }
 }

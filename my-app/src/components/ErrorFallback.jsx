@@ -1,4 +1,3 @@
-import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion"; 
 
@@ -36,7 +35,7 @@ function ErrorFallback({ resetErrorBoundary }) {
         onClick={resetErrorBoundary}
         className="px-6 py-3 bg-red-600 text-white font-semibold rounded-xl shadow hover:bg-red-700 transition-all"
       >
-        🔄 Try Again
+       Try Again
       </motion.button>
     </motion.div>
   );

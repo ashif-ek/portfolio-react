@@ -2,12 +2,45 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import Api from "./Api";
-import LazyImage from "./LazyImage"; // ✅ Import the reusable component
+import LazyImage from "./LazyImage"; 
+
+//  1. Your fallback data is stored as a constant
+const fallbackBlogData = [
+  {
+    id: 1,
+    slug: "why-we-forget-what-really-matters",
+    title: "Why We Forget What Really Matters",
+    date: "2025-10-25",
+    summary:
+      "In a world obsessed with speed, we forget the beauty of stillness — and how silence often carries the loudest lessons.",
+    imageUrl: "/blog/why-we-forget-what-really-matters.png",
+  },
+
+  {
+    id: 2,
+    slug: "the-human-side-of-technology",
+    title: "The Human Side of Technology",
+    date: "2025-10-25",
+    summary:
+      "Behind every line of code is a heartbeat — technology isn’t replacing humanity, it’s reflecting it.",
+    imageUrl: "/blog/the-human-side-of-technology.png",
+  },
+  {
+    id: 3,
+    slug: "we-are-all-beta-versions",
+    title: "We Are All Beta Versions",
+    date: "2025-10-25",
+    summary:
+      "Like software, we evolve through bugs, crashes, and updates — perfection is not the goal; iteration is.",
+    imageUrl: "/blog/we-are-all-beta-versions.png",
+  }
+];
 
 const BlogSection = () => {
-  const [allPosts, setAllPosts] = useState([]);
+  //  2. Initialize state with the fallback data for an instant render
+  const [allPosts, setAllPosts] = useState(fallbackBlogData);
   const [showAll, setShowAll] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); // Still true, because we are fetching
   const [error, setError] = useState(null);
 
   // --- Fetch Data with Axios ---
@@ -15,11 +48,14 @@ const BlogSection = () => {
     const fetchAllPosts = async () => {
       try {
         const res = await Api.get("/blogs?_sort=date&_order=desc");
+        // When fetch completes, it replaces the fallback data
         setAllPosts(res.data);
         setError(null);
       } catch (err) {
-        console.error("❌ Error fetching blog posts:", err);
+        console.error("Error fetching blog posts:", err);
         setError("Failed to load articles. Please try again later.");
+        // Optional: If API fails, you might want to keep the fallback data
+        // setAllPosts(fallbackBlogData); // Or set to []
       } finally {
         setIsLoading(false);
       }
@@ -31,13 +67,8 @@ const BlogSection = () => {
 
   // --- Render Section Content ---
   const renderContent = () => {
-    if (isLoading)
-      return (
-        <div className="min-h-[200px] flex items-center justify-center">
-          <LoadingSpinner />
-        </div>
-      );
-
+    //  3. Re-ordered logic
+    // Priority 1: Show an error if the fetch failed
     if (error)
       return (
         <div className="text-center text-gray-400 py-8 px-4 max-w-md mx-auto">
@@ -45,58 +76,65 @@ const BlogSection = () => {
         </div>
       );
 
-    if (allPosts.length === 0)
+    // Priority 2: Show posts (either fallback or fetched)
+    // This now renders *even if* isLoading is true
+    if (allPosts.length > 0) {
       return (
-        <div className="text-center text-gray-400 py-8">
-          <div className="text-sm">No articles yet</div>
+        <div className="space-y-8">
+          {postsToShow.map((post) => (
+            <article
+              key={post.id}
+              className="group border-b border-gray-700 pb-6 last:border-b-0 last:pb-0 hover:border-gray-600 transition-colors duration-300"
+            >
+              <div className="flex items-start space-x-4">
+                <div className="w-24 h-24 flex-shrink-0 rounded-md border border-gray-700 overflow-hidden">
+                  <LazyImage
+                    src={
+                      post.imageUrl ||
+                      "https://placehold.co/150x150/ffffff/999999?text=No+Image"
+                    }
+                    alt={post.title}
+                  />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <Link to={`/blog/${post.slug}`}>
+                    <h3 className="text-lg font-normal text-white group-hover:text-gray-200 line-clamp-2 leading-snug transition-colors duration-200 mb-2">
+                      {post.title}
+                    </h3>
+                  </Link>
+                  <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed mb-3">
+                    {post.summary}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <time className="text-xs text-gray-500 font-mono whitespace-nowrap">
+                      {new Date(post.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </time>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      );
+    }
+
+    // Priority 3: Show loading spinner ONLY if we have no posts at all
+    if (isLoading)
+      return (
+        <div className="min-h-[200px] flex items-center justify-center">
+          <LoadingSpinner />
         </div>
       );
 
+    // Priority 4: If not loading, no error, and no posts, show empty state
     return (
-      <div className="space-y-8">
-        {postsToShow.map((post) => (
-          <article
-            key={post.id}
-            className="group border-b border-gray-700 pb-6 last:border-b-0 last:pb-0 hover:border-gray-600 transition-colors duration-300"
-          >
-            <div className="flex items-start space-x-4">
-              {/* ✅ FIX: Replaced <img> with <LazyImage> inside a sized, styled wrapper */}
-              <div className="w-24 h-24 flex-shrink-0 rounded-md border border-gray-700 overflow-hidden">
-                <LazyImage
-                  src={
-                    post.imageUrl ||
-                    "https://placehold.co/150x150/ffffff/999999?text=No+Image"
-                  }
-                  alt={post.title}
-                />
-              </div>
-
-              {/* Content */}
-              <div className="flex-1 min-w-0">
-                {/* ✅ FIX: Title is now the link for SEO & Accessibility */}
-                <Link to={`/blog/${post.slug}`}>
-                  <h3 className="text-lg font-normal text-white group-hover:text-gray-200 line-clamp-2 leading-snug transition-colors duration-200 mb-2">
-                    {post.title}
-                  </h3>
-                </Link>
-                <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed mb-3">
-                  {post.summary}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <time className="text-xs text-gray-500 font-mono whitespace-nowrap">
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </time>
-                  {/* 🛑 REMOVED: The old "Read more" link is gone */}
-                </div>
-              </div>
-            </div>
-          </article>
-        ))}
+      <div className="text-center text-gray-400 py-8">
+        <div className="text-sm">No articles yet</div>
       </div>
     );
   };

@@ -1,7 +1,5 @@
 import React from "react";
-import ErrorFallback from "./ErrorFallback"; // Import the separate component
-
-// The internal ErrorFallback function has been removed.
+import ErrorFallback from "./ErrorFallback";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

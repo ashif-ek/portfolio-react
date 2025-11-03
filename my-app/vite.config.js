@@ -9,8 +9,6 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-
-      //  this ensures generated file name consistency
       manifestFilename: 'manifest.webmanifest',
 
       includeAssets: [
@@ -51,12 +49,33 @@ export default defineConfig({
         ]
       },
 
-      //  safest default Workbox setup for Vite
       workbox: {
         globDirectory: 'dist',
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg}'],
-        navigateFallback: '/offline.html',
-      },
+
+        // SPA fallback
+        navigateFallback: '/index.html',
+
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'html-cache'
+            }
+          },
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|ico)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'image-cache'
+            }
+          }
+        ]
+      }
     })
   ],
+
+  // Let Vite treat `.lottie` files as static assets
+  assetsInclude: ['**/*.lottie']
 })

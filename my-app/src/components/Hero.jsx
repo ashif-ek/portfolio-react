@@ -49,7 +49,7 @@ const Hero = () => {
   const [profile, setProfile] = useState({
     name: "Ashif E.K",
     title: "Digital Architect & Software Engineer",
-    description: "I engineer secure, scalable, and high-performance web applications using React, Django, and modern technologies like Redux, JavaScript, HTML, CSS, and Tailwind—delivering seamless experiences at scale...",
+    description: "I engineer secure, scalable, and high-performance web applications using React, Django, and modern technologies like Redux, JavaScript along with tailwind—delivering seamless experiences at scale...",
     email: "ashifek11@gmail.com",
     socialLinks: [
       { "name": "Github", "url": "https://github.com/ashif-ek" },

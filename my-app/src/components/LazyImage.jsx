@@ -18,7 +18,6 @@ const LazyImage = ({ src, alt, className = "" }) => {
       )}
 
       {/* --- The Image --- */}
-      {/* ✅ FIX: Changed from recursive <LazyImage> to <img> */}
       <img
         loading="lazy"
         decoding="async"

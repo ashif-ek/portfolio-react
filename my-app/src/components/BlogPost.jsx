@@ -3,11 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Api from "./Api";
 import LoadingSpinner from "./LoadingSpinner";
-import LazyImage from "./LazyImage"; // ✅ Import the reusable component
+import LazyImage from "./LazyImage"; 
 
-/* 🛑 Removed the local LazyImage component definition */
+/*  Removed the local LazyImage component definition */
 
-/* ✅ Main BlogPost Component */
+/*  Main BlogPost Component */
 const BlogPost = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
@@ -20,7 +20,7 @@ const BlogPost = () => {
       if (res.data.length > 0) setPost(res.data[0]);
       else setError(true);
     } catch (err) {
-      console.error("❌ Error fetching post:", err);
+      console.error("Error fetching post:", err);
       setError(true);
     } finally {
       setIsLoading(false);
@@ -40,7 +40,7 @@ const BlogPost = () => {
     });
   }, [post]);
 
-  /* 🌀 Loading State */
+  /*  Loading State */
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
@@ -77,7 +77,7 @@ const BlogPost = () => {
     );
   }
 
-  /* ✅ Main Render */
+  /*  Main Render */
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="container mx-auto px-6 max-w-2xl py-12">
@@ -116,7 +116,7 @@ const BlogPost = () => {
 
         {/* --- Featured Image --- */}
         {post.imageUrl && (
-          /* ✅ This wrapper provides the border, shape, and shadow */
+          /*  This wrapper provides the border, shape, and shadow */
           <div className="mb-10 rounded-xl overflow-hidden shadow-xl relative z-10 border border-gray-800">
             <LazyImage src={post.imageUrl} alt={post.title} />
           </div>
