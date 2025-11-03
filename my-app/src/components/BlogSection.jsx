@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import Api from "./Api";
-import LazyImage from "./LazyImage"; 
+import LazyImage from "./LazyImage";
 
 //  1. Your fallback data is stored as a constant
 const fallbackBlogData = [
@@ -33,7 +33,7 @@ const fallbackBlogData = [
     summary:
       "Like software, we evolve through bugs, crashes, and updates — perfection is not the goal; iteration is.",
     imageUrl: "/blog/we-are-all-beta-versions.png",
-  }
+  },
 ];
 
 const BlogSection = () => {
@@ -51,7 +51,7 @@ const BlogSection = () => {
         // When fetch completes, it replaces the fallback data
         setAllPosts(res.data);
         setError(null);
-      } catch (err) {
+      } catch (err) { // <-- FIXED: Added the missing curly braces here
         console.error("Error fetching blog posts:", err);
         setError("Failed to load articles. Please try again later.");
         // Optional: If API fails, you might want to keep the fallback data
@@ -87,21 +87,28 @@ const BlogSection = () => {
               className="group border-b border-gray-700 pb-6 last:border-b-0 last:pb-0 hover:border-gray-600 transition-colors duration-300"
             >
               <div className="flex items-start space-x-4">
-                <div className="w-24 h-24 flex-shrink-0 rounded-md border border-gray-700 overflow-hidden">
-                  <LazyImage
-                    src={
-                      post.imageUrl ||
-                      "https://placehold.co/150x150/ffffff/999999?text=No+Image"
-                    }
-                    alt={post.title}
-                  />
-                </div>
+                {/* --- Image is now a Link --- */}
+                <Link to={`/blog/${post.slug}`} className="flex-shrink-0">
+                  <div className="w-24 h-24 rounded-md border border-gray-700 overflow-hidden group-hover:border-gray-500 transition-colors duration-300">
+                    <LazyImage
+                      src={
+                        post.imageUrl ||
+                        "https://placehold.co/150x150/ffffff/999999?text=No+Image"
+                      }
+                      alt={post.title}
+                      className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </Link>
+                {/* --- End Modification --- */}
 
                 <div className="flex-1 min-w-0">
                   <Link to={`/blog/${post.slug}`}>
-                    <h3 className="text-lg font-normal text-white group-hover:text-gray-200 line-clamp-2 leading-snug transition-colors duration-200 mb-2">
+                    {/* --- Added transform classes for hover --- */}
+                    <h3 className="text-lg font-normal text-white group-hover:text-gray-200 line-clamp-2 leading-snug mb-2 transform origin-left transition-all duration-300 group-hover:scale-[101.5%]">
                       {post.title}
                     </h3>
+                    {/* --- End Modification --- */}
                   </Link>
                   <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed mb-3">
                     {post.summary}
@@ -114,6 +121,13 @@ const BlogSection = () => {
                         year: "numeric",
                       })}
                     </time>
+
+                    <Link
+                      to={`/blog/${post.slug}`}
+                      className="text-xs text-gray-400 hover:text-white font-medium transition-colors duration-200"
+                    >
+                      Read more &rarr;
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -5,7 +5,6 @@ import Api from "./Api";
 import LoadingSpinner from "./LoadingSpinner";
 import LazyImage from "./LazyImage"; 
 
-/*  Removed the local LazyImage component definition */
 
 /*  Main BlogPost Component */
 const BlogPost = () => {

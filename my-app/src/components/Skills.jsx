@@ -80,12 +80,15 @@ const useMediaQuery = (query) => {
 
 
 // --- Reusable UI Component: 3D Interactive SkillCard ---
+// --- THIS IS THE MODIFIED COMPONENT ---
 const SkillCard = React.memo(({ skill, isVisible, index }) => {
   const cardRef = useRef(null);
   const [style, setStyle] = useState({
     transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
     background: 'transparent'
   });
+  // --- 1. ADD STATE ---
+  const [isExpanded, setIsExpanded] = useState(false); // <--- ADDED
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -108,6 +111,13 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
       transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
       background: 'transparent'
     });
+    // Optional: auto-collapse on mouse leave
+    // setIsExpanded(false); 
+  };
+
+  // --- 2. ADD CLICK HANDLER ---
+  const toggleExpand = () => { // <--- ADDED
+    setIsExpanded(prev => !prev);
   };
 
   // Animate bar width when it becomes visible
@@ -122,7 +132,8 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="transition-all duration-500 ease-out" // Stagger animation
+      onClick={toggleExpand} // <--- ADDED
+      className="transition-all duration-500 ease-out cursor-pointer" // <--- MODIFIED: Added cursor-pointer
       style={{
         transitionDelay: `${isVisible ? index * 100 : 0}ms`,
         opacity: isVisible ? 1 : 0,
@@ -131,7 +142,7 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
       }}
     >
       <div
-        className="h-full bg-neutral-900/70 backdrop-blur-sm border border-neutral-800 rounded-xl p-5 flex flex-col overflow-hidden relative" // <-- REMOVED justify-between
+        className="h-full bg-neutral-900/70 backdrop-blur-sm border border-neutral-800 rounded-xl p-5 flex flex-col overflow-hidden relative" // overflow-hidden is important for animation
         style={{ transition: 'transform 0.1s ease-out', transform: style.transform }}
       >
         {/* Dynamic mouse-follow glow */}
@@ -146,8 +157,15 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
             <span style={{ color: skill.color }} className="text-2xl">{iconMap[skill.icon]}</span>
             <span className="text-xl font-semibold text-white">{skill.name}</span>
           </div>
-          {/* ---   MODIFIED: Description is 1 line, truncates, and has fixed height --- */}
-          <p className="text-sm text-gray-400 mb-4 h-5 truncate">
+          {/* --- 3. UPDATE STYLES --- */}
+          <p className={`
+            text-sm text-gray-400 mb-4
+            transition-all duration-300 ease-in-out
+            ${isExpanded 
+              ? 'max-h-40 whitespace-normal' // Expands to show text, which will wrap
+              : 'max-h-5 truncate'          // Collapsed (uses max-h-5 which is 1.25rem, same as h-5)
+            }
+          `}>
             {skill.description}
           </p>
         </div>
@@ -162,7 +180,6 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
             <div
               className="h-1.5 rounded-full transition-all ease-out duration-1000"
               style={barStyle}
-              // ---   FIX: Added accessibility attributes ---
               role="progressbar"
               aria-valuenow={skill.level}
               aria-valuemin="0"
@@ -294,7 +311,7 @@ const Skills = () => {
       return filteredSkills.slice(0, 3);
     }, [filteredSkills, isMobile, showAllSkills]);
 
-    // ---    Reset showAllSkills when category changes ---
+    // ---     Reset showAllSkills when category changes ---
     useEffect(() => {
       setShowAllSkills(false);
     }, [activeCategory]);
