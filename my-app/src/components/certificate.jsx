@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { certificates as certificatesData } from '../data/mockData';
+import { certificates as mockCertificates } from '../data/mockData';
+import Api from './Api';
 
 import cert1 from "../assets/certificates/image.png";
 import cert2 from "../assets/certificates/django.png";
@@ -18,67 +19,18 @@ const certificateImages = {
   5: cert5,
 };
 
-// --- Fallback Data ---
-const fallbackCertificates = [
-  {
-    id: 1,
-    title: "Bachelors of Computer Applications",
-    issuer: "University of Calicut",
-    date: "2022-2025",
-    category: "Degree",
-    image: "image.png",
-    credentialLink: "#",
-    description:
-      "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script.",
-  },
-  {
-    id: 2,
-    title: "Django and Flutter",
-    issuer: "Regional Technologies Calicut",
-    date: "2024-2025",
-    category: "Web",
-    image: "ccsa.jpg",
-    credentialLink: "#",
-    description:
-      "Built complete web and app solutions using Python Django as backend and HTML, CSS, JavaScript for web frontend; Dart Flutter for application frontend.",
-  },
-  {
-    id: 3,
-    title: "Certified CyberSecurity Analyst (CCSA)",
-    issuer: "Red Team Hacker Academy",
-    date: "2022",
-    category: "Cybersecurity",
-    image: "django.jpg",
-    credentialLink: "#",
-    description:
-      "IT infrastructure technologies, OSINT, Web application pentest, vulnerability assessment, network security, SOC, SIEM.",
-  },
-  {
-    id: 4,
-    title: "React+Django",
-    issuer: "Bridgeon",
-    date: "2023-01-18",
-    category: "Web",
-    image: "image.png",
-    credentialLink: "#",
-    description: "Building and deploying AI solutions with Azure Machine Learning.",
-  },
-  {
-    id: 5,
-    title: "Technology Workshop",
-    issuer: "Prosevo Technologies",
-    date: "2024-10-14",
-    category: "Web",
-    image: "prosevo.jpg",
-    credentialLink: "#",
-    description:
-      "Odoo language, OSINT, Web applications (MERN & Django), AI/ML, Flutter.",
-  },
-];
+
 
 const Certificates = () => {
   // --- State Management ---
-  const [certificates] = useState(certificatesData);
+  const [certificates, setCertificates] = useState(mockCertificates);
+
+  // Hybrid fetch: Update with live data on mount
+  useEffect(() => {
+    Api.get('/certificates')
+        .then(res => setCertificates(res.data))
+        .catch(err => console.error("Failed to fetch fresh certificates", err));
+  }, []);
   // const [isLoading, setIsLoading] = useState(true); // <-- REMOVED
   // const [error, setError] = useState(null); // Removed error state
   const [selectedCategory, setSelectedCategory] = useState("all");

@@ -5,7 +5,8 @@ import project1 from '../assets/projects/project1.png';
 import project2 from '../assets/projects/project2.jpg';
 import project3 from '../assets/projects/project3.jpg';
 import project4 from '../assets/projects/project4.jpg';
-import { projects as projectsData } from '../data/mockData';
+import { projects as mockProjects } from '../data/mockData';
+import Api from './Api';
 // import LoadingSpinner from './LoadingSpinner'; // No longer needed
 import LazyImage from './LazyImage';
 
@@ -22,13 +23,19 @@ const projectImages = {
 
 const Projects = () => {
   // --- State Management ---
-  const [projects] = useState(projectsData); 
+  const [projects, setProjects] = useState(mockProjects); 
+
+  // Hybrid fetch: Update with live data on mount
+  useEffect(() => {
+    Api.get('/projects')
+      .then(res => setProjects(res.data))
+      .catch(err => console.error("Failed to fetch fresh projects", err));
+  }, []);
+
   // const [isLoading, setIsLoading] = useState(true); // <-- REMOVED
   // const [error, setError] = useState(null); // Removed error state
   const [animated, setAnimated] = useState(false);
   const [showAllProjects, setShowAllProjects] = useState(false);
-
-  // Data fetching logic removed
 
   // --- Animation Trigger Effect ---
   useEffect(() => {
