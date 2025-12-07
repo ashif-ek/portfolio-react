@@ -1,6 +1,6 @@
 import profile from "../assets/profile.jpg";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import Api from "./Api";
+import { about } from "../data/mockData";
 import LazyImage from "./LazyImage";
 
 // Using requestAnimationFrame for smoother animations
@@ -64,41 +64,9 @@ const About = () => {
     const [activeTab, setActiveTab] = useState("introduction");
     const [cardStyle, setCardStyle] = useState({});
     const [typedText, setTypedText] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
-
-    // Using useMemo for fallback data to prevent re-creation on re-renders
-    const fallbackData = useMemo(() => ({
-        introduction:
-            "I’m a Computer Science graduate and passionate programmer, currently mastering JavaScript and React as a strong foundation for my ultimate goal of becoming highly proficient in Django.",
-        experience:
-            "Through academic and personal projects, I’ve worked across diverse technologies. I have built cross-platform web and mobile applications using Django and Flutter, while also gaining experience with HTML, CSS, JavaScript, and React. My projects have strengthened not only my technical skills but also my understanding of core software principles like planning, problem-solving, and delivering a better user experience.",
-        philosophy:
-            "Earlier, I was interested in cybersecurity, but after my final-year project, I realized that as developers, we have the power to change, contribute, and create a tangible impact on the world through technology. This drives my passion for building meaningful applications.",
-        stats: {
-            projects: 10,
-            certificates: 4,
-            technologies: 5,
-        },
-    }), []);
-
-    const [aboutData, setAboutData] = useState(fallbackData);
-
-    // Fetching data with axios and async/await
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await Api.get("/about/1");
-                setAboutData(response.data);
-            } catch (error) {
-                console.error("Failed to fetch about data, using fallback.", error);
-                setAboutData(fallbackData); // Fallback on error
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [fallbackData]);
+    
+    // Use data directly from import
+    const aboutData = about[0];
 
     // Optimized Typing effect
     useEffect(() => {
@@ -242,22 +210,20 @@ const About = () => {
                         </div>
 
                         {/* Stats */}
-                        {!isLoading && (
-                             <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col sm:flex-row sm:justify-around items-center gap-8">
-                                <AnimatedCounter
-                                    value={aboutData.stats.projects}
-                                    label="Projects Completed"
-                                />
-                                <AnimatedCounter
-                                    value={aboutData.stats.certificates}
-                                    label="Certificates"
-                                />
-                                <AnimatedCounter
-                                    value={aboutData.stats.technologies}
-                                    label="Core Technologies"
-                                />
-                            </div>
-                        )}
+                         <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col sm:flex-row sm:justify-around items-center gap-8">
+                            <AnimatedCounter
+                                value={aboutData.stats.projects}
+                                label="Projects Completed"
+                            />
+                            <AnimatedCounter
+                                value={aboutData.stats.certificates}
+                                label="Certificates"
+                            />
+                            <AnimatedCounter
+                                value={aboutData.stats.technologies}
+                                label="Core Technologies"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

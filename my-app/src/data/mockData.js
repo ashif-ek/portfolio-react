@@ -1,0 +1,240 @@
+export const profile = {
+    "name": "Ashif E.K",
+    "title": "Digital Architect & Software Engineer",
+    "description": "I specialize in React, Django, Redux, javascript, html css tailwind to building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
+    "email": "ashifek11@gmail.com",
+    "socialLinks": [
+        {
+            "name": "Github",
+            "url": "https://github.com/ashif-ek"
+        },
+        {
+            "name": "LinkedIn",
+            "url": "https://linkedin.com/in/ashifek"
+        },
+        {
+            "name": "Twitter",
+            "url": "https://twitter.com/your-username"
+        },
+        {
+            "name": "Instagram",
+            "url": "https://instagram.com/ashif.io"
+        }
+    ]
+};
+
+export const about = [
+    {
+        "id": "1",
+        "introduction": "I’m a Computer Science graduate and passionate programmer, currently mastering JavaScript and React as a strong foundation for my ultimate goal of becoming highly proficient in Django.",
+        "experience": "Through academic and personal projects, I’ve worked across diverse technologies. I have built cross-platform web and mobile applications using Django and Flutter, while also gaining experience with HTML, CSS, JavaScript, and React. My projects have strengthened not only my technical skills but also my understanding of core software principles like planning, problem-solving, and delivering a better user experience.",
+        "philosophy": "Earlier, I was interested in cybersecurity, but after my final-year project, I realized that as developers, we have the power to change, contribute, and create a tangible impact on the world through technology. This drives my passion for building meaningful applications.",
+        "stats": {
+            "projects": 10,
+            "certificates": 4,
+            "technologies": 5
+        }
+    }
+];
+
+export const skills = [
+    { "id": 1, "name": "Django", "level": 95, "category": "Technology", "color": "#44B78B", "icon": "PythonIcon", "description": "Building scalable REST APIs and full-stack web applications." },
+    { "id": 2, "name": "JavaScript", "level": 90, "category": "Technology", "color": "#F7DF1E", "icon": "JSIcon", "description": "ES6+, async/await, and modern JS patterns for interactivity." },
+    { "id": 3, "name": "React", "level": 90, "category": "Technology", "color": "#61DAFB", "icon": "ReactIcon", "description": "Component-based architecture, Hooks, and state management." },
+    { "id": 4, "name": "Flutter", "level": 80, "category": "Technology", "color": "#027DFD", "icon": "MobileIcon", "description": "Cross-platform mobile development for iOS and Android." },
+    { "id": 5, "name": "Agile Dev", "level": 95, "category": "Methodology", "color": "#F05032", "icon": "AgileIcon", "description": "Working in sprints, stand-ups, and iterative development cycles." },
+    { "id": 6, "name": "Cybersecurity", "level": 85, "category": "Methodology", "color": "#00A86B", "icon": "ShieldIcon", "description": "Vulnerability assessment, penetration testing, and secure coding." },
+    { "id": 7, "name": "Team Leadership", "level": 98, "category": "Leadership", "color": "#A855F7", "icon": "BriefcaseIcon", "description": "Mentoring junior developers and leading project teams." },
+    { "id": 8, "name": "Strategic Planning", "level": 92, "category": "Leadership", "color": "#EC4899", "icon": "PencilRulerIcon", "description": "Defining project roadmaps, architecture, and feature prioritization." }
+];
+
+export const tools = [
+    {
+        "id": "1",
+        "name": "VS Code",
+        "icon": "CodeIcon"
+    },
+    {
+        "id": "2",
+        "name": "Pycharm",
+        "icon": "PycharmIcon"
+    },
+    {
+        "id": "3",
+        "name": "Tailwind CSS",
+        "icon": "TailwindIcon"
+    },
+    {
+        "id": "4",
+        "name": "MySQL",
+        "icon": "DatabaseIcon"
+    },
+    {
+        "id": "5",
+        "name": "Bootstarp",
+        "icon": "BootstrapIcon"
+    },
+    {
+        "id": "6",
+        "name": "Git",
+        "icon": "GitIcon"
+    }
+];
+
+export const projects = [
+    {
+        "id": "1",
+        "title": "Ecommerce LUXURY PERFUME ",
+        "description": "A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.",
+        "tags": [
+            "React",
+            "JSON"
+        ],
+        "image": "project1.jpg",
+        "link": "https://noirel-hj1j.vercel.app/",
+        "github": "https://github.com/ashif-ek/noirel-"
+    },
+    {
+        "id": "2",
+        "title": "CiviTech digital governance platform(cross-platform)",
+        "description": "A community governance platform with modules for Admin, Users, Panchayath, and HighAuthority. Handles services, complaints, ratings, voting, image feeds, and analytics.",
+        "tags": [
+            "Django Backend",
+            "Flutter",
+            "SQL",
+            "HTML/CSS/JS"
+        ],
+        "image": "project2.jpg",
+        "link": "#",
+        "github": "#"
+    },
+    {
+        "id": "3",
+        "title": "Blog",
+        "description": "A clean, responsive personal blog inspired by Medium, built using Django for the backend and HTML/CSS for the frontend. It supports user-friendly content display, SEO-friendly structure, dynamic post rendering, and a minimalistic, distraction-free reading experience.",
+        "tags": [
+            "Django",
+            "JavaScript",
+            "CSS",
+            "HTML",
+            "Chart.js"
+        ],
+        "image": "project3.jpg",
+        "link": "#",
+        "github": "#"
+    },
+    {
+        "id": "4",
+        "title": "News Feed App",
+        "description": "A modern Flutter-based mobile application that fetches real-time news from an online API. It features a clean UI with scrollable news feeds, article descriptions, and category-based filtering for a personalized reading experience. Optimized for performance.",
+        "tags": [
+            "Flutter",
+            "REST API",
+            "SQL"
+        ],
+        "image": "project4.jpg",
+        "link": "#",
+        "github": "#"
+    }
+];
+
+export const certificates = [
+    {
+        "id": "1",
+        "title": "Bachelors of Computer Applications",
+        "issuer": "University of Calicut",
+        "date": "2022-2025",
+        "category": "Degree",
+        "image": "bca.jpg",
+        "credentialLink": "#",
+        "description": "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script."
+    },
+    {
+        "id": "2",
+        "title": "Django and Flutter",
+        "issuer": "Regional Technologies Calicut",
+        "date": "2024-2025",
+        "category": "Web",
+        "image": "ccsa.jpg",
+        "credentialLink": "#",
+        "description": "Built complete web and app solutions using Python Django as backend and HTML, CSS, JavaScript for web frontend; Dart Flutter for application frontend."
+    },
+    {
+        "id": "3",
+        "title": "Certified CyberSecurity Analyst (CCSA)",
+        "issuer": "Red Team Hacker Academy",
+        "date": "2022",
+        "category": "Cybersecurity",
+        "image": "django.jpg",
+        "credentialLink": "#",
+        "description": "IT infrastructure technologies, OSINT, Web application pentest, vulnerability assessment, network security, SOC, SIEM."
+    },
+    {
+        "id": "4",
+        "title": "JavaScript and React",
+        "issuer": "Bridgeon",
+        "date": "2023-01-18",
+        "category": "Web",
+        "image": "react.jpg",
+        "credentialLink": "#",
+        "description": "Building and deploying AI solutions with Azure Machine Learning."
+    },
+    {
+        "id": "5",
+        "title": "Technology Workshop",
+        "issuer": "Prosevo Technologies",
+        "date": "2024-10-14",
+        "category": "Web",
+        "image": "prosevo.jpg",
+        "credentialLink": "#",
+        "description": "Odoo language, OSINT, Web applications (MERN & Django), AI/ML, Flutter."
+    }
+];
+
+export const blogs = [
+    {
+        "id": 1,
+        "slug": "why-we-forget-what-really-matters",
+        "title": "Why We Forget What Really Matters",
+        "date": "2025-10-25",
+        "summary": "In a world obsessed with speed, we forget the beauty of stillness — and how silence often carries the loudest lessons.",
+        "imageUrl": "/blog/why-we-forget-what-really-matters.png",
+        "content": "# Why We Forget What Really Matters\n\nWe chase notifications but ignore the whispers of our own thoughts.\n\nThe truth? Life doesn’t speed up — **we just stop noticing**. The same sunrise that once made us pause now plays behind glass as we scroll.\n\nEvery ‘like’ is a small applause from strangers — but when was the last time you *liked* your own silence?\n\nTry this today: Close your eyes. Breathe. Remember what you wanted before the world told you what to want.\n\n> The most extraordinary things often hide behind ordinary moments."
+    },
+    {
+        "id": 2,
+        "slug": "the-invisible-art-of-consistency",
+        "title": "The Invisible Art of Consistency",
+        "date": "2025-10-25",
+        "summary": "We celebrate breakthroughs but forget the silent discipline that builds them — consistency, the art no one claps for.",
+        "imageUrl": "/blog/the-invisible-art-of-consistency.png",
+        "content": "# The Invisible Art of Consistency\n\nGreatness rarely feels great while it’s happening. It feels boring, repetitive, quiet.\n\nThe gym at 6 AM, the line of code rewritten ten times, the artist sketching shadows no one will notice — that’s *where magic hides*.\n\nEveryone wants the moment of success; few want the invisible grind before it.\n\n> You don’t rise to your goals. You sink to your habits.\n\nReal growth isn’t loud — it’s the sound of you showing up when no one’s watching."
+    },
+    {
+        "id": 3,
+        "slug": "the-human-side-of-technology",
+        "title": "The Human Side of Technology",
+        "date": "2025-10-25",
+        "summary": "Behind every line of code is a heartbeat — technology isn’t replacing humanity, it’s reflecting it.",
+        "imageUrl": "/blog/the-human-side-of-technology.png",
+        "content": "# The Human Side of Technology\n\nWe talk about AI, automation, and algorithms — but forget the simplest truth: **tech mirrors the people who make it**.\n\nEvery interface was designed by someone who cared about experience. Every bug tells a story of human imperfection.\n\nInstead of fearing that machines will replace us, we should ask: *Are we building tools that remember our empathy?*\n\n> The next great innovation isn’t artificial intelligence — it’s authentic intention."
+    },
+    {
+        "id": 4,
+        "slug": "we-are-all-beta-versions",
+        "title": "We Are All Beta Versions",
+        "date": "2025-10-25",
+        "summary": "Like software, we evolve through bugs, crashes, and updates — perfection is not the goal; iteration is.",
+        "imageUrl": "/blog/we-are-all-beta-versions.png",
+        "content": "# We Are All Beta Versions\n\nYou’re not broken — you’re just *under development*.\n\nEvery mistake, every failure, every ‘update’ is part of your release cycle.\n\nYet we judge ourselves for not being the ‘final version’ — forgetting that even the best apps release patches every week.\n\nThe key is not perfection, but **progress**.\n\n> Be kind to your code. Life’s changelog is still updating."
+    },
+    {
+        "id": 5,
+        "slug": "the-most-underrated-skill-in-life",
+        "title": "The Most Underrated Skill in Life",
+        "date": "2025-10-25",
+        "summary": "It’s not intelligence, looks, or luck — it’s awareness. Because awareness changes everything without changing anything.",
+        "imageUrl": "/blog/the-most-underrated-skill-in-life.png",
+        "content": "# The Most Underrated Skill in Life\n\nAwareness is the quiet superpower.\n\nThe ability to step back — before reacting, judging, or rushing — and simply *see* what’s happening.\n\nAwareness turns arguments into understanding. It transforms pressure into perspective.\n\nIt’s the difference between living **in** your mind and living **with** it.\n\n> Awareness doesn’t solve life — it reveals it."
+    }
+];

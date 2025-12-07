@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import Api from "./Api";
+import { blogs as blogsData } from "../data/mockData";
 import LoadingSpinner from "./LoadingSpinner";
 import LazyImage from "./LazyImage"; 
 
@@ -10,25 +10,17 @@ import LazyImage from "./LazyImage";
 const BlogPost = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const fetchPost = useCallback(async () => {
-    try {
-      const res = await Api.get(`/blogs?slug=${slug}`);
-      if (res.data.length > 0) setPost(res.data[0]);
-      else setError(true);
-    } catch (err) {
-      console.error("Error fetching post:", err);
+  useEffect(() => {
+    const foundPost = blogsData.find(p => p.slug === slug);
+    if (foundPost) {
+      setPost(foundPost);
+      setError(false);
+    } else {
       setError(true);
-    } finally {
-      setIsLoading(false);
     }
   }, [slug]);
-
-  useEffect(() => {
-    fetchPost();
-  }, [fetchPost]);
 
   const formattedDate = useMemo(() => {
     if (!post?.date) return "";
@@ -39,14 +31,7 @@ const BlogPost = () => {
     });
   }, [post]);
 
-  /*  Loading State */
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <LoadingSpinner />
-      </div>
-    );
-  }
+
 
   /* ❌ Error / Not Found */
   if (error || !post) {

@@ -5,7 +5,7 @@ import project1 from '../assets/projects/project1.png';
 import project2 from '../assets/projects/project2.jpg';
 import project3 from '../assets/projects/project3.jpg';
 import project4 from '../assets/projects/project4.jpg';
-import Api from './Api';
+import { projects as projectsData } from '../data/mockData';
 // import LoadingSpinner from './LoadingSpinner'; // No longer needed
 import LazyImage from './LazyImage';
 
@@ -17,92 +17,18 @@ const projectImages = {
   4: project4,
 };
 
-// --- Fallback Data ---
-// This local data is used for the initial render and if the API call fails.
-const fallbackProjects =  [
-    {
-      "id": "1",
-      "title": "Ecommerce LUXURY PERFUME ",
-      "description": "A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.",
-      "tags": [
-        "React",
-        "JSON"
-      ],
-      "image": "project4.jpg",
-      "link": "https://noirel-store.vercel.app/",
-      "github": "https://github.com/ashif-ek/noirel-"
-    },
-    {
-      "id": "2",
-      "title": "CiviTech digital governance platform(cross-platform)",
-      "description": "A community governance platform with modules for Admin, Users, Panchayath, and HighAuthority. Handles services, complaints, ratings, voting, image feeds, and analytics.",
-      "tags": [
-        "Django Backend",
-        "Flutter",
-        "SQL",
-        "HTML/CSS/JS"
-      ],
-      "image": "project1.jpg",
-      "link": "#",
-      "github": "#"
-    },
-    {
-      "id": "3",
-      "title": "Blog",
-      "description": "A clean, responsive personal blog inspired by Medium, built using Django for the backend and HTML/CSS for the frontend. It supports user-friendly content display, SEO-friendly structure, dynamic post rendering, and a minimalistic, distraction-free reading experience.",
-      "tags": [
-        "Django",
-        "JavaScript",
-        "CSS",
-        "HTML",
-        "Chart.js"
-      ],
-      "image": "project2.jpg",
-      "link": "#",
-      "github": "#"
-    },
-    {
-      "id": "4",
-      "title": "News Feed App",
-      "description": "A modern Flutter-based mobile application that fetches real-time news from an online API. It features a clean UI with scrollable news feeds, article descriptions, and category-based filtering for a personalized reading experience. Optimized for performance.",
-      "tags": [
-        "Flutter",
-        "REST API",
-        "SQL"
-      ],
-      "image": "project3.jpg",
-      "link": "#",
-      "github": "#"
-    }
-  ];
+
 
 
 const Projects = () => {
   // --- State Management ---
-  const [projects, setProjects] = useState(fallbackProjects); // Initialize with fallback data
+  const [projects] = useState(projectsData); 
   // const [isLoading, setIsLoading] = useState(true); // <-- REMOVED
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null); // Removed error state
   const [animated, setAnimated] = useState(false);
   const [showAllProjects, setShowAllProjects] = useState(false);
 
-  // --- Data Fetching Effect ---
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await Api.get('/projects'); 
-        setProjects(res.data); // If successful, update state with DB data
-        setError(null); // Clear any previous errors
-      } catch (err) {
-        console.error("Error fetching projects:", err);
-        setError("Failed to load live project data. Showing default entries."); // Set error message
-        // No need to setProjects here, as it already holds the fallback data
-      } finally {
-        // setIsLoading(false); // <-- REMOVED
-      }
-    };
-
-    fetchProjects();
-  }, []);
+  // Data fetching logic removed
 
   // --- Animation Trigger Effect ---
   useEffect(() => {
@@ -213,12 +139,7 @@ const Projects = () => {
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full"></div>
         </h2>
 
-        {/* Error Message Display */}
-        {error && (
-            <div className="text-center text-yellow-400 bg-yellow-900/30 border border-yellow-700/50 rounded-lg py-3 px-4 mb-8 max-w-lg mx-auto">
-                {error}
-            </div>
-        )}
+
         
         {/* Main Content: Projects Grid */}
         {/* This will render fallbackProjects immediately, then update with API data */}

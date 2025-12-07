@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Api from "./Api";
+import { certificates as certificatesData } from '../data/mockData';
 
 import cert1 from "../assets/certificates/image.png";
 import cert2 from "../assets/certificates/django.png";
@@ -78,9 +78,9 @@ const fallbackCertificates = [
 
 const Certificates = () => {
   // --- State Management ---
-  const [certificates, setCertificates] = useState(fallbackCertificates);
+  const [certificates] = useState(certificatesData);
   // const [isLoading, setIsLoading] = useState(true); // <-- REMOVED
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null); // Removed error state
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showAll, setShowAll] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -93,21 +93,7 @@ const Certificates = () => {
     { id: "Cybersecurity", name: "Cybersecurity" },
   ];
 
-  // --- Data Fetching Effect ---
-  useEffect(() => {
-    const fetchCertificates = async () => {
-      try {
-        const res = await Api.get("/certificates");
-        setCertificates(res.data);
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching certificates:", err);
-        setError("Failed to load live credentials. Displaying default entries.");
-      }
-      // 'finally' block and 'setIsLoading' removed
-    };
-    fetchCertificates();
-  }, []);
+  // Data fetching logic removed
 
   // --- Filter Logic ---
   const filteredCertificates =
@@ -300,12 +286,7 @@ const Certificates = () => {
           </div>
         </div>
 
-        {/* Error Message Display */}
-        {error && (
-          <div className="text-center text-yellow-400 bg-yellow-900/30 border border-yellow-700/50 rounded-lg py-3 px-4 mb-8 max-w-lg mx-auto">
-            {error}
-          </div>
-        )}
+
 
         {/* Main Content: Certificate Grid (no loading spinner) */}
         {renderContent()}

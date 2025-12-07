@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { FiEdit, FiTrash2, FiPlus, FiLogOut } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
-import Api from '../components/Api';
+import { profile, skills, projects, certificates, blogs } from '../data/mockData';
 
 // --- Central Configuration for the Dashboard ---
 const dashboardConfig = {
@@ -167,82 +167,27 @@ const AdminDashboard = () => {
 
     // Fetch initial data for all sections from the API
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-                const requests = Object.entries(dashboardConfig).map(([key, config]) =>
-                    Api.get(config.endpoint).then(res => [key, res.data])
-                );
-                const results = await Promise.all(requests);
-                setData(Object.fromEntries(results));
-            } catch (err) {
-                setError("Failed to fetch data. Please ensure the API server is running.");
-                console.error(err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchData();
+        // Use static data
+        setData({
+            profile: profile,
+            skills: skills,
+            projects: projects,
+            certificates: certificates,
+            blogs: blogs
+        });
+        setIsLoading(false);
     }, []);
 
     // Handles saving both new and existing items
     const handleSave = async (e, itemToSave) => {
         e.preventDefault();
-        setError(null);
-        const config = dashboardConfig[activeTab];
-        
-        let payload = { ...itemToSave };
-        
-        // Clean up data before sending to API
-        if (payload.tags && typeof payload.tags === 'string') {
-            payload.tags = payload.tags.split(',').map(tag => tag.trim()).filter(Boolean);
-        }
-        if (payload.socialLinks && typeof payload.socialLinks === 'string') {
-            try {
-                payload.socialLinks = JSON.parse(payload.socialLinks);
-            } catch {
-                setError("Invalid JSON format for Social Links.");
-                return;
-            }
-        }
-
-        const isNew = config.isArray && !itemToSave.id;
-        const method = isNew ? 'post' : 'put';
-        const url = config.isArray
-            ? `${config.endpoint}${isNew ? '' : `/${itemToSave.id}`}`
-            : config.endpoint; // For single objects like profile
-
-        try {
-            const { data: savedItem } = await Api[method](url, payload);
-            setData(prev => {
-                const updatedSection = config.isArray
-                    ? (isNew ? [...prev[activeTab], savedItem] : prev[activeTab].map(item => item.id === savedItem.id ? savedItem : item))
-                    : savedItem;
-                return { ...prev, [activeTab]: updatedSection };
-            });
-            setModalState({ type: null, item: null });
-        } catch (err) {
-            setError(`Failed to save ${config.singularName}.`);
-            console.error("Save error:", err);
-        }
+        alert("Editing is disabled in static mode.");
     };
     
     // Handles deleting an item
     const handleDelete = async () => {
-        const { item } = modalState;
-        const config = dashboardConfig[item.type];
-        try {
-            await Api.delete(`${config.endpoint}/${item.id}`);
-            setData(prev => ({
-                ...prev,
-                [item.type]: prev[item.type].filter(i => i.id !== item.id)
-            }));
-            setModalState({ type: null, item: null });
-        } catch (err) {
-            setError(`Failed to delete ${config.singularName}.`);
-            console.error("Delete error:", err);
-        }
+        alert("Deleting is disabled in static mode.");
+        setModalState({ type: null, item: null });
     };
     
     // Opens a modal for editing, adding, or deleting

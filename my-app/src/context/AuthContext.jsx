@@ -12,15 +12,11 @@ export const AuthProvider = ({ children }) => {
     sessionStorage.setItem("isAdmin", isAdmin);
   }, [isAdmin]);
 
-  const login = async (username, password, Api) => {
-    try {
-      const res = await Api.get("/admin");
-      if (res.data.username === username && res.data.password === password) {
-        setIsAdmin(true);
-        return true;
-      }
-    } catch (err) {
-      console.error("Login failed:", err);
+  const login = async (username, password) => {
+    // Hardcoded check since backend is removed
+    if (username === "admin" && password === "291345") {
+      setIsAdmin(true);
+      return true;
     }
     return false;
   };

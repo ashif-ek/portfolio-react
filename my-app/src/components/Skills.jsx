@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import Api from './Api';
+import { skills as skillsData, tools as toolsData } from '../data/mockData';
 // Icons
 import { BsBootstrap, BsGithub } from "react-icons/bs";
 import { SiPython, SiJavascript, SiReact, SiTailwindcss, SiDocker, SiJira } from "react-icons/si";
@@ -37,22 +37,7 @@ const iconMap = {
   BriefcaseIcon: <BriefcaseIcon className="w-6 h-6" />,
 };
 
-// --- Fallback Data (with description) ---
-const fallbackSkills =  [
-    { "id": 1, "name": "Django", "level": 95, "category": "Technology", "color": "#44B78B", "icon": "PythonIcon", "description": "Building scalable REST APIs and full-stack web applications." },
-    { "id": 2, "name": "JavaScript", "level": 90, "category": "Technology", "color": "#F7DF1E", "icon": "JSIcon", "description": "ES6+, async/await, and modern JS patterns for interactivity." },
-    { "id": 3, "name": "React", "level": 90, "category": "Technology", "color": "#61DAFB", "icon": "ReactIcon", "description": "Component-based architecture, Hooks, and state management." },
-    { "id": 4, "name": "Flutter", "level": 80, "category": "Technology", "color": "#027DFD", "icon": "MobileIcon", "description": "Cross-platform mobile development for iOS and Android." },
-    { "id": 5, "name": "Agile Dev", "level": 95, "category": "Methodology", "color": "#F05032", "icon": "AgileIcon", "description": "Working in sprints, stand-ups, and iterative development cycles." },
-    { "id": 6, "name": "Cybersecurity", "level": 85, "category": "Methodology", "color": "#00A86B", "icon": "ShieldIcon",
-"description": "Vulnerability assessment, penetration testing, and secure coding." },
-    { "id": 7, "name": "Team Leadership", "level": 98, "category": "Leadership", "color": "#A855F7", "icon": "BriefcaseIcon", "description": "Mentoring junior developers and leading project teams." },
-    { "id": 8, "name": "Strategic Planning", "level": 92, "category": "Leadership", "color": "#EC4899", "icon": "PencilRulerIcon", "description": "Defining project roadmaps, architecture, and feature prioritization." }
-  ];
-const fallbackTools = [
-    { name: 'VS Code', icon: "CodeIcon" }, { name: 'Docker', icon: "DockerIcon" },
-    { name: 'Git', icon: "GitIcon" }, { name: 'Jira', icon: "JiraIcon" },
-];
+
 
 const skillCategories = ['All', 'Technology', 'Methodology', 'Leadership'];
 
@@ -251,9 +236,9 @@ const ToolCard = React.memo(({ tool }) => {
 
 // --- Main Skills Component ---
 const Skills = () => {
-    const [skills, setSkills] = useState(fallbackSkills);
-    const [tools, setTools] = useState(fallbackTools);
-    const [error, setError] = useState(null);
+    const [skills] = useState(skillsData);
+    const [tools] = useState(toolsData);
+    // const [error, setError] = useState(null); // Removed error state
 
     const [isVisible, setIsVisible] = useState(false);
     const [activeCategory, setActiveCategory] = useState('All');
@@ -264,23 +249,7 @@ const Skills = () => {
     // ---     Check if we are on a mobile screen ---
     const isMobile = useMediaQuery('(max-width: 640px)'); // Tailwind's 'sm' breakpoint
 
-    // Data fetching (stale-while-revalidate)
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [skillsRes, toolsRes] = await Promise.all([
-                    Api.get(`/skills`),
-                    Api.get(`/tools`)
-                ]);
-                setSkills(skillsRes.data);
-                setTools(toolsRes.data);
-            } catch (err) {
-                console.error("API Error: ", err.message);
-                setError("Could not load live data. Displaying default content.");
-            }
-        };
-        fetchData();
-    }, []);
+    // Data fetching removed - using static data
 
     // Intersection Observer for animations
     useEffect(() => {
@@ -336,7 +305,7 @@ const Skills = () => {
                     <h2 className="text-5xl md:text-6xl font-extrabold mb-4">
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Core Competencies</span>
                     </h2>
-                    {error && <p className="text-yellow-500 mt-4 bg-yellow-900/20 border border-yellow-800 rounded-md py-2 px-4 inline-block">{error}</p>}
+
                 </div>
 
                 {/* Category Filters */}

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { User, Lock, House, LoaderCircle } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-import Api from "../components/Api"; // Ensure this path is correct for your project
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
@@ -18,7 +17,7 @@ export default function AdminLogin() {
     setError("");
     setIsLoading(true);
 
-    const success = await login(username, password, Api);
+    const success = await login(username, password);
 
     if (success) {
       navigate("/admin");

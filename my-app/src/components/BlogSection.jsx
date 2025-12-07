@@ -1,67 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
-import Api from "./Api";
+import { blogs as blogsData } from '../data/mockData';
 import LazyImage from "./LazyImage";
 
-//  1. Your fallback data is stored as a constant
-const fallbackBlogData = [
-  {
-    id: 1,
-    slug: "why-we-forget-what-really-matters",
-    title: "Why We Forget What Really Matters",
-    date: "2025-10-25",
-    summary:
-      "In a world obsessed with speed, we forget the beauty of stillness — and how silence often carries the loudest lessons.",
-    imageUrl: "/blog/why-we-forget-what-really-matters.png",
-  },
 
-  {
-    id: 2,
-    slug: "the-human-side-of-technology",
-    title: "The Human Side of Technology",
-    date: "2025-10-25",
-    summary:
-      "Behind every line of code is a heartbeat — technology isn’t replacing humanity, it’s reflecting it.",
-    imageUrl: "/blog/the-human-side-of-technology.png",
-  },
-  {
-    id: 3,
-    slug: "we-are-all-beta-versions",
-    title: "We Are All Beta Versions",
-    date: "2025-10-25",
-    summary:
-      "Like software, we evolve through bugs, crashes, and updates — perfection is not the goal; iteration is.",
-    imageUrl: "/blog/we-are-all-beta-versions.png",
-  },
-];
 
 const BlogSection = () => {
-  //  2. Initialize state with the fallback data for an instant render
-  const [allPosts, setAllPosts] = useState(fallbackBlogData);
+  //  2. Initialize state with the imported data
+  const [allPosts] = useState(blogsData);
   const [showAll, setShowAll] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Still true, because we are fetching
-  const [error, setError] = useState(null);
 
-  // --- Fetch Data with Axios ---
-  useEffect(() => {
-    const fetchAllPosts = async () => {
-      try {
-        const res = await Api.get("/blogs?_sort=date&_order=desc");
-        // When fetch completes, it replaces the fallback data
-        setAllPosts(res.data);
-        setError(null);
-      } catch (err) { // <-- FIXED: Added the missing curly braces here
-        console.error("Error fetching blog posts:", err);
-        setError("Failed to load articles. Please try again later.");
-        // Optional: If API fails, you might want to keep the fallback data
-        // setAllPosts(fallbackBlogData); // Or set to []
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchAllPosts();
-  }, []);
+  // Loading and Error states removed
+  // Fetch logic removed
 
   const postsToShow = showAll ? allPosts : allPosts.slice(0, 3);
 
@@ -69,12 +20,7 @@ const BlogSection = () => {
   const renderContent = () => {
     //  3. Re-ordered logic
     // Priority 1: Show an error if the fetch failed
-    if (error)
-      return (
-        <div className="text-center text-gray-400 py-8 px-4 max-w-md mx-auto">
-          <div className="text-sm">{error}</div>
-        </div>
-      );
+
 
     // Priority 2: Show posts (either fallback or fetched)
     // This now renders *even if* isLoading is true
@@ -138,12 +84,7 @@ const BlogSection = () => {
     }
 
     // Priority 3: Show loading spinner ONLY if we have no posts at all
-    if (isLoading)
-      return (
-        <div className="min-h-[200px] flex items-center justify-center">
-          <LoadingSpinner />
-        </div>
-      );
+
 
     // Priority 4: If not loading, no error, and no posts, show empty state
     return (

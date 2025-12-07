@@ -1,9 +1,10 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { profile as profileData } from '../data/mockData';
 import Api from './Api';
 
-// Map icon names from JSON to the imported icon components
 const iconMap = {
   Github: FaGithub,
   LinkedIn: FaLinkedin,
@@ -11,104 +12,115 @@ const iconMap = {
   Instagram: FaInstagram,
 };
 
-// 7. Update SocialLinks to accept `links` as a prop
 const SocialLinks = ({ links = [] }) => {
   return (
-    <div className="fixed left-5 bottom-0 z-30 hidden md:block">
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 1.5, duration: 0.5 }}
+      className="fixed left-5 bottom-0 z-30 hidden md:block"
+    >
       <div className="flex flex-col items-center">
         {links.map(({ name, url }) => {
           const Icon = iconMap[name];
           return (
             <a key={name} href={url} target="_blank" rel="noopener noreferrer" aria-label={name}
-               className="p-2 text-gray-500 hover:text-gray-200 transition-colors duration-300">
+               className="p-2 text-gray-500 hover:text-gray-200 transition-colors duration-300 transform hover:-translate-y-1">
               {Icon && <Icon size={20} />}
             </a>
           );
         })}
         <div className="h-24 w-px bg-gray-800 mt-2"></div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-// 7. Update EmailLink to accept `email` as a prop
 const EmailLink = ({ email }) => (
-  <div className="fixed right-5 bottom-0 z-30 hidden md:block">
+  <motion.div 
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay: 1.5, duration: 0.5 }}
+    className="fixed right-5 bottom-0 z-30 hidden md:block"
+  >
     <div className="flex flex-col items-center">
       <a href={`mailto:${email}`}
-         className="p-2 text-gray-500 hover:text-gray-200 transition-colors duration-300 [writing-mode:vertical-rl] tracking-widest text-sm">
+         className="p-2 text-gray-500 hover:text-gray-200 transition-colors duration-300 [writing-mode:vertical-rl] tracking-widest text-sm transform hover:-translate-y-1">
         {email}
       </a>
       <div className="h-24 w-px bg-gray-800 mt-2"></div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const Hero = () => {
-  // 3. Add state to hold profile data, with initial values
-  const [profile, setProfile] = useState({
-    name: "Ashif E.K",
-    title: "Digital Architect & Software Engineer",
-    description: "I engineer secure, scalable, and high-performance web applications using React, Django, and modern technologies like Redux, JavaScript along with tailwind—delivering seamless experiences at scale...",
-    email: "ashifek11@gmail.com",
-    socialLinks: [
-      { "name": "Github", "url": "https://github.com/ashif-ek" },
-      { "name": "LinkedIn", "url": "https://linkedin.com/in/ashifek" },
-      { "name": "Twitter", "url": "https://twitter.com/your-username" },
-      { "name": "Instagram", "url": "https://instagram.com/ashif.io" },
-    ],
-  });
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    Api.get("/profile")
-      .then(res => {
-        setProfile(res.data);
-      })
-      .catch(err => console.error("Error fetching profile data:", err));
+  const [profile, setProfile] = useState(profileData);
 
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
+  useEffect(() => {
+    Api.get('/profile')
+      .then(res => setProfile(res.data))
+      .catch(err => console.error("Failed to fetch fresh profile data:", err));
   }, []);
+
+  const { name, title, description, email, socialLinks } = profile;
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a] text-gray-300 font-sans">
       
-      {/* 5. Pass fetched data as props */}
-      <SocialLinks links={profile.socialLinks} />
-      <EmailLink email={profile.email} />
+      <SocialLinks links={socialLinks} />
+      <EmailLink email={email} />
 
       <div className="relative z-20 container mx-auto max-w-4xl px-6 text-center flex flex-col items-center">
         
-        {/* 6. Use fetched data from the state */}
-        <div className={`transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 pb-2">
-            {profile.name}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        >
+          <span className="block text-accent text-sm md:text-base mb-4 tracking-widest font-mono">
+            Hello, my name is
+          </span>
+          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 pb-2">
+            {name}
           </h1>
-        </div>
+        </motion.div>
         
-        <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <h2 className="text-lg md:text-xl text-gray-400 mt-4 tracking-wide">
-            {profile.title}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+        >
+          <h2 className="text-2xl md:text-4xl text-gray-400 mt-4 tracking-wide font-light">
+            {title}
           </h2>
-        </div>
+        </motion.div>
         
-        <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <p className="max-w-2xl mt-6 text-base md:text-lg text-gray-500 leading-relaxed">
-            {profile.description}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+        >
+          <p className="max-w-2xl mt-8 text-base md:text-lg text-gray-500 leading-relaxed">
+            {description}
           </p>
-        </div>
+        </motion.div>
         
-        <div className={`mt-10 transition-opacity duration-1000 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+          className="mt-12"
+        >
           <Link 
             to="contact" 
             smooth={true} 
             duration={800} 
-            className="inline-block px-6 py-3 bg-white/5 text-gray-200 border border-white/20 rounded-full hover:bg-white/10 backdrop-blur-sm transition-colors duration-300 cursor-pointer"
+            className="group relative inline-flex px-8 py-3 overflow-hidden rounded-full cursor-pointer bg-transparent border border-gray-600 text-gray-300 hover:text-white transition-all duration-300"
           >
-            Get in Touch
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative font-medium tracking-wide">Get in Touch</span>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
