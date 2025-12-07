@@ -15,13 +15,17 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const res = await Api.get("/admin");
-      if (res.data.username === username && res.data.password === password) {
+      // Secure login via POST request to backend
+      const res = await Api.post("/login", { username, password });
+      
+      if (res.data.success) {
         setIsAdmin(true);
+        // Optionally store token here if implementing real sessions: 
+        // sessionStorage.setItem('token', res.data.token);
         return true;
       }
     } catch (err) {
-      console.error("Login failed:", err);
+      console.error("Login verification failed:", err);
     }
     return false;
   };
