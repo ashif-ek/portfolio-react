@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { skills as skillsData, tools as toolsData } from '../data/mockData';
+import { skills as mockSkills, tools as mockTools } from '../data/mockData';
+import Api from './Api';
 // Icons
 import { BsBootstrap, BsGithub } from "react-icons/bs";
 import { SiPython, SiJavascript, SiReact, SiTailwindcss, SiDocker, SiJira } from "react-icons/si";
@@ -234,10 +235,26 @@ const ToolCard = React.memo(({ tool }) => {
   );
 });
 
-// --- Main Skills Component ---
 const Skills = () => {
-    const [skills] = useState(skillsData);
-    const [tools] = useState(toolsData);
+    // Hybrid Data Strategy: Init with mock, update with API
+    const [skills, setSkills] = useState(mockSkills);
+    const [tools, setTools] = useState(mockTools);
+
+    useEffect(() => {
+        const fetchSkills = async () => {
+            try {
+                const [skillsRes, toolsRes] = await Promise.all([
+                    Api.get('/skills'),
+                    Api.get('/tools')
+                ]);
+                if (skillsRes.data) setSkills(skillsRes.data);
+                if (toolsRes.data) setTools(toolsRes.data);
+            } catch (err) {
+                console.error("Failed to fetch fresh skills data", err);
+            }
+        };
+        fetchSkills();
+    }, []);
     // const [error, setError] = useState(null); // Removed error state
 
     const [isVisible, setIsVisible] = useState(false);

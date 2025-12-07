@@ -1,6 +1,7 @@
 import profile from "../assets/profile.jpg";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { about } from "../data/mockData";
+import { about as mockAbout } from "../data/mockData";
+import Api from './Api';
 import LazyImage from "./LazyImage";
 
 // Using requestAnimationFrame for smoother animations
@@ -65,8 +66,14 @@ const About = () => {
     const [cardStyle, setCardStyle] = useState({});
     const [typedText, setTypedText] = useState("");
     
-    // Use data directly from import
-    const aboutData = about[0];
+    // Use hybrid data: init with mock, update from API
+    const [aboutData, setAboutData] = useState(mockAbout[0]);
+
+    useEffect(() => {
+        Api.get('/about').then(res => {
+            if (res.data && res.data.length > 0) setAboutData(res.data[0]);
+        }).catch(err => console.error("Failed to fetch fresh about data", err));
+    }, []);
 
     // Optimized Typing effect
     useEffect(() => {
