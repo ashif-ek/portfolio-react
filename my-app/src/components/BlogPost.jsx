@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { blogs as blogsData } from "../data/mockData";
+import { blogs as mockBlogs } from "../data/mockData";
+import Api from './Api';
 import LoadingSpinner from "./LoadingSpinner";
 import LazyImage from "./LazyImage"; 
 
@@ -9,17 +10,26 @@ import LazyImage from "./LazyImage";
 /*  Main BlogPost Component */
 const BlogPost = () => {
   const { slug } = useParams();
-  const [post, setPost] = useState(null);
-  const [error, setError] = useState(false);
+  // Hybrid Data Strategy: Init with mock, update with API
+  const initialPost = mockBlogs.find(p => p.slug === slug) || null;
+  const [post, setPost] = useState(initialPost);
+  const [error, setError] = useState(!initialPost && true);
 
   useEffect(() => {
-    const foundPost = blogsData.find(p => p.slug === slug);
-    if (foundPost) {
-      setPost(foundPost);
-      setError(false);
-    } else {
-      setError(true);
-    }
+    // Try to get fresh data
+    Api.get(`/blogs?slug=${slug}`)
+        .then(res => {
+            if (res.data && res.data.length > 0) {
+                setPost(res.data[0]);
+                setError(false);
+            } else if (!post) {
+                setError(true);
+            }
+        })
+        .catch(err => {
+            console.error("Failed to fetch fresh post", err);
+            if (!post) setError(true);
+        });
   }, [slug]);
 
   const formattedDate = useMemo(() => {

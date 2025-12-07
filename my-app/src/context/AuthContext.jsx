@@ -1,5 +1,6 @@
 // context/AuthContext.js
 import { createContext, useState, useEffect, useContext } from "react";
+import Api from "../components/Api";
 
 const AuthContext = createContext();
 
@@ -13,10 +14,14 @@ export const AuthProvider = ({ children }) => {
   }, [isAdmin]);
 
   const login = async (username, password) => {
-    // Hardcoded check since backend is removed
-    if (username === "admin" && password === "291345") {
-      setIsAdmin(true);
-      return true;
+    try {
+      const res = await Api.get("/admin");
+      if (res.data.username === username && res.data.password === password) {
+        setIsAdmin(true);
+        return true;
+      }
+    } catch (err) {
+      console.error("Login failed:", err);
     }
     return false;
   };
