@@ -306,5 +306,9 @@
       "imageUrl": "/blog/the-most-underrated-skill-in-life.png",
       "content": "# The Most Underrated Skill in Life\n\nAwareness is the quiet superpower.\n\nThe ability to step back — before reacting, judging, or rushing — and simply *see* what’s happening.\n\nAwareness turns arguments into understanding. It transforms pressure into perspective.\n\nIt’s the difference between living **in** your mind and living **with** it.\n\n> Awareness doesn’t solve life — it reveals it."
     }
-  ]
+  ],
+  "admin": {
+    "username": "admin",
+    "password": "291345"
+  }
 }
