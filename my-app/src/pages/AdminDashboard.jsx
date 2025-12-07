@@ -19,6 +19,7 @@ const dashboardConfig = {
             { name: 'title', label: 'Title', type: 'text' },
             { name: 'description', label: 'Description', type: 'textarea' },
             { name: 'email', label: 'Email', type: 'email' },
+            { name: 'avatar', label: 'Profile Photo', type: 'image' },
         ],
     },
     skills: {
@@ -144,6 +145,8 @@ const AdminDashboard = () => {
     const [error, setError] = useState(null);
     const [modalState, setModalState] = useState({ type: null, item: null });
     const [settingsState, setSettingsState] = useState({}); // For local edits
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     // Initial Fetch
     const fetchData = useCallback(async () => {
@@ -313,15 +316,15 @@ const AdminDashboard = () => {
                     <div className="overflow-x-auto">
                         <table className="w-full">
                             <thead className="bg-gray-50 border-b border-gray-200">
-                                <tr>
+                                <tr className="hidden md:table-row">
                                     <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Item</th>
                                     <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-100">
+                            <tbody className="divide-y divide-gray-100 block md:table-row-group">
                                 {data[activeTab].map(item => (
-                                    <tr key={item.id} className="hover:bg-gray-50/80 transition-colors">
-                                        <td className="px-6 py-4">
+                                    <tr key={item.id} className="block md:table-row hover:bg-gray-50/80 transition-colors">
+                                        <td className="px-6 py-4 block md:table-cell">
                                             <div className="flex items-center">
                                                 {item.image || item.imageUrl || item.icon ? (
                                                      <div className="h-10 w-10 rounded-lg bg-gray-100 flex items-center justify-center mr-4 border border-gray-200">
@@ -335,7 +338,7 @@ const AdminDashboard = () => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-right space-x-3">
+                                        <td className="px-6 py-4 text-right space-x-3 block md:table-cell border-t md:border-t-0 border-gray-100">
                                             <button onClick={() => setModalState({ type: 'edit', item })} className="text-cyan-600 hover:text-cyan-800 font-medium text-sm transition-colors">Edit</button>
                                             <button onClick={() => handleDelete(item)} className="text-red-400 hover:text-red-600 font-medium text-sm transition-colors">Delete</button>
                                         </td>
@@ -346,11 +349,15 @@ const AdminDashboard = () => {
                     </div>
                 ) : (
                     <div className="p-8 text-center">
-                        <div className="inline-block p-4 rounded-full bg-cyan-50 text-cyan-500 mb-4">
-                            <User size={32} />
+                        <div className="inline-block p-4 rounded-full bg-cyan-50 text-cyan-500 mb-4 overflow-hidden relative w-32 h-32">
+                             {data[activeTab].avatar ? (
+                                <img src={`http://localhost:5000/uploads/${data[activeTab].avatar}`} alt="Profile" className="w-full h-full object-cover" />
+                             ) : (
+                                <User size={48} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                             )}
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-1">{data[activeTab].name}</h3>
-                        <p className="text-gray-500 max-w-md mx-auto mb-6">{data[activeTab].description}</p>
+                        <p className="text-gray-500 max-w-md mx-auto mb-6">{data[activeTab].title}</p>
                         <button onClick={() => setModalState({ type: 'edit', item: data[activeTab] })} className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
                             Edit Profile Details
                         </button>
@@ -364,18 +371,23 @@ const AdminDashboard = () => {
 
     return (
         <div className="bg-gray-50 min-h-screen font-sans flex text-gray-800">
-            <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={logout} />
+            <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={logout} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
             
-            <main className="flex-1 ml-64 p-8 overflow-y-auto h-screen">
+            <main className="flex-1 md:ml-64 ml-0 p-4 md:p-8 overflow-y-auto h-screen transition-all duration-300">
                 <header className="flex justify-between items-center mb-8">
-                    <div>
-                        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-                            {activeTab === 'dashboard' ? `Welcome back, Admin` : activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
-                        </h1>
-                        <p className="text-gray-500 mt-1">Here's what's happening with your portfolio today.</p>
+                    <div className="flex items-center gap-4">
+                        <button onClick={() => setIsSidebarOpen(true)} className="md:hidden text-gray-600 hover:text-gray-900">
+                            <FiMenu size={24} />
+                        </button>
+                        <div>
+                            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+                                {activeTab === 'dashboard' ? `Welcome back, Admin` : activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
+                            </h1>
+                            <p className="text-gray-500 mt-1 text-sm md:text-base hidden sm:block">Here's what's happening with your portfolio today.</p>
+                        </div>
                     </div>
                     <div className="flex items-center gap-4">
-                         <span className="text-sm font-medium text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">v2.0.0</span>
+                         <span className="text-sm font-medium text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">v2.1.0</span>
                     </div>
                 </header>
 
