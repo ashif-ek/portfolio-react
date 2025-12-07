@@ -73,6 +73,23 @@ const Hero = () => {
       <div className="relative z-20 container mx-auto max-w-4xl px-6 text-center flex flex-col items-center">
         
         <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
+        >
+            {profile.avatar && (
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gray-800 overflow-hidden shadow-2xl mx-auto">
+                     <img 
+                        src={`http://localhost:5000/uploads/${profile.avatar}`} 
+                        alt={name} 
+                        className="w-full h-full object-cover"
+                     />
+                </div>
+            )}
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
