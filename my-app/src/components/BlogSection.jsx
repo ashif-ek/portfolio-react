@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
-import { blogs as blogsData } from '../data/mockData';
+import { blogs as mockBlogs } from '../data/mockData';
+import Api from './Api';
 import LazyImage from "./LazyImage";
 
 
 
 const BlogSection = () => {
-  //  2. Initialize state with the imported data
-  const [allPosts] = useState(blogsData);
+  // Hybrid Data Strategy: Init with mock, update with API
+  const [allPosts, setAllPosts] = useState(mockBlogs);
+
+  useEffect(() => {
+    Api.get('/blogs?_sort=date&_order=desc')
+      .then(res => setAllPosts(res.data))
+      .catch(err => console.error("Failed to fetch fresh blogs", err));
+  }, []);
   const [showAll, setShowAll] = useState(false);
 
   // Loading and Error states removed
