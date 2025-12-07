@@ -139,6 +139,8 @@ function Contact() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
+  const hasFormErrors = state.errors && state.errors.length > 0;
 // ... (rest of the component remains the same until the end)
 
   return (
