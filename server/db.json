@@ -1,4 +1,14 @@
 {
+  "settings": {
+    "showBlog": true,
+    "showSkills": true,
+    "showProjects": true,
+    "showCertificates": true,
+    "maintenanceMode": false,
+    "siteTitle": "Ashif's Portfolio",
+    "welcomeMessage": "Welcome to my digital space."
+  },
+  "messages": [],
 
   "profile": {
     "name": "Ashif E.K ",
