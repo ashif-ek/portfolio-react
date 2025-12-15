@@ -1,10 +1,6 @@
 # Personal Portfolio Website
 
-<<<<<<< HEAD
 A modern, responsive, and feature-rich personal portfolio website built with React, Vite, and Node.js. Designed to showcase projects, skills, and professional experience with a premium aesthetic and seamless user experience.
-=======
-A modern, responsive, and feature-rich personal portfolio website built with React, Vite Designed to showcase projects, skills, and professional experience with a premium aesthetic and seamless user experience.
->>>>>>> 66af962f25623f3be30adbdbd37e4c4ab3d942fd
 
 ## 🚀 Features
 
