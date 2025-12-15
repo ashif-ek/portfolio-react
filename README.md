@@ -12,7 +12,6 @@ A modern, responsive, and feature-rich personal portfolio website built with Rea
 =======
 - **Admin Dashboard**: Secure admin panel to manage content, view stats, and upload files.
 - **Dynamic Content**: JSON Server for easy content management.
->>>>>>> 66af962f25623f3be30adbdbd37e4c4ab3d942fd
 - **Image Uploads**: Custom file upload functionality with Multer.
 - **Contact Integration**: Formspree integration for contact form submissions.
 - **Responsive Design**: Fully responsive layout optimized for Mobile, Tablet, and Desktop.
