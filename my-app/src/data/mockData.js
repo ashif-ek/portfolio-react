@@ -92,7 +92,7 @@ export const projects = [
         ],
         "image": "project1.jpg",
         "link": "https://noirel-store.vercel.app/",
-        "github": "https://github.com/ashif-ek/noirel-"
+        "github": "https://github.com/ashif-ek/noirel-ecommerce"
     },
     {
         "id": "2",
