@@ -1,22 +1,15 @@
 # Personal Portfolio Website
 
-<<<<<<< HEAD
 A modern, responsive, and feature-rich personal portfolio website built with React, Vite, and Node.js. Designed to showcase projects, skills, and professional experience with a premium aesthetic and seamless user experience.
-=======
-A modern, responsive, and feature-rich personal portfolio website built with React, Vite Designed to showcase projects, skills, and professional experience with a premium aesthetic and seamless user experience.
->>>>>>> 66af962f25623f3be30adbdbd37e4c4ab3d942fd
 
 ## 🚀 Features
 
 - **Modern UI/UX**: Built with Tailwind CSS v4 and Framer Motion for smooth animations and glassmorphism effects.
-<<<<<<< HEAD
 - **Theme Support**: Fully integrated Dark and Light modes with persistent state.
 - **Admin Dashboard**: Secure admin panel to manage content, view stats, and upload files.
 - **Dynamic Content**: Backend powered by JSON Server with custom middleware for easy content management.
-=======
 - **Admin Dashboard**: Secure admin panel to manage content, view stats, and upload files.
 - **Dynamic Content**: JSON Server for easy content management.
->>>>>>> 66af962f25623f3be30adbdbd37e4c4ab3d942fd
 - **Image Uploads**: Custom file upload functionality with Multer.
 - **Contact Integration**: Formspree integration for contact form submissions.
 - **Responsive Design**: Fully responsive layout optimized for Mobile, Tablet, and Desktop.
@@ -34,13 +27,10 @@ A modern, responsive, and feature-rich personal portfolio website built with Rea
 - **Routing**: [React Router](https://reactrouter.com/)
 
 ### Backend
-<<<<<<< HEAD
 - **Runtime**: Node.js
 - **Server**: [JSON Server](https://github.com/typicode/json-server) (Custom Interface)
 - **File Handling**: [Multer](https://github.com/expressjs/multer)
-=======
 - **Database**: [JSON Server](https://github.com/typicode/json-server)
->>>>>>> 66af962f25623f3be30adbdbd37e4c4ab3d942fd
 
 ## 📦 Installation
 
@@ -97,5 +87,3 @@ The frontend is optimized for deployment on Vercel. Connect your repository and 
 ### Backend (Render)
 The backend is set up for Render. Ensure you set the `Root Directory` to `server` and add the environment variables in the Render dashboard.
 
-## 📄 License
-This project is licensed under the ISC License.
