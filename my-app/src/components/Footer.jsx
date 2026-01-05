@@ -18,8 +18,9 @@ const Footer = () => {
     { name: 'LinkedIn', icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/ashifek/', color: 'hover:text-blue-500' },
     { name: 'whatsapp', icon: 'fab fa-whatsapp', url: 'https://9037499763/', color: 'hover:text-blue-400' },
     { name: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/Ashif-ek', color: 'hover:text-gray-300' },
-    { name: 'Email', icon: 'fas fa-envelope', url: '#', color: 'hover:text-red-400' },
-    { name: 'Email', icon: 'fab fa-instagram', url: 'https://www.instagram.com/ashif.io', color: 'hover:text-red-400' },
+    { name: 'Instagram', icon: 'fab fa-instagram', url: 'https://www.instagram.com/ashif.io', color: 'hover:text-pink-500' },
+    { name: 'Fiverr', icon: 'fas fa-briefcase', url: 'http://www.fiverr.com/s/gDLy45X', color: 'hover:text-green-500' },
+    { name: 'Docs Material', icon: 'fas fa-book', url: 'https://ashif-ek.github.io/docs-stack-material/', color: 'hover:text-yellow-500' },
   ];
 
   const quickLinks = [

@@ -13,12 +13,16 @@ export const profile = {
             "url": "https://linkedin.com/in/ashifek"
         },
         {
-            "name": "Twitter",
-            "url": "https://twitter.com/your-username"
-        },
-        {
             "name": "Instagram",
             "url": "https://instagram.com/ashif.io"
+        },
+        {
+            "name": "Fiverr",
+            "url": "http://www.fiverr.com/s/gDLy45X"
+        },
+        {
+            "name": "Docs Material",
+            "url": "https://ashif-ek.github.io/docs-stack-material/"
         }
     ]
 };

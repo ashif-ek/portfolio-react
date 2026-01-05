@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaBook } from 'react-icons/fa';
+import { SiFiverr } from 'react-icons/si';
 import { profile as profileData } from '../data/mockData';
 import Api from './Api';
 
 const iconMap = {
   Github: FaGithub,
   LinkedIn: FaLinkedin,
-  Twitter: FaTwitter,
   Instagram: FaInstagram,
+  Fiverr: SiFiverr,
+  "Docs Material": FaBook,
 };
 
 const SocialLinks = ({ links = [] }) => {

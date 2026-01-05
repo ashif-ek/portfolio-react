@@ -1,81 +1,131 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!--Manifest & PWA Setup -->
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="application-name" content="Ashif Portfolio" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <!-- Essential Meta -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="theme-color" content="#1a1a1a" />
+<head>
+  <!--Manifest & PWA Setup -->
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="application-name" content="Ashif Portfolio" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <!-- Primary SEO -->
-    <title>Ashif E.K | Digital Architect & Software Engineer | React & Django Portfolio</title>
-    <meta name="description" content="Ashif E.K – Digital Architect & Software Engineer specializing in React, Django, and modern web solutions. Explore projects, skills, and achievements." />
-    <meta name="keywords" content="Ashif E.K, Portfolio, React, Django, Web Development, Software Engineer, Digital Architect" />
-    <meta name="author" content="Ashif E.K" />
+  <!-- Essential Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#1a1a1a" />
 
-    <!--Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Ashif E.K | Digital Architect & Software Engineer" />
-    <meta property="og:description" content="Explore Ashif E.K's portfolio – React & Django expert creating modern web solutions." />
-    <meta property="og:url" content="https://ashif-ek.vercel.app/" />
-    <meta property="og:image" content="https://ashif-ek.vercel.app/social-preview.png" />
-    <meta property="og:site_name" content="Ashif E.K Portfolio" />
+  <!-- Primary SEO -->
+  <title>Ashif E.K | Digital Architect & Software Engineer | React & Django Portfolio</title>
+  <meta name="description"
+    content="Ashif E.K – Digital Architect & Software Engineer specializing in React, Django, and modern web solutions. Explore projects, skills, and achievements." />
+  <meta name="keywords"
+    content="Ashif E.K, Portfolio, React, Django, Web Development, Software Engineer, Digital Architect" />
+  <meta name="author" content="Ashif E.K" />
 
-    <!--X (formerly Twitter) Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ashif E.K | Digital Architect & Software Engineer" />
-    <meta name="twitter:description" content="Portfolio of Ashif E.K – React & Django expert creating modern web solutions." />
-    <meta name="twitter:image" content="https://ashif-ek.vercel.app/social-preview.png" />
+  <!--Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ashif E.K | Digital Architect & Software Engineer" />
+  <meta property="og:description"
+    content="Explore Ashif E.K's portfolio – React & Django expert creating modern web solutions." />
+  <meta property="og:url" content="https://ashif-ek.vercel.app/" />
+  <meta property="og:image" content="https://ashif-ek.vercel.app/social-preview.png" />
+  <meta property="og:site_name" content="Ashif E.K Portfolio" />
 
-    <!--Fonts Optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
-<link rel="preconnect" href="https://portfolio-server-35.onrender.com">
-    <!--Inline Critical CSS -->
-    <style>
-      body {
-        margin: 0;
-        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        background: #0f0f0f;
-        color: #fafafa;
-        overflow-x: hidden;
-      }
-    </style>
+  <!--X (formerly Twitter) Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ashif E.K | Digital Architect & Software Engineer" />
+  <meta name="twitter:description"
+    content="Portfolio of Ashif E.K – React & Django expert creating modern web solutions." />
+  <meta name="twitter:image" content="https://ashif-ek.vercel.app/social-preview.png" />
 
-    <!-- Preload Main Bundle -->
-    <link rel="preload" href="/src/main.jsx" as="script" />
+  <!--Fonts Optimization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"
+    media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  </noscript>
+  <link rel="preconnect" href="https://portfolio-server-35.onrender.com">
+  <!--Inline Critical CSS -->
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fafafa;
+      overflow-x: hidden;
+    }
+  </style>
 
-    <!--Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
+  <!-- Preload Main Bundle -->
+  <link rel="modulepreload" href="/src/main.jsx" />
+
+  <!--Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ashif E.K",
-        "jobTitle": "Digital Architect & Software Engineer",
-        "url": "https://ashif-ek.vercel.app/",
-        "image": "https://ashif-ek.vercel.app/profile.jpg",
-        "sameAs": [
-          "https://github.com/ashif-ek",
-          "https://www.linkedin.com/in/ashifek/"
-        ],
-        "knowsAbout": ["React", "Django", "JavaScript", "Web Development", "UI/UX"]
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://ashif-ek.vercel.app/#person",
+            "name": "Ashif E.K",
+            "jobTitle": "Digital Architect & Software Engineer",
+            "description": "I specialize in React, Django, Redux, javascript, html css tailwind to building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
+            "url": "https://ashif-ek.vercel.app/",
+            "image": "https://ashif-ek.vercel.app/profile.jpg",
+            "sameAs": [
+              "https://github.com/ashif-ek",
+              "https://linkedin.com/in/ashifek",
+              "https://instagram.com/ashif.io",
+              "http://www.fiverr.com/s/gDLy45X",
+              "https://ashif-ek.github.io/docs-stack-material/"
+            ],
+            "knowsAbout": ["React", "Django", "JavaScript", "Web Development", "UI/UX", "Redux", "Tailwind CSS", "HTML5", "CSS3", "Flutter", "Cybersecurity"],
+            "alumniOf": {
+                "@type": "CollegeOrUniversity",
+                "name": "University of Calicut"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://ashif-ek.vercel.app/#website",
+            "url": "https://ashif-ek.vercel.app/",
+            "name": "Ashif E.K Portfolio",
+            "description": "Digital Architect & Software Engineer specializing in React, Django, and modern web solutions.",
+            "publisher": {
+              "@id": "https://ashif-ek.vercel.app/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://ashif-ek.vercel.app/#service",
+            "url": "https://ashif-ek.vercel.app/",
+            "name": "Ashif E.K - Digital Architect",
+            "description": "Professional web development, architectural design, and software engineering services.",
+            "priceRange": "$$",
+            "image": "https://ashif-ek.vercel.app/profile.jpg",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+            },
+             "founder": {
+              "@id": "https://ashif-ek.vercel.app/#person"
+            }
+          }
+        ]
       }
     </script>
-  </head>
+</head>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx" defer></script>
-  </body>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx" defer></script>
+</body>
+
 </html>
