@@ -17,7 +17,8 @@ export default defineConfig({
         'favicon-96x96.png',
         'web-app-manifest-192x192.png',
         'web-app-manifest-512x512.png',
-        'sitemap.xml'
+        'sitemap.xml',
+        'robots.txt'
       ],
 
       manifest: {
@@ -56,6 +57,7 @@ export default defineConfig({
 
         // SPA fallback
         navigateFallback: '/index.html',
+        navigateFallbackDenylist: [/^\/robots.txt$/, /^\/sitemap.xml$/],
 
         runtimeCaching: [
           {

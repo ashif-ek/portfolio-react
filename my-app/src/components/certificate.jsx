@@ -126,8 +126,16 @@ const Certificates = () => {
             >
               {/* Image Section - Now clickable for modal */}
               <div
-                className="relative h-44 overflow-hidden cursor-pointer"
+                className="relative h-44 overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 onClick={() => setSelectedImage(certificateImages[cert.id])}
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${cert.title} certificate`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setSelectedImage(certificateImages[cert.id]);
+                  }
+                }}
               >
                 <LazyImage
                   src={certificateImages[cert.id]}

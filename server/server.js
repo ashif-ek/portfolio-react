@@ -10,13 +10,24 @@ const server = express();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
 
-// Use CORS to allow cross-origin requests
+// --------------------
+// Global Middlewares
+// --------------------
 server.use(cors());
-server.use(express.static(path.join(__dirname, 'public')));
+server.use(express.static(path.join(__dirname, "public")));
 server.use(middlewares);
 server.use(express.json());
 
-// --- Authentication Endpoint ---
+// --------------------
+// Health Check (uptime / cold-start mitigation)
+// --------------------
+server.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
+// --------------------
+// Authentication Endpoint
+// --------------------
 server.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -30,21 +41,29 @@ server.post("/login", (req, res) => {
   return res.status(401).json({ error: "Invalid credentials" });
 });
 
-// --- Auth Middleware ---
+// --------------------
+// Auth Middleware
+// --------------------
 server.use((req, res, next) => {
-  if (req.method === 'GET' || req.originalUrl === '/login' || req.originalUrl.startsWith('/uploads')) {
+  if (
+    req.method === "GET" ||
+    req.originalUrl === "/login" ||
+    req.originalUrl.startsWith("/uploads")
+  ) {
     return next();
   }
 
   const authHeader = req.headers.authorization;
-  if (!authHeader || authHeader !== 'Bearer admin-session-token') {
+  if (!authHeader || authHeader !== "Bearer admin-session-token") {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
   next();
 });
 
-// --- File Upload Configuration ---
+// --------------------
+// File Upload Configuration
+// --------------------
 const uploadDir = path.join(__dirname, "../my-app/public/uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -55,30 +74,160 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    // Sanitize filename and append simple timestamp to avoid collisions
-    const safeName = file.originalname.replace(/[^a-z0-9.]/gi, '_').toLowerCase();
+    const safeName = file.originalname
+      .replace(/[^a-z0-9.]/gi, "_")
+      .toLowerCase();
     cb(null, `${Date.now()}-${safeName}`);
-  }
+  },
 });
-const upload = multer({ storage: storage });
 
-// --- Upload Endpoint ---
+const upload = multer({ storage });
+
+// --------------------
+// Upload Endpoint
+// --------------------
 server.post("/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }
-  // Return the path relative to the React public directory
+
   res.json({
     url: `/uploads/${req.file.filename}`,
-    filename: req.file.filename
+    filename: req.file.filename,
   });
 });
 
-
-// Use the json-server router
+// --------------------
+// JSON Server Router
+// --------------------
 server.use(router);
 
+// --------------------
+// Server Start
+// --------------------
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`JSON Server is running on port ${PORT}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const jsonServer = require("json-server");
+// const express = require("express");
+// const cors = require("cors");
+// const path = require("path");
+// const multer = require("multer");
+// const fs = require("fs");
+// require("dotenv").config(); // Load environment variables
+
+// const server = express();
+// const router = jsonServer.router(path.join(__dirname, "db.json"));
+// const middlewares = jsonServer.defaults();
+
+// // Use CORS to allow cross-origin requests
+// server.use(cors());
+// server.use(express.static(path.join(__dirname, 'public')));
+// server.use(middlewares);
+// server.use(express.json());
+
+// // --- Authentication Endpoint ---
+// server.post("/login", (req, res) => {
+//   const { username, password } = req.body;
+
+//   if (
+//     username === process.env.ADMIN_USERNAME &&
+//     password === process.env.ADMIN_PASSWORD
+//   ) {
+//     return res.json({ success: true, token: "admin-session-token" });
+//   }
+
+//   return res.status(401).json({ error: "Invalid credentials" });
+// });
+
+// // --- Auth Middleware ---
+// server.use((req, res, next) => {
+//   if (req.method === 'GET' || req.originalUrl === '/login' || req.originalUrl.startsWith('/uploads')) {
+//     return next();
+//   }
+
+//   const authHeader = req.headers.authorization;
+//   if (!authHeader || authHeader !== 'Bearer admin-session-token') {
+//     return res.status(401).json({ error: "Unauthorized" });
+//   }
+
+//   next();
+// });
+
+// // --- File Upload Configuration ---
+// const uploadDir = path.join(__dirname, "../my-app/public/uploads");
+// if (!fs.existsSync(uploadDir)) {
+//   fs.mkdirSync(uploadDir, { recursive: true });
+// }
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, uploadDir);
+//   },
+//   filename: (req, file, cb) => {
+//     // Sanitize filename and append simple timestamp to avoid collisions
+//     const safeName = file.originalname.replace(/[^a-z0-9.]/gi, '_').toLowerCase();
+//     cb(null, `${Date.now()}-${safeName}`);
+//   }
+// });
+// const upload = multer({ storage: storage });
+
+// // --- Upload Endpoint ---
+// server.post("/upload", upload.single("image"), (req, res) => {
+//   if (!req.file) {
+//     return res.status(400).json({ error: "No file uploaded" });
+//   }
+//   // Return the path relative to the React public directory
+//   res.json({
+//     url: `/uploads/${req.file.filename}`,
+//     filename: req.file.filename
+//   });
+// });
+
+
+// // Use the json-server router
+// server.use(router);
+
+// const PORT = process.env.PORT || 5000;
+// server.listen(PORT, () => {
+//   console.log(`JSON Server is running on port ${PORT}`);
+// });
