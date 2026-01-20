@@ -20,8 +20,10 @@ export const AuthProvider = ({ children }) => {
       
       if (res.data.success) {
         setIsAdmin(true);
-        // Optionally store token here if implementing real sessions: 
-        // sessionStorage.setItem('token', res.data.token);
+        // Store token for API interceptor
+        if (res.data.token) {
+          sessionStorage.setItem('token', res.data.token);
+        }
         return true;
       }
     } catch (err) {

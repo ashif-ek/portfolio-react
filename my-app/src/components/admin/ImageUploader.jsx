@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Upload, X, Check, Image as ImageIcon } from 'lucide-react';
-import Api from '../Api'; // Assuming Api.js is in src/components/
+import Api, { BASE_URL } from '../Api'; // Assuming Api.js is in src/components/
 
 const ImageUploader = ({ onUploadSuccess, initialImage }) => {
     const [uploading, setUploading] = useState(false);
@@ -53,7 +53,7 @@ const ImageUploader = ({ onUploadSuccess, initialImage }) => {
                 <div className="relative w-24 h-24 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center overflow-hidden shrink-0">
                     {preview ? (
                         <img 
-                            src={preview.startsWith('blob:') ? preview : `/uploads/${preview}`} 
+                            src={preview.startsWith('blob:') ? preview : `${BASE_URL}/uploads/${preview}`} 
                             alt="Preview" 
                             className="w-full h-full object-cover"
                             onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/100x100?text=No+Img"; }}

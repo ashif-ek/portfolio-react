@@ -30,6 +30,20 @@ server.post("/login", (req, res) => {
   return res.status(401).json({ error: "Invalid credentials" });
 });
 
+// --- Auth Middleware ---
+server.use((req, res, next) => {
+  if (req.method === 'GET' || req.originalUrl === '/login' || req.originalUrl.startsWith('/uploads')) {
+    return next();
+  }
+
+  const authHeader = req.headers.authorization;
+  if (!authHeader || authHeader !== 'Bearer admin-session-token') {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  next();
+});
+
 // --- File Upload Configuration ---
 const uploadDir = path.join(__dirname, "../my-app/public/uploads");
 if (!fs.existsSync(uploadDir)) {

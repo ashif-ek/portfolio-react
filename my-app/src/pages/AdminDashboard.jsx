@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { FiEdit, FiTrash2, FiPlus, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
 import { LayoutDashboard, FileText, Briefcase, Award, Settings, Inbox, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import Api from '../components/Api';
+import Api, { BASE_URL } from '../components/Api';
 import Sidebar from '../components/admin/Sidebar';
 import StatsCard from '../components/admin/StatsCard';
 import ImageUploader from '../components/admin/ImageUploader';
@@ -351,7 +351,7 @@ const AdminDashboard = () => {
                     <div className="p-8 text-center">
                         <div className="inline-block p-4 rounded-full bg-cyan-50 text-cyan-500 mb-4 overflow-hidden relative w-32 h-32">
                              {data[activeTab].avatar ? (
-                                <img src={`http://localhost:5000/uploads/${data[activeTab].avatar}`} alt="Profile" className="w-full h-full object-cover" />
+                                <img src={`${BASE_URL}/uploads/${data[activeTab].avatar}`} alt="Profile" className="w-full h-full object-cover" />
                              ) : (
                                 <User size={48} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                              )}

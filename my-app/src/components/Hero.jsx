@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaInstagram, FaBook } from 'react-icons/fa';
 import { SiFiverr } from 'react-icons/si';
 import { profile as profileData } from '../data/mockData';
-import Api from './Api';
+import Api, { BASE_URL } from './Api';
+import LazyImage from './LazyImage';
 
 const iconMap = {
   Github: FaGithub,
@@ -82,8 +83,8 @@ const Hero = () => {
         >
             {profile.avatar && (
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gray-800 overflow-hidden shadow-2xl mx-auto">
-                     <img 
-                        src={`http://localhost:5000/uploads/${profile.avatar}`} 
+                     <LazyImage 
+                        src={`${BASE_URL}/uploads/${profile.avatar}`} 
                         alt={name} 
                         className="w-full h-full object-cover"
                      />
