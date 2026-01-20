@@ -5,16 +5,12 @@ export const profile = {
     "email": "ashifek11@gmail.com",
     "socialLinks": [
         {
-            "name": "Github",
-            "url": "https://github.com/ashif-ek"
-        },
-        {
             "name": "LinkedIn",
             "url": "https://linkedin.com/in/ashifek"
         },
         {
-            "name": "Instagram",
-            "url": "https://instagram.com/ashif.io"
+            "name": "Github",
+            "url": "https://github.com/ashif-ek"
         },
         {
             "name": "Fiverr",

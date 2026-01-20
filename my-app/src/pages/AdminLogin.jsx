@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { User, Lock, House, LoaderCircle } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import SEO from "../components/SEO";
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
@@ -30,6 +31,7 @@ export default function AdminLogin() {
   return (
     // DESIGN: A neutral, off-white background creates a calm and focused environment.
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-50 p-4 font-sans">
+      <SEO title="Admin Login" noIndex />
       <Link
         to="/"
         className="absolute top-6 left-6 text-gray-400 hover:text-blue-600 transition-colors"

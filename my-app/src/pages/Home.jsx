@@ -11,7 +11,47 @@ import Contact from "../components/Contacts";
 import BlogSection from "../components/BlogSection";
 import Api from "../components/Api";
 
+import SEO from "../components/SEO";
+
 export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://ashif-ek.vercel.app/#person",
+        "name": "Ashif E.K",
+        "jobTitle": "Digital Architect & Software Engineer",
+        "description": "I specialize in React, Django, Redux, javascript, HTML CSS tailwind to building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
+        "url": "https://ashif-ek.vercel.app/",
+        "image": "https://ashif-ek.vercel.app/profile.jpg",
+        "sameAs": [
+          "https://github.com/ashif-ek",
+          "https://linkedin.com/in/ashifek",
+          "https://instagram.com/ashif.io",
+          "http://www.fiverr.com/s/gDLy45X",
+          "https://ashif-ek.github.io/docs-stack-material/"
+        ],
+        "knowsAbout": ["React", "Django", "JavaScript", "Web Development", "UI/UX", "Redux", "Tailwind CSS", "HTML5", "CSS3", "Flutter", "Cybersecurity"],
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Calicut"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ashif-ek.vercel.app/#website",
+        "url": "https://ashif-ek.vercel.app/",
+        "name": "Ashif E.K Portfolio",
+        "description": "Digital Architect & Software Engineer specializing in React, Django, and modern web solutions.",
+        "publisher": {
+          "@id": "https://ashif-ek.vercel.app/#person"
+        },
+        "inLanguage": "en-US"
+      }
+    ]
+  };
+
   const [settings, setSettings] = useState({
     showBlog: true,
     showSkills: true,
@@ -48,6 +88,7 @@ export default function Home() {
 
   return (
     <>
+      <SEO structuredData={structuredData} />
       <Hero />
       <About />
       {settings.showBlog && <BlogSection/>}
