@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { certificates as mockCertificates } from '../data/mockData';
 import Api from './Api';
 
-import cert1 from "../assets/certificates/image.png";
-import cert2 from "../assets/certificates/django.png";
-import cert3 from "../assets/certificates/ccsa.jpg";
-import cert4 from '../assets/certificates/image.png';
-import cert5 from "../assets/certificates/prosevo.jpg";
+import cert1 from "../assets/certificates/image.webp";
+import cert2 from "../assets/certificates/django.webp";
+import cert3 from "../assets/certificates/ccsa.webp";
+import cert4 from '../assets/certificates/image.webp';
+import cert5 from "../assets/certificates/prosevo.webp";
 // import LoadingSpinner from "./LoadingSpinner"; // <-- REMOVED
 import LazyImage from "./LazyImage";
 

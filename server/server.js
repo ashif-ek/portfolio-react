@@ -14,7 +14,8 @@ const middlewares = jsonServer.defaults();
 // Global Middlewares
 // --------------------
 server.use(cors());
-server.use(express.static(path.join(__dirname, "public")));
+// Serve static files from the React app build directory
+server.use(express.static(path.join(__dirname, "../my-app/dist")));
 server.use(middlewares);
 server.use(express.json());
 
@@ -100,7 +101,19 @@ server.post("/upload", upload.single("image"), (req, res) => {
 // --------------------
 // JSON Server Router
 // --------------------
-server.use(router);
+// --------------------
+// JSON Server Router
+// --------------------
+server.use("/api", router); // Mount JSON Server under /api to avoid conflict with static files
+
+// --------------------
+// SPA Fallback
+// --------------------
+// Handle React routing, return all requests to React app
+server.get("*", (req, res) => {
+  if (req.originalUrl.startsWith("/api")) return res.status(404).json({ error: "API endpoint not found" }); // Don't serve HTML for missing API calls
+  res.sendFile(path.join(__dirname, "../my-app/dist", "index.html"));
+});
 
 // --------------------
 // Server Start

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 // Import project images locally to ensure they are always available.
-import project1 from '../assets/projects/project1.png';
-import project2 from '../assets/projects/project2.jpg';
-import project3 from '../assets/projects/project3.jpg';
-import project4 from '../assets/projects/project4.jpg';
+import project1 from '../assets/projects/project1.webp';
+import project2 from '../assets/projects/project2.webp';
+import project3 from '../assets/projects/project3.webp';
+import project4 from '../assets/projects/project4.webp';
 import { projects as mockProjects } from '../data/mockData';
 import Api from './Api';
 // import LoadingSpinner from './LoadingSpinner'; // No longer needed
@@ -110,7 +110,7 @@ const Projects = () => {
               {/* Project content */}
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{project.title}</h3>
-                <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
+                <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span 

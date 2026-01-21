@@ -87,6 +87,7 @@ const Hero = () => {
                         src={`${BASE_URL}/uploads/${profile.avatar}`} 
                         alt={name} 
                         className="w-full h-full object-cover"
+                        priority={true}
                      />
                 </div>
             )}
@@ -95,7 +96,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }} // Reduced delay
         >
           <span className="block text-accent text-sm md:text-base mb-4 tracking-widest font-mono">
             Hello, my name is
@@ -108,7 +109,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
           <h2 className="text-2xl md:text-4xl text-gray-400 mt-4 tracking-wide font-light">
             {title}

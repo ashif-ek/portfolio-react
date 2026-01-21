@@ -63,7 +63,7 @@ const AnimatedCounter = ({ value, label }) => {
 // Main About Component
 const About = () => {
     const [activeTab, setActiveTab] = useState("introduction");
-    const [cardStyle, setCardStyle] = useState({});
+    // const [cardStyle, setCardStyle] = useState({}); // REMOVED
     const [typedText, setTypedText] = useState("");
     
     // Use hybrid data: init with mock, update from API
@@ -89,8 +89,12 @@ const About = () => {
 
 
     // Memoizing event handlers with useCallback
+    // const [cardStyle, setCardStyle] = useState({}); // REMOVED STATE
+    const cardRef = useRef(null);
+
     const handleMouseMove = useCallback((e) => {
-        const { currentTarget: el } = e;
+        if (!cardRef.current) return;
+        const el = cardRef.current;
         const { offsetWidth: width, offsetHeight: height } = el;
         const { clientX, clientY } = e;
         const rect = el.getBoundingClientRect();
@@ -98,17 +102,16 @@ const About = () => {
         const x = (clientX - rect.left - width / 2) / 20;
         const y = (clientY - rect.top - height / 2) / 20;
 
-        setCardStyle({
-            transform: `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg) scale3d(1.05, 1.05, 1.05)`,
-            transition: 'transform 0.1s ease-out'
-        });
+        // Direct DOM Update
+        el.style.transform = `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg) scale3d(1.05, 1.05, 1.05)`;
+        el.style.transition = 'transform 0.1s ease-out';
     }, []);
 
     const handleMouseLeave = useCallback(() => {
-        setCardStyle({
-            transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
-            transition: 'transform 0.5s ease-out'
-        });
+        if (!cardRef.current) return;
+        const el = cardRef.current;
+        el.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+        el.style.transition = 'transform 0.5s ease-out';
     }, []);
     
     // Memoizing tab configuration
@@ -177,8 +180,9 @@ const About = () => {
                     {/* Profile Card */}
                     <div className="md:col-span-2 flex justify-center">
                         <div
+                            ref={cardRef} // Added Ref
                             className="w-64 h-80 rounded-2xl bg-gray-800/40 backdrop-blur-sm border border-gray-700/60 p-4"
-                            style={cardStyle}
+                            // style={cardStyle} // Removed style binding
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
                         >

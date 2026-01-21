@@ -69,16 +69,13 @@ const useMediaQuery = (query) => {
 // --- THIS IS THE MODIFIED COMPONENT ---
 const SkillCard = React.memo(({ skill, isVisible, index }) => {
   const cardRef = useRef(null);
-  const [style, setStyle] = useState({
-    transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-    background: 'transparent'
-  });
-  // --- 1. ADD STATE ---
-  const [isExpanded, setIsExpanded] = useState(false); // <--- ADDED
+  const contentRef = useRef(null);
+  // Separate state for internal expansion logic, keeps interaction responsive but isolated
+  const [isExpanded, setIsExpanded] = useState(false); 
 
   const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    if (!contentRef.current) return;
+    const rect = contentRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
 
@@ -86,23 +83,27 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
     const rotateY = (x / (rect.width / 2)) * maxTilt;
     const rotateX = -(y / (rect.height / 2)) * maxTilt;
 
-    setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`,
-      background: `radial-gradient(circle at ${x + rect.width / 2}px ${y + rect.height / 2}px, rgba(255, 255, 255, 0.1), transparent 50%)`
-    });
+    // Direct DOM manipulation to avoid Re-renders on every pixel move
+    contentRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    // Optional: we can skip the radial gradient update or throttle it if needed, 
+    // but for now let's just do transform which is cheap.
+    // If we want the gradient:
+    const glowDiv = contentRef.current.querySelector('.glow-effect');
+    if (glowDiv) {
+        glowDiv.style.background = `radial-gradient(circle at ${x + rect.width / 2}px ${y + rect.height / 2}px, rgba(255, 255, 255, 0.1), transparent 50%)`;
+    }
   };
 
   const handleMouseLeave = () => {
-    setStyle({
-      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-      background: 'transparent'
-    });
-    // Optional: auto-collapse on mouse leave
-    // setIsExpanded(false); 
+    if (!contentRef.current) return;
+    contentRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    const glowDiv = contentRef.current.querySelector('.glow-effect');
+    if (glowDiv) {
+        glowDiv.style.background = 'transparent';
+    }
   };
 
-  // --- 2. ADD CLICK HANDLER ---
-  const toggleExpand = () => { // <--- ADDED
+  const toggleExpand = () => {
     setIsExpanded(prev => !prev);
   };
 
@@ -118,23 +119,24 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onClick={toggleExpand} // <--- ADDED
-      className="transition-all duration-500 ease-out cursor-pointer" // <--- MODIFIED: Added cursor-pointer
+      onClick={toggleExpand}
+      className="transition-all duration-500 ease-out cursor-pointer"
       style={{
         transitionDelay: `${isVisible ? index * 100 : 0}ms`,
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        transformStyle: 'preserve-3d' // Enable 3D space
+        transformStyle: 'preserve-3d'
       }}
     >
       <div
-        className="h-full bg-neutral-900/70 backdrop-blur-sm border border-neutral-800 rounded-xl p-5 flex flex-col overflow-hidden relative" // overflow-hidden is important for animation
-        style={{ transition: 'transform 0.1s ease-out', transform: style.transform }}
+        ref={contentRef}
+        className="h-full bg-neutral-900/70 backdrop-blur-sm border border-neutral-800 rounded-xl p-5 flex flex-col overflow-hidden relative"
+        style={{ transition: 'transform 0.1s ease-out', transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)' }}
       >
         {/* Dynamic mouse-follow glow */}
         <div
-          className="absolute inset-0 transition-all duration-100 ease-out"
-          style={{ background: style.background }}
+          className="absolute inset-0 transition-all duration-100 ease-out glow-effect"
+          style={{ background: 'transparent' }}
         />
 
         {/* Content: Added flex-grow to push progress bar to bottom */}
@@ -143,13 +145,12 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
             <span style={{ color: skill.color }} className="text-2xl">{iconMap[skill.icon]}</span>
             <span className="text-xl font-semibold text-white">{skill.name}</span>
           </div>
-          {/* --- 3. UPDATE STYLES --- */}
           <p className={`
             text-sm text-gray-400 mb-4
             transition-all duration-300 ease-in-out
             ${isExpanded 
-              ? 'max-h-40 whitespace-normal' // Expands to show text, which will wrap
-              : 'max-h-5 truncate'          // Collapsed (uses max-h-5 which is 1.25rem, same as h-5)
+              ? 'max-h-40 whitespace-normal' 
+              : 'max-h-5 truncate'     
             }
           `}>
             {skill.description}
@@ -182,14 +183,11 @@ const SkillCard = React.memo(({ skill, isVisible, index }) => {
 // --- Reusable UI Component: 3D Interactive ToolCard ---
 const ToolCard = React.memo(({ tool }) => {
   const cardRef = useRef(null);
-  const [style, setStyle] = useState({
-    transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-    background: 'transparent'
-  });
+  const contentRef = useRef(null);
 
   const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    if (!contentRef.current) return;
+    const rect = contentRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
 
@@ -197,17 +195,22 @@ const ToolCard = React.memo(({ tool }) => {
     const rotateY = (x / (rect.width / 2)) * maxTilt;
     const rotateX = -(y / (rect.height / 2)) * maxTilt;
 
-    setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`,
-      background: `radial-gradient(circle at ${x + rect.width / 2}px ${y + rect.height / 2}px, rgba(255, 255, 255, 0.1), transparent 50%)`
-    });
+    contentRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+    
+    // Gradient optimization
+    const glowDiv = contentRef.current.querySelector('.glow-effect');
+    if (glowDiv) {
+        glowDiv.style.background = `radial-gradient(circle at ${x + rect.width / 2}px ${y + rect.height / 2}px, rgba(255, 255, 255, 0.1), transparent 50%)`;
+    }
   };
 
   const handleMouseLeave = () => {
-    setStyle({
-      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-      background: 'transparent'
-    });
+    if (!contentRef.current) return;
+    contentRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    const glowDiv = contentRef.current.querySelector('.glow-effect');
+    if (glowDiv) {
+         glowDiv.style.background = 'transparent';
+    }
   };
 
   return (
@@ -219,12 +222,13 @@ const ToolCard = React.memo(({ tool }) => {
       style={{ transformStyle: 'preserve-3d' }}
     >
       <div
+        ref={contentRef}
         className="w-20 h-20 bg-neutral-900 border border-neutral-800 rounded-xl flex items-center justify-center transition-all duration-300 relative overflow-hidden"
-        style={{ transition: 'transform 0.1s ease-out', transform: style.transform }}
+        style={{ transition: 'transform 0.1s ease-out', transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)' }}
       >
         <div
-          className="absolute inset-0 transition-all duration-100 ease-out"
-          style={{ background: style.background }}
+          className="absolute inset-0 transition-all duration-100 ease-out glow-effect"
+          style={{ background: 'transparent' }}
         />
         <div className="text-4xl text-gray-400 transition-colors group-hover:text-white relative z-10">
           {iconMap[tool.icon]}

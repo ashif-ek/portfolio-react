@@ -16,7 +16,7 @@ const Footer = () => {
 
   const socialLinks = [
     { name: 'LinkedIn', icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/ashifek/', color: 'hover:text-blue-500' },
-    { name: 'whatsapp', icon: 'fab fa-whatsapp', url: 'https://9037499763/', color: 'hover:text-blue-400' },
+    { name: 'whatsapp', icon: 'fab fa-whatsapp', url: 'https://wa.me/919037499763', color: 'hover:text-blue-400' },
     { name: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/Ashif-ek', color: 'hover:text-gray-300' },
     { name: 'Instagram', icon: 'fab fa-instagram', url: 'https://www.instagram.com/ashif.io', color: 'hover:text-pink-500' },
     { name: 'Fiverr', icon: 'fas fa-briefcase', url: 'http://www.fiverr.com/s/gDLy45X', color: 'hover:text-green-500' },
@@ -48,7 +48,7 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
               ashif e.k
             </h3>
-            <p className="text-gray-400 mb-4 leading-relaxed">
+            <p className="text-gray-300 mb-4 leading-relaxed">
               Creating innovative digital experiences with modern technologies and cutting-edge design.
             </p>
             <div className="flex items-center text-gray-500 text-sm">
@@ -65,7 +65,7 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={link.url} 
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 flex items-center group"
+                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-cyan-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {link.name}
@@ -79,13 +79,13 @@ const Footer = () => {
           <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h4 className="text-lg font-semibold text-white mb-4">Get in Touch</h4>
             <ul className="space-y-3">
-              <li className="flex items-center text-gray-400">
+              <li className="flex items-center text-gray-300">
                 <svg className="w-4 h-4 mr-3 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <span>ashifek11@example.com</span>
               </li>
-              <li className="flex items-center text-gray-400">
+              <li className="flex items-center text-gray-300">
                 <svg className="w-4 h-4 mr-3 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -103,7 +103,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href={social.url}
-                  className={`w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 border border-gray-700 transition-all duration-300 ${social.color} hover:border-cyan-500/30 hover:bg-gray-700/50 hover:scale-110`}
+                  className={`w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-300 border border-gray-700 transition-all duration-300 ${social.color} hover:border-cyan-500/30 hover:bg-gray-700/50 hover:scale-110`}
                   aria-label={social.name}
                 >
                   <i className={social.icon}></i>
@@ -112,7 +112,7 @@ const Footer = () => {
             </div>
             
             <div className="mt-4">
-              <p className="text-gray-400 text-sm mb-2">Local Time</p>
+              <p className="text-gray-300 text-sm mb-2">Local Time</p>
               <div className="text-cyan-400 font-mono bg-gray-800/50 py-2 px-4 rounded-lg border border-gray-700">
                 {currentTime.toLocaleTimeString()}
               </div>
