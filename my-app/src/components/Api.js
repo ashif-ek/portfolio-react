@@ -8,9 +8,12 @@ import axios from "axios";
 //   },
 // });
 
-// Production URL (Use for live deployment)
-// Production URL (Use for live deployment)
-export const BASE_URL = "https://portfolio-server-35.onrender.com";
+// Base URL is environment-driven.
+// Example:
+// VITE_API_BASE_URL=http://localhost:5000/api (development)
+// VITE_API_BASE_URL=https://portfolio-server-35.onrender.com (production)
+export const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "https://portfolio-server-35.onrender.com";
 
 const Api = axios.create({
   baseURL: BASE_URL,

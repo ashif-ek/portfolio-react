@@ -24,7 +24,7 @@ export default defineConfig({
       manifest: {
         name: 'Ashif E.K | Portfolio',
         short_name: 'Ashif',
-        description: 'Portfolio of Ashif E.K — React & Django Developer',
+        description: 'Portfolio of Ashif E.K — Full-Stack Engineer focused on production-grade web platforms',
         theme_color: '#000000',
         background_color: '#ffffff',
         display: 'standalone',

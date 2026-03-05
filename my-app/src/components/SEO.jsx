@@ -15,9 +15,9 @@ const SEO = ({
   const siteUrl = 'https://ashif-ek.vercel.app';
   const fullUrl = `${siteUrl}${pathname}`;
   
-  const defaultTitle = 'Ashif E.K | Digital Architect & Software Engineer';
-  const defaultDescription = 'Ashif E.K – Digital Architect & Software Engineer specializing in React, Django, and modern web solutions. Explore projects, skills, and achievements.';
-  const defaultKeywords = 'Ashif E.K, Portfolio, React, Django, Web Development, Software Engineer, Digital Architect';
+  const defaultTitle = 'Ashif E.K | Full-Stack Engineer';
+  const defaultDescription = 'Ashif E.K - Full-Stack Engineer building reliable, production-grade platforms with Django REST Framework, React, PostgreSQL, Docker, and AWS.';
+  const defaultKeywords = 'Ashif E.K, Full-Stack Engineer, Django REST Framework, React, PostgreSQL, Docker, AWS, Portfolio';
   const defaultImage = `${siteUrl}/social-preview.png`; // Ensure this exists or fallback to something valid
 
   const metaTitle = title ? `${title} | Ashif E.K` : defaultTitle;

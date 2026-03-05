@@ -21,8 +21,8 @@ export default function Home() {
         "@type": "Person",
         "@id": "https://ashif-ek.vercel.app/#person",
         "name": "Ashif E.K",
-        "jobTitle": "Digital Architect & Software Engineer",
-        "description": "I specialize in React, Django, Redux, javascript, HTML CSS tailwind to building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
+        "jobTitle": "Full-Stack Engineer",
+        "description": "Full-Stack Engineer focused on building reliable, production-grade web platforms with Django REST Framework, React, PostgreSQL, Docker, and AWS.",
         "url": "https://ashif-ek.vercel.app/",
         "image": "https://ashif-ek.vercel.app/profile.jpg",
         "sameAs": [
@@ -32,10 +32,10 @@ export default function Home() {
           "http://www.fiverr.com/s/gDLy45X",
           "https://ashif-ek.github.io/docs-stack-material/"
         ],
-        "knowsAbout": ["React", "Django", "JavaScript", "Web Development", "UI/UX", "Redux", "Tailwind CSS", "HTML5", "CSS3", "Flutter", "Cybersecurity"],
+        "knowsAbout": ["Django REST Framework", "React", "PostgreSQL", "Docker", "AWS", "JWT Authentication", "RBAC", "CI/CD", "System Design", "Performance Optimization"],
         "alumniOf": {
             "@type": "CollegeOrUniversity",
-            "name": "University of Calicut"
+            "name": "SAFA Arts & Science College"
         }
       },
       {
@@ -43,7 +43,7 @@ export default function Home() {
         "@id": "https://ashif-ek.vercel.app/#website",
         "url": "https://ashif-ek.vercel.app/",
         "name": "Ashif E.K Portfolio",
-        "description": "Digital Architect & Software Engineer specializing in React, Django, and modern web solutions.",
+        "description": "Full-Stack Engineer portfolio focused on production-grade backend and frontend systems.",
         "publisher": {
           "@id": "https://ashif-ek.vercel.app/#person"
         },

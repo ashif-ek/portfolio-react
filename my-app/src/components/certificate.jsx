@@ -5,8 +5,6 @@ import Api from './Api';
 import cert1 from "../assets/certificates/image.webp";
 import cert2 from "../assets/certificates/django.webp";
 import cert3 from "../assets/certificates/ccsa.webp";
-import cert4 from '../assets/certificates/image.webp';
-import cert5 from "../assets/certificates/prosevo.webp";
 // import LoadingSpinner from "./LoadingSpinner"; // <-- REMOVED
 import LazyImage from "./LazyImage";
 
@@ -15,8 +13,6 @@ const certificateImages = {
   1: cert1,
   2: cert2,
   3: cert3,
-  4: cert4,
-  5: cert5,
 };
 
 

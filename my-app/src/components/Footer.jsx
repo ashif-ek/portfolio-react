@@ -17,7 +17,7 @@ const Footer = () => {
   const socialLinks = [
     { name: 'LinkedIn', icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/ashifek/', color: 'hover:text-blue-500' },
     { name: 'whatsapp', icon: 'fab fa-whatsapp', url: 'https://wa.me/919037499763', color: 'hover:text-blue-400' },
-    { name: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/Ashif-ek', color: 'hover:text-gray-300' },
+    { name: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/ashif-ek', color: 'hover:text-gray-300' },
     { name: 'Instagram', icon: 'fab fa-instagram', url: 'https://www.instagram.com/ashif.io', color: 'hover:text-pink-500' },
     { name: 'Fiverr', icon: 'fas fa-briefcase', url: 'http://www.fiverr.com/s/gDLy45X', color: 'hover:text-green-500' },
     { name: 'Docs Material', icon: 'fas fa-book', url: 'https://ashif-ek.github.io/docs-stack-material/', color: 'hover:text-yellow-500' },
@@ -49,7 +49,7 @@ const Footer = () => {
               ashif e.k
             </h3>
             <p className="text-gray-300 mb-4 leading-relaxed">
-              Creating innovative digital experiences with modern technologies and cutting-edge design.
+              Building reliable, production-grade web platforms with secure APIs and scalable architecture.
             </p>
             <div className="flex items-center text-gray-500 text-sm">
               <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
@@ -83,14 +83,14 @@ const Footer = () => {
                 <svg className="w-4 h-4 mr-3 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>ashifek11@example.com</span>
+                <span>ashifek11@gmail.com</span>
               </li>
               <li className="flex items-center text-gray-300">
                 <svg className="w-4 h-4 mr-3 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span>Based on world wide</span>
+                <span>Kerala, India</span>
               </li>
             </ul>
           </div>

@@ -1,7 +1,7 @@
 export const profile = {
     "name": "Ashif E.K",
-    "title": "Digital Architect & Software Engineer",
-    "description": "I specialize in React, Django, Redux, javascript, html css tailwind to building secure, scalable, and high-performance applications that solve complex problems and deliver exceptional user experiences.",
+    "title": "Full-Stack Engineer",
+    "description": "Full-Stack Engineer focused on building reliable, production-grade web platforms with Django REST Framework, React, PostgreSQL, Docker, and AWS. I design secure APIs, scalable backend systems, and high-performance applications with CI/CD automation and production-first reliability.",
     "email": "ashifek11@gmail.com",
     "socialLinks": [
         {
@@ -26,26 +26,108 @@ export const profile = {
 export const about = [
     {
         "id": "1",
-        "introduction": "I’m a Computer Science graduate and passionate programmer, currently mastering JavaScript and React as a strong foundation for my ultimate goal of becoming highly proficient in Django.",
-        "experience": "Through academic and personal projects, I’ve worked across diverse technologies. I have built cross-platform web and mobile applications using Django and Flutter, while also gaining experience with HTML, CSS, JavaScript, and React. My projects have strengthened not only my technical skills but also my understanding of core software principles like planning, problem-solving, and delivering a better user experience.",
-        "philosophy": "Earlier, I was interested in cybersecurity, but after my final-year project, I realized that as developers, we have the power to change, contribute, and create a tangible impact on the world through technology. This drives my passion for building meaningful applications.",
+        "introduction": "I am a Full-Stack Engineer from Kerala, India, focused on building secure and scalable web platforms with Django REST Framework and React.",
+        "experience": "Since October 2024, I have delivered production-focused systems across two roles: Project Intern at Regional Technologies (Oct 2024 - Mar 2025) and Full Stack Developer at Bridgeon (May 2025 - Present). My work includes modular API design, JWT and RBAC-based security, payment workflows, dashboard development, and cloud deployment with CI/CD.",
+        "philosophy": "I build software for real production conditions. My engineering focus is reliability, clean architecture, performance optimization, and operational safety so applications behave correctly at scale.",
         "stats": {
-            "projects": 10,
-            "certificates": 4,
-            "technologies": 5
+            "projects": 3,
+            "certificates": 3,
+            "technologies": 10
         }
     }
 ];
 
 export const skills = [
-    { "id": 1, "name": "Django", "level": 95, "category": "Technology", "color": "#44B78B", "icon": "PythonIcon", "description": "Building scalable REST APIs and full-stack web applications." },
-    { "id": 2, "name": "JavaScript", "level": 90, "category": "Technology", "color": "#F7DF1E", "icon": "JSIcon", "description": "ES6+, async/await, and modern JS patterns for interactivity." },
-    { "id": 3, "name": "React", "level": 90, "category": "Technology", "color": "#61DAFB", "icon": "ReactIcon", "description": "Component-based architecture, Hooks, and state management." },
-    { "id": 4, "name": "Flutter", "level": 80, "category": "Technology", "color": "#027DFD", "icon": "MobileIcon", "description": "Cross-platform mobile development for iOS and Android." },
-    { "id": 5, "name": "Agile Dev", "level": 95, "category": "Methodology", "color": "#F05032", "icon": "AgileIcon", "description": "Working in sprints, stand-ups, and iterative development cycles." },
-    { "id": 6, "name": "Cybersecurity", "level": 85, "category": "Methodology", "color": "#00A86B", "icon": "ShieldIcon", "description": "Vulnerability assessment, penetration testing, and secure coding." },
-    { "id": 7, "name": "Team Leadership", "level": 98, "category": "Leadership", "color": "#A855F7", "icon": "BriefcaseIcon", "description": "Mentoring junior developers and leading project teams." },
-    { "id": 8, "name": "Strategic Planning", "level": 92, "category": "Leadership", "color": "#EC4899", "icon": "PencilRulerIcon", "description": "Defining project roadmaps, architecture, and feature prioritization." }
+    {
+        "id": 1,
+        "name": "Django REST Framework",
+        "level": 95,
+        "category": "Technology",
+        "color": "#44B78B",
+        "icon": "PythonIcon",
+        "description": "Designing secure, modular REST APIs for production-grade backend systems."
+    },
+    {
+        "id": 2,
+        "name": "React.js",
+        "level": 92,
+        "category": "Technology",
+        "color": "#61DAFB",
+        "icon": "ReactIcon",
+        "description": "Building responsive frontend applications with reusable components and API-first state flows."
+    },
+    {
+        "id": 3,
+        "name": "PostgreSQL",
+        "level": 90,
+        "category": "Technology",
+        "color": "#336791",
+        "icon": "CodeIcon",
+        "description": "Modeling relational data and optimizing queries for scalable backend performance."
+    },
+    {
+        "id": 4,
+        "name": "Docker",
+        "level": 88,
+        "category": "Technology",
+        "color": "#2496ED",
+        "icon": "DockerIcon",
+        "description": "Containerizing services for environment parity across development, staging, and production."
+    },
+    {
+        "id": 5,
+        "name": "AWS (EC2, RDS, S3)",
+        "level": 88,
+        "category": "Technology",
+        "color": "#FF9900",
+        "icon": "CodeIcon",
+        "description": "Deploying and operating web applications on cloud infrastructure with production readiness."
+    },
+    {
+        "id": 6,
+        "name": "API Security (JWT, RBAC)",
+        "level": 90,
+        "category": "Methodology",
+        "color": "#00A86B",
+        "icon": "ShieldIcon",
+        "description": "Implementing layered authentication and role-based access control for secure endpoints."
+    },
+    {
+        "id": 7,
+        "name": "CI/CD with GitHub Actions",
+        "level": 87,
+        "category": "Methodology",
+        "color": "#F05032",
+        "icon": "GitIcon",
+        "description": "Automating build, validation, and deployment workflows for consistent releases."
+    },
+    {
+        "id": 8,
+        "name": "Performance Optimization",
+        "level": 89,
+        "category": "Methodology",
+        "color": "#3B82F6",
+        "icon": "AgileIcon",
+        "description": "Improving latency with query tuning, efficient state updates, and request optimization."
+    },
+    {
+        "id": 9,
+        "name": "Scalable System Design",
+        "level": 86,
+        "category": "Leadership",
+        "color": "#A855F7",
+        "icon": "BriefcaseIcon",
+        "description": "Designing modular service-oriented architecture for long-term growth and maintainability."
+    },
+    {
+        "id": 10,
+        "name": "Production Reliability",
+        "level": 85,
+        "category": "Leadership",
+        "color": "#EC4899",
+        "icon": "PencilRulerIcon",
+        "description": "Engineering around failure recovery, idempotency, and operational constraints in real deployments."
+    }
 ];
 
 export const tools = [
@@ -56,53 +138,57 @@ export const tools = [
     },
     {
         "id": "2",
-        "name": "Pycharm",
-        "icon": "PycharmIcon"
+        "name": "Docker",
+        "icon": "DockerIcon"
     },
     {
         "id": "3",
-        "name": "Tailwind CSS",
-        "icon": "TailwindIcon"
+        "name": "GitHub",
+        "icon": "GitIcon"
     },
     {
         "id": "4",
-        "name": "MySQL",
-        "icon": "DatabaseIcon"
+        "name": "React",
+        "icon": "ReactIcon"
     },
     {
         "id": "5",
-        "name": "Bootstarp",
-        "icon": "BootstrapIcon"
+        "name": "Python",
+        "icon": "PythonIcon"
     },
     {
         "id": "6",
-        "name": "Git",
-        "icon": "GitIcon"
+        "name": "Jira",
+        "icon": "JiraIcon"
     }
 ];
 
 export const projects = [
     {
         "id": "1",
-        "title": "Ecommerce LUXURY PERFUME ",
-        "description": "A luxury e-commerce perfume store featuring an elegant, user-friendly design and seamless shopping experience to ensure performance, scalability, and refined aesthetics.",
+        "title": "NOIR'EL - Luxury E-Commerce Platform (Production)",
+        "description": "Built a full-stack e-commerce platform using React and Django REST Framework covering the complete order lifecycle from browsing to secure payment confirmation, with JWT auth, admin controls, and resilient Razorpay workflows.",
         "tags": [
             "React",
-            "JSON"
+            "Django REST Framework",
+            "PostgreSQL",
+            "Razorpay",
+            "AWS"
         ],
         "image": "project1.jpg",
-        "link": "https://noirel-store.vercel.app/",
+        "link": "https://noirel-perfume.vercel.app/",
         "github": "https://github.com/ashif-ek/noirel-ecommerce"
     },
     {
         "id": "2",
-        "title": "CiviTech digital governance platform(cross-platform)",
-        "description": "A community governance platform with modules for Admin, Users, Panchayath, and HighAuthority. Handles services, complaints, ratings, voting, image feeds, and analytics.",
+        "title": "Civic (CiviTech) - Cross-Platform Digital Governance Platform",
+        "description": "Developed a multi-role civic platform connecting citizens with Panchayath and higher administrative authorities, including complaint escalation, service tracking, announcements, moderation, analytics, and citizen engagement features.",
         "tags": [
-            "Django Backend",
+            "Django",
             "Flutter",
-            "SQL",
-            "HTML/CSS/JS"
+            "REST API",
+            "RBAC",
+            "PostgreSQL"
         ],
         "image": "project2.jpg",
         "link": "#",
@@ -110,29 +196,16 @@ export const projects = [
     },
     {
         "id": "3",
-        "title": "Blog",
-        "description": "A clean, responsive personal blog inspired by Medium, built using Django for the backend and HTML/CSS for the frontend. It supports user-friendly content display, SEO-friendly structure, dynamic post rendering, and a minimalistic, distraction-free reading experience.",
+        "title": "Blog System Design Sandbox (AWS Deployed)",
+        "description": "Built a full-stack blogging sandbox to test production backend patterns, including access/refresh JWT separation, token invalidation, request validation, structured logging, health checks, and Dockerized deployment pipelines.",
         "tags": [
-            "Django",
-            "JavaScript",
-            "CSS",
-            "HTML",
-            "Chart.js"
+            "React",
+            "Django REST Framework",
+            "Docker",
+            "GitHub Actions",
+            "AWS"
         ],
         "image": "project3.jpg",
-        "link": "#",
-        "github": "#"
-    },
-    {
-        "id": "4",
-        "title": "News Feed App",
-        "description": "A modern Flutter-based mobile application that fetches real-time news from an online API. It features a clean UI with scrollable news feeds, article descriptions, and category-based filtering for a personalized reading experience. Optimized for performance.",
-        "tags": [
-            "Flutter",
-            "REST API",
-            "SQL"
-        ],
-        "image": "project4.jpg",
         "link": "#",
         "github": "#"
     }
@@ -141,56 +214,35 @@ export const projects = [
 export const certificates = [
     {
         "id": "1",
-        "title": "Bachelors of Computer Applications",
-        "issuer": "University of Calicut",
-        "date": "2022-2025",
+        "title": "Bachelor of Computer Applications (BCA)",
+        "issuer": "SAFA Arts & Science College",
+        "date": "Aug 2022 - Apr 2025",
         "category": "Degree",
         "image": "bca.jpg",
         "credentialLink": "#",
-        "description": "Gained knowledge in C, Data Structures, Java, Python, Networks, DBMS, Microprocessor, Computer Architecture, Linux shell script."
+        "description": "Completed undergraduate studies in computer applications with strong foundations in software development and computing fundamentals."
     },
     {
         "id": "2",
-        "title": "Django and Flutter",
-        "issuer": "Regional Technologies Calicut",
-        "date": "2024-2025",
+        "title": "Python Django & Flutter Certification",
+        "issuer": "Regional Technologies",
+        "date": "2025",
         "category": "Web",
-        "image": "ccsa.jpg",
+        "image": "django.jpg",
         "credentialLink": "#",
-        "description": "Built complete web and app solutions using Python Django as backend and HTML, CSS, JavaScript for web frontend; Dart Flutter for application frontend."
+        "description": "Completed hands-on training in Django backend development and Flutter cross-platform application development."
     },
     {
         "id": "3",
-        "title": "Certified CyberSecurity Analyst (CCSA)",
+        "title": "Certified Cyber Security Analyst (CCSA)",
         "issuer": "Red Team Hacker Academy",
         "date": "2022",
         "category": "Cybersecurity",
-        "image": "django.jpg",
+        "image": "ccsa.jpg",
         "credentialLink": "#",
-        "description": "IT infrastructure technologies, OSINT, Web application pentest, vulnerability assessment, network security, SOC, SIEM."
-    },
-    {
-        "id": "4",
-        "title": "JavaScript and React",
-        "issuer": "Bridgeon",
-        "date": "2023-01-18",
-        "category": "Web",
-        "image": "react.jpg",
-        "credentialLink": "#",
-        "description": "Building and deploying AI solutions with Azure Machine Learning."
-    },
-    {
-        "id": "5",
-        "title": "Technology Workshop",
-        "issuer": "Prosevo Technologies",
-        "date": "2024-10-14",
-        "category": "Web",
-        "image": "prosevo.jpg",
-        "credentialLink": "#",
-        "description": "Odoo language, OSINT, Web applications (MERN & Django), AI/ML, Flutter."
+        "description": "Covered OSINT, web application security testing, vulnerability assessment, and SOC/SIEM fundamentals."
     }
 ];
-
 export const blogs = [
     {
         "id": 1,
@@ -238,3 +290,4 @@ export const blogs = [
         "content": "# The Most Underrated Skill in Life\n\nAwareness is the quiet superpower.\n\nThe ability to step back — before reacting, judging, or rushing — and simply *see* what’s happening.\n\nAwareness turns arguments into understanding. It transforms pressure into perspective.\n\nIt’s the difference between living **in** your mind and living **with** it.\n\n> Awareness doesn’t solve life — it reveals it."
     }
 ];
+
