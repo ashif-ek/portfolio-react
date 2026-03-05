@@ -36,4 +36,18 @@ Api.interceptors.request.use(
   }
 );
 
+// Add a response interceptor to handle 401 Unauthorized
+Api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      sessionStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default Api;

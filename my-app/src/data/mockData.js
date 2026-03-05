@@ -1,7 +1,7 @@
 export const profile = {
     "name": "Ashif E.K",
     "title": "Full-Stack Engineer",
-    "description": "Full-Stack Engineer focused on building reliable, production-grade web platforms with Django REST Framework, React, PostgreSQL, Docker, and AWS. I design secure APIs, scalable backend systems, and high-performance applications with CI/CD automation and production-first reliability.",
+    "description": "Full-Stack Engineer focused on building reliable, production-grade web platforms. Experienced with Django REST Framework, React, PostgreSQL, Docker, and AWS to design secure APIs, scalable backend systems, and high-performance applications. Emphasizes system reliability, automation, and real-world operational constraints through CI/CD pipelines, payment integrations, and cloud deployment, delivering software that operates correctly in production environments.",
     "email": "ashifek11@gmail.com",
     "socialLinks": [
         {
@@ -9,7 +9,7 @@ export const profile = {
             "url": "https://linkedin.com/in/ashifek"
         },
         {
-            "name": "Github",
+            "name": "GitHub",
             "url": "https://github.com/ashif-ek"
         },
         {
@@ -17,7 +17,7 @@ export const profile = {
             "url": "http://www.fiverr.com/s/gDLy45X"
         },
         {
-            "name": "Docs Material",
+            "name": "Docs Stack",
             "url": "https://ashif-ek.github.io/docs-stack-material/"
         }
     ]
