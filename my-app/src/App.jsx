@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import MigrateBanner from "./components/MigrateBanner.jsx";
 import LoadingSpinner from "./components/LoadingSpinner.jsx";
 
 // Lazy imports
@@ -23,8 +24,19 @@ function ProtectedRoute({ children }) {
 }
 
 export default function App() {
+  useEffect(() => {
+    // Perform redirect to new domain
+    const timer = setTimeout(() => {
+      const currentPath = window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace(`https://ashifek.in${currentPath}`);
+    }, 2000); // 2 second delay to show the banner
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <AuthProvider>
+      <MigrateBanner />
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>

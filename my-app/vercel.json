@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://ashifek.in/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
