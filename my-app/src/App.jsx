@@ -11,6 +11,7 @@ const AdminLayout = lazy(() => import("./pages/AdminLayout.jsx"));
 import Home from "./pages/Home.jsx";
 import InstallPrompt from "./components/InstallPrompt.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import RedirectModal from "./components/RedirectModal.jsx";
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard.jsx"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
@@ -24,18 +25,9 @@ function ProtectedRoute({ children }) {
 }
 
 export default function App() {
-  useEffect(() => {
-    // Perform redirect to new domain
-    const timer = setTimeout(() => {
-      const currentPath = window.location.pathname + window.location.search + window.location.hash;
-      window.location.replace(`https://ashifek.in${currentPath}`);
-    }, 2000); // 2 second delay to show the banner
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <AuthProvider>
+      <RedirectModal />
       <MigrateBanner />
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Suspense fallback={<LoadingSpinner />}>
